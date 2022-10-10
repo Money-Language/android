@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-563312654/MOGE.iml" filepath="$PROJECT_DIR$/.idea/modules/-563312654/MOGE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MOGE.app.iml" filepath="$PROJECT_DIR$/.idea/modules/MOGE.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MOGE.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/MOGE.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MOGE.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MOGE.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MOGE.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/MOGE.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>
