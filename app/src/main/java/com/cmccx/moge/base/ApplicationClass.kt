@@ -1,6 +1,7 @@
 package com.cmccx.moge.base
 
 import android.app.Application
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ApplicationClass : Application() {
     // 테스트 서버 주소
@@ -10,7 +11,7 @@ class ApplicationClass : Application() {
     // val API_URL = ""
 
     companion object {
-
+        lateinit var bottomNav: BottomNavigationView
     }
 
     override fun onCreate() {

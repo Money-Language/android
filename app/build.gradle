@@ -21,8 +21,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "KAKAO_API_KEY", properties["kakao_api_key"]
-        buildConfigField "String", "NAVER_API_KEY", properties["naver_api_key"]
+        //buildConfigField "String", "KAKAO_API_KEY", properties["kakao_api_key"]
+        //buildConfigField "String", "NAVER_API_KEY", properties["naver_api_key"]
     }
 
     buildTypes {
