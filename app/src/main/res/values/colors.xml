@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primaryMain">#EBE7DC</color>
+    <color name="primaryDark">#D0CAB8 </color>
+    <color name="primaryDeepDark">#9C906B</color>
+    <color name="secondaryMain">#8A46E3</color>
+
+    <color name="whiteTransfer">#59FFFFFF</color>
+    <color name="alertColor">#FF6060</color>
+    <color name="gray">#999999</color>
+    <color name="grayTransfer">#CCD2D2D2</color>
+    <color name="brown">#8F724E</color>
 </resources>
