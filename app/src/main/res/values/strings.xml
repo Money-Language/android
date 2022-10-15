@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MOGE</string>
+    
+    <string name="login_explanation">사용하시기 전에 로그인은 필수!</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="login">로그인</string>
+    <string name="or">또는</string>
+    <string name="signup_with_email">이메일로 회원가입하기</string>
 </resources>
