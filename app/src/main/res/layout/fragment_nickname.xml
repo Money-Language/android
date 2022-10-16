@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryMain">
+    android:background="@color/primary_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nickname_back_cl"
@@ -71,7 +71,7 @@
             android:layout_marginTop="8dp"
             tools:text="사용 중인 별명입니다."
             android:textSize="14sp"
-            android:textColor="@color/alertColor"
+            android:textColor="@color/alert_color"
             app:layout_constraintTop_toBottomOf="@id/nickname_et"
             app:layout_constraintStart_toStartOf="@id/nickname_et"
             android:visibility="gone" />

@@ -7,17 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="24dp"
-    android:background="@color/primaryMain">
+    android:background="@color/primary_main">
 
     <TextView
         android:id="@+id/login_explanation_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
         android:layout_marginTop="96dp"
         android:text="@string/login_explanation"
         android:textColor="@color/black"
-        android:textSize="24sp"
         android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="14sp"
+        android:autoSizeMaxTextSize="100sp"
+        android:autoSizeStepGranularity="2sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -27,7 +30,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:paddingHorizontal="14dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:hint="@string/email"
         android:textColorHint="@color/light_brown"
         android:inputType="textEmailAddress"
@@ -43,7 +46,7 @@
         android:layout_height="48dp"
         android:paddingHorizontal="14dp"
         android:layout_marginTop="16dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:hint="@string/password"
         android:textColorHint="@color/light_brown"
         android:inputType="textPassword"
@@ -53,13 +56,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:text="@string/login"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:background="@drawable/bg_btn_select"
@@ -87,18 +90,21 @@
         <TextView
             android:id="@+id/login_or_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:paddingHorizontal="16dp"
             android:text="@string/or"
-            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/divider" />
+            android:textColor="@color/light_brown"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp" />
 
         <View
             android:id="@+id/login_or_right_divider"
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:background="@color/light_brown" />
+            android:background="@color/divider" />
         
     </LinearLayout>
 
@@ -163,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/signup_with_email"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
