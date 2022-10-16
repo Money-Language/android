@@ -4,8 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryMain"
-    tools:context=".presentation.view.HomeFragment">
+    android:background="@color/primary_main"
+    tools:context=".presentation.view.home.HomeFragment">
+
+    <!-- 최상단 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_header_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/home_header_point_iv"
+            android:layout_width="23dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="21dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_header_point_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="3,050"
+            android:textColor="@color/gray"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@id/home_header_point_iv"
+            app:layout_constraintStart_toEndOf="@id/home_header_point_iv"
+            app:layout_constraintTop_toTopOf="@id/home_header_point_iv" />
+
+        <ImageView
+            android:id="@+id/home_header_notification_iv"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="15.41dp"
+            android:src="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/home_header_point_iv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 상단 버튼 -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +55,11 @@
         android:layout_width="153dp"
         android:layout_height="46.56dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="34.1dp"
+        android:layout_marginTop="22.1dp"
         android:background="@drawable/primary_main_color_btn_bg"
         app:layout_constraintEnd_toStartOf="@id/home_review_quiz_btn_cl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/home_header_cl">
 
         <ImageView
             android:id="@+id/home_today_quiz_btn_icon_iv"
@@ -47,10 +89,10 @@
             android:layout_width="5dp"
             android:layout_height="5dp"
             android:scaleType="fitCenter"
-            android:src="@color/alertColor"
+            android:src="@color/alert_color"
             app:layout_constraintStart_toEndOf="@id/home_today_quiz_btn_txt_tv"
             app:layout_constraintTop_toTopOf="@id/home_today_quiz_btn_txt_tv"
-            app:riv_border_color="@color/alertColor"
+            app:riv_border_color="@color/alert_color"
             app:riv_border_width="0dp"
             app:riv_corner_radius="0dp"
             app:riv_mutate_background="true"
@@ -63,17 +105,17 @@
         android:id="@+id/home_review_quiz_btn_cl"
         android:layout_width="153dp"
         android:layout_height="46.56dp"
-        android:layout_marginTop="34.1dp"
+        android:layout_marginTop="22.1dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/primary_main_color_btn_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/home_today_quiz_btn_cl"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/home_header_cl">
 
         <ImageView
             android:id="@+id/home_review_quiz_btn_icon_iv"
-            android:layout_width="16dp"
-            android:layout_height="23.75dp"
+            android:layout_width="19dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="4.19dp"
             android:src="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/home_review_quiz_btn_txt_tv"
@@ -82,7 +124,7 @@
 
         <TextView
             android:id="@+id/home_review_quiz_btn_txt_tv"
-            android:layout_width="59dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:gravity="center"
             android:text="오답복습"
@@ -98,10 +140,10 @@
             android:layout_width="5dp"
             android:layout_height="5dp"
             android:scaleType="fitCenter"
-            android:src="@color/alertColor"
+            android:src="@color/alert_color"
             app:layout_constraintStart_toEndOf="@id/home_review_quiz_btn_txt_tv"
             app:layout_constraintTop_toTopOf="@id/home_review_quiz_btn_txt_tv"
-            app:riv_border_color="@color/alertColor"
+            app:riv_border_color="@color/alert_color"
             app:riv_border_width="0dp"
             app:riv_corner_radius="0dp"
             app:riv_mutate_background="true"
@@ -128,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_marginTop="18.01dp"
-        android:background="@color/primaryDark"
+        android:background="@color/primary_dark"
         app:layout_constraintTop_toBottomOf="@id/home_feed_profile_rcv" />
 
     <!-- 관심 키워드 타이틀 -->
@@ -139,8 +181,9 @@
         android:layout_marginStart="18.5dp"
         android:layout_marginTop="39.45dp"
         android:text="관심 키워드"
-        android:textColor="@color/black"
+        android:textColor="@color/primary_deep_dark"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_feed_divider_v" />
 
@@ -148,54 +191,32 @@
         android:id="@+id/home_keyword_change_btn_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="11.65dp"
         android:background="@drawable/gray_stroke_btn_bg"
         android:text="변경"
         android:textAlignment="center"
         android:textColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="@id/home_keyword_title_tv"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_keyword_title_tv"
         app:layout_constraintTop_toTopOf="@id/home_keyword_title_tv" />
 
-    <!-- 관심 키워드 커스텀 -->
-    <TextView
-        android:id="@+id/home_keyword_custom_title_tv"
+    <!-- 퀴즈 -->
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/home_quiz_ci"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20.09dp"
-        android:layout_marginTop="8.1dp"
-        android:text="나 정도는 돼야 센스 있지!"
-        android:textColor="@color/primaryDark"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="9.5dp"
+        app:layout_constraintStart_toStartOf="@id/home_keyword_title_tv"
         app:layout_constraintTop_toBottomOf="@id/home_keyword_title_tv" />
 
-    <TextView
-        android:id="@+id/home_keyword_custom_hashtag_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="# 넌센스"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_keyword_custom_title_tv" />
-
-    <!-- 퀴즈 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_quiz_rcv"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/home_quiz_vp"
         android:layout_width="match_parent"
         android:layout_height="299dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="46.5dp"
+        android:layout_marginTop="17.94dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_keyword_custom_hashtag_tv"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_quiz_card" />
-
+        app:layout_constraintTop_toBottomOf="@id/home_quiz_ci" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

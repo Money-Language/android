@@ -8,14 +8,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primaryMain">#EBE7DC</color>
-    <color name="primaryDark">#D0CAB8 </color>
-    <color name="primaryDeepDark">#9C906B</color>
-    <color name="secondaryMain">#8A46E3</color>
+    <color name="primary_main">#EBE7DC</color>
+    <color name="primary_dark">#D0CAB8 </color>
+    <color name="primary_deep_dark">#9C906B</color>
+    <color name="secondary_main">#8A46E3</color>
 
-    <color name="whiteTransfer">#59FFFFFF</color>
-    <color name="alertColor">#FF6060</color>
+    <color name="white_transfer">#59FFFFFF</color>
+    <color name="alert_color">#FF6060</color>
     <color name="gray">#999999</color>
-    <color name="grayTransfer">#CCD2D2D2</color>
+    <color name="gray_transfer">#CCD2D2D2</color>
     <color name="brown">#8F724E</color>
+
+    <color name="light_brown">#FFB5A988</color>
+    <color name="bg_login">#59FFFFFF</color>
+    <color name="bg_btn_unselect">#FFD9D9D9</color>
+
+    <color name="divider">#FFD0CAB8</color>
+    <color name="text_unselect">#FFABABAB</color>
+
+    <color name="category_name">#777777</color>
 </resources>

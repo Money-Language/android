@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">MOGE</string>
+
+    <string name="login_explanation">사용하시기 전에 로그인은 필수!</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="login">로그인</string>
+    <string name="or">또는</string>
+    <string name="signup_with_email">이메일로 회원가입하기</string>
+
+    <string name="agree_tos_explanation">서비스 이용 약관에\n동의해 주세요.</string>
+    <string name="agree_all">아래 약관에 모두 동의합니다.</string>
+    <string name="agree_age">만 14세 이상입니다.</string>
+    <string name="agree_tos">서비스 이용 약관에 동의합니다.</string>
+    <string name="agree_pi">개인정보 수집 및 이용에 동의합니다.</string>
+    <string name="agree_third_party">제3자 정보 이용에 동의합니다.</string>
+    <string name="agree_essential">(필수)</string>
+    <string name="agree_choice">(선택)</string>
+    <string name="next">다음</string>
+
+    <string name="email_explanation">아이디로 사용할\n이메일을 입력해 주세요.</string>
+    <string name="email_validation">이메일 인증하기</string>
+    <string name="email_valid_explanation">이메일로 발송된\n코드를 입력해 주세요.</string>
+    <string name="authentication_code">인증코드</string>
+    <string name="password_explanation">비밀번호를\n입력해 주세요.</string>
+    <string name="password_validation">비밀번호 확인</string>
+    <string name="nickname_explanation">머지(MOGE)에서 활동하실\n별명을 입력해 주세요.</string>
+    <string name="nickname_validation">별명 (중복불가)</string>
+
 </resources>
