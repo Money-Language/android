@@ -27,4 +27,6 @@
     <color name="text_unselect">#FFABABAB</color>
 
     <color name="category_name">#777777</color>
+
+    <color name="bg_quiz">#F5F3EE</color>
 </resources>
