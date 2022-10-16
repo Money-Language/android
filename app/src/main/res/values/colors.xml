@@ -19,7 +19,10 @@
     <color name="grayTransfer">#CCD2D2D2</color>
     <color name="brown">#8F724E</color>
 
-    <color name="loginColor">#FFB5A988</color>
-    <color name="loginBackground">#59FFFFFF</color>
-    <color name="loginSignupBackground">#FFD9D9D9</color>
+    <color name="light_brown">#FFB5A988</color>
+    <color name="bg_login">#59FFFFFF</color>
+    <color name="bg_btn_unselect">#FFD9D9D9</color>
+
+    <color name="divider">#FFD0CAB8</color>
+    <color name="text_unselect">#FFABABAB</color>
 </resources>

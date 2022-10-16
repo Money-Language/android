@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryMain">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pwd_valid_back_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/pwd_valid_back_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pwd_valid_back_cl">
+
+        <TextView
+            android:id="@+id/pwd_valid_explanation_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/password_explanation"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/pwd_et"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:paddingHorizontal="14dp"
+            android:textSize="16sp"
+            android:hint="@string/password"
+            android:textColorHint="@color/light_brown"
+            android:inputType="number"
+            android:background="@drawable/bg_login_edittext"
+            android:textCursorDrawable="@drawable/login_edittext_cursor"
+            app:layout_constraintTop_toBottomOf="@id/pwd_valid_explanation_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/pwd_error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            tools:text="비밀번호는 5자 이상이어야 합니다."
+            android:textSize="14sp"
+            android:textColor="@color/alertColor"
+            app:layout_constraintTop_toBottomOf="@id/pwd_et"
+            app:layout_constraintStart_toStartOf="@id/pwd_et"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/pwd_valid_et"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:paddingHorizontal="14dp"
+            android:textSize="16sp"
+            android:hint="@string/password_validation"
+            android:textColorHint="@color/light_brown"
+            android:inputType="number"
+            android:background="@drawable/bg_login_edittext"
+            android:textCursorDrawable="@drawable/login_edittext_cursor"
+            app:layout_constraintTop_toBottomOf="@id/pwd_error_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/pwd_valid_error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            tools:text="비밀번호가 일치하지 않습니다."
+            android:textSize="14sp"
+            android:textColor="@color/alertColor"
+            app:layout_constraintTop_toBottomOf="@id/pwd_valid_et"
+            app:layout_constraintStart_toStartOf="@id/pwd_valid_et"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pwd_valid_next_unselect_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/next"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_unselect"
+        android:background="@drawable/bg_btn_unselect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/pwd_valid_next_select_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/next"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_btn_select"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

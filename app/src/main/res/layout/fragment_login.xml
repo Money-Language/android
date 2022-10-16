@@ -6,7 +6,7 @@
     android:id="@+id/login_main_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="25dp"
+    android:paddingHorizontal="24dp"
     android:background="@color/primaryMain">
 
     <TextView
@@ -29,7 +29,7 @@
         android:paddingHorizontal="14dp"
         android:textSize="16sp"
         android:hint="@string/email"
-        android:textColorHint="@color/loginColor"
+        android:textColorHint="@color/light_brown"
         android:inputType="textEmailAddress"
         android:background="@drawable/bg_login_edittext"
         android:textCursorDrawable="@drawable/login_edittext_cursor"
@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:textSize="16sp"
         android:hint="@string/password"
-        android:textColorHint="@color/loginColor"
+        android:textColorHint="@color/light_brown"
         android:inputType="textPassword"
         android:background="@drawable/bg_login_edittext"
         android:textCursorDrawable="@drawable/login_edittext_cursor"
@@ -59,10 +59,10 @@
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:text="@string/login"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@drawable/bg_login_btn"
+        android:background="@drawable/bg_btn_select"
         app:layout_constraintTop_toBottomOf="@id/login_password_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -79,10 +79,10 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <View
-            android:id="@+id/login_or_left_line"
+            android:id="@+id/login_or_left_divider"
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:background="@color/loginColor" />
+            android:background="@color/divider" />
 
         <TextView
             android:id="@+id/login_or_tv"
@@ -92,13 +92,13 @@
             android:text="@string/or"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/loginColor" />
+            android:textColor="@color/divider" />
 
         <View
-            android:id="@+id/login_or_right_line"
+            android:id="@+id/login_or_right_divider"
             android:layout_width="150dp"
             android:layout_height="1dp"
-            android:background="@color/loginColor" />
+            android:background="@color/light_brown" />
         
     </LinearLayout>
 
@@ -113,16 +113,16 @@
 
         <ImageView
             android:id="@+id/login_kakao_iv"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_login_kakao"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/login_naver_iv"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_login_naver"
             app:layout_constraintTop_toTopOf="parent"
