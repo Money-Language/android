@@ -11,16 +11,13 @@
 
     <TextView
         android:id="@+id/login_explanation_tv"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="@string/login_explanation"
+        android:textSize="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="14sp"
-        android:autoSizeMaxTextSize="18sp"
-        android:autoSizeStepGranularity="2sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -30,7 +27,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:paddingHorizontal="14dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:hint="@string/email"
         android:textColorHint="@color/light_brown"
         android:inputType="textEmailAddress"
@@ -46,7 +43,7 @@
         android:layout_height="48dp"
         android:paddingHorizontal="14dp"
         android:layout_marginTop="16dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:hint="@string/password"
         android:textColorHint="@color/light_brown"
         android:inputType="textPassword"
@@ -62,7 +59,7 @@
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:text="@string/login"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:background="@drawable/bg_btn_select"
@@ -91,15 +88,12 @@
         <TextView
             android:id="@+id/login_or_tv"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:text="@string/or"
+            android:textSize="14dp"
             android:textStyle="bold"
-            android:textColor="@color/light_brown"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="100sp"
-            android:autoSizeStepGranularity="2sp" />
+            android:textColor="@color/light_brown" />
 
         <View
             android:id="@+id/login_or_right_divider"
@@ -166,16 +160,13 @@
 
             <TextView
                 android:id="@+id/login_signup_email_tv"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/signup_with_email"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="14sp"
-                android:autoSizeMaxTextSize="18sp"
-                android:autoSizeStepGranularity="2sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/login_signup_email_iv" />

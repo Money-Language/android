@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nickname_main_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nickname_back_cl"
+        android:id="@+id/finish_signup_back_cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
@@ -19,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:id="@+id/nickname_back_iv"
+            android:id="@+id/finish_signup_back_iv"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="12dp"
@@ -34,74 +33,61 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nickname_back_cl">
+        app:layout_constraintTop_toBottomOf="@id/finish_signup_back_cl">
 
         <TextView
-            android:id="@+id/nickname_explanation_tv"
+            android:id="@+id/finish_signup_nickname_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="@string/nickname_explanation"
+            tools:text="00"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/nickname_et"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="36dp"
-            android:paddingHorizontal="14dp"
-            android:textSize="14dp"
-            android:hint="@string/nickname_validation"
-            android:textColorHint="@color/light_brown"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/bg_login_edittext"
-            android:textCursorDrawable="@drawable/login_edittext_cursor"
-            app:layout_constraintTop_toBottomOf="@id/nickname_explanation_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <TextView
-            android:id="@+id/nickname_error_tv"
+            android:id="@+id/finish_signup_nickname_sir_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="사용 중인 별명입니다."
-            android:textSize="14dp"
-            android:textColor="@color/alert_color"
-            app:layout_constraintTop_toBottomOf="@id/nickname_et"
-            app:layout_constraintStart_toStartOf="@id/nickname_et"
-            android:visibility="gone" />
+            android:text="@string/sir"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/finish_signup_nickname_tv"
+            app:layout_constraintStart_toEndOf="@id/finish_signup_nickname_tv"/>
+
+        <TextView
+            android:id="@+id/finish_signup_explanation_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_signup_explanation"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/finish_signup_nickname_tv"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/nickname_next_unselect_btn"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginBottom="96dp"
-        android:layout_marginHorizontal="24dp"
-        android:text="@string/next"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        android:textColor="@color/text_unselect"
-        android:background="@drawable/bg_btn_unselect"
-        android:stateListAnimator="@null"
+    <ImageView
+        android:id="@+id/finish_signup_logo_iv"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/nickname_next_select_btn"
+        android:id="@+id/finish_signup_next_btn"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginBottom="96dp"
         android:layout_marginHorizontal="24dp"
-        android:text="@string/next"
+        android:text="@string/start_moge"
         android:textSize="14dp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -109,7 +95,6 @@
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

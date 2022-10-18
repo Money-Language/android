@@ -21,7 +21,7 @@ class TosFragment : BaseFragment<FragmentTosBinding>(FragmentTosBinding::bind, R
 
         // 뒤로 가기 클릭 시 로그인으로 돌아감
         binding.tosBackIv.setOnClickListener {
-            moveFragment(R.id.action_tosFragment_to_loginFragment)
+            backFragment()
         }
 
         // 다음 버튼 클릭 시 이메일로 넘어감

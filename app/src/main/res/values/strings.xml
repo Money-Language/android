@@ -26,5 +26,14 @@
     <string name="password_validation">비밀번호 확인</string>
     <string name="nickname_explanation">머지(MOGE)에서 활동하실\n별명을 입력해 주세요.</string>
     <string name="nickname_validation">별명 (중복불가)</string>
-
+    <string name="category_explanation">관심있는 키워드를\n3개 선택해주세요.</string>
+    <string name="category_new">신조어</string>
+    <string name="category_spelling">맞춤법</string>
+    <string name="category_nonsense">넌센스</string>
+    <string name="category_idiom">사자성어</string>
+    <string name="category_word">단어 의미</string>
+    <string name="finish_signup">회원가입 완료</string>
+    <string name="sir">님!</string>
+    <string name="finish_signup_explanation">회원가입이 완료되었어요.</string>
+    <string name="start_moge">머지 시작하기</string>
 </resources>
