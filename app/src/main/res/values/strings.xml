@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name">MOGE</string>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3278354600116fe33c986ec2a228635c0d6e3e72
     <string name="login_explanation">사용하시기 전에 로그인은 필수!</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
     <string name="login">로그인</string>
     <string name="or">또는</string>
     <string name="signup_with_email">이메일로 회원가입하기</string>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3278354600116fe33c986ec2a228635c0d6e3e72
     <string name="agree_tos_explanation">서비스 이용 약관에\n동의해 주세요.</string>
     <string name="agree_all">아래 약관에 모두 동의합니다.</string>
     <string name="agree_age">만 14세 이상입니다.</string>
@@ -26,5 +34,18 @@
     <string name="password_validation">비밀번호 확인</string>
     <string name="nickname_explanation">머지(MOGE)에서 활동하실\n별명을 입력해 주세요.</string>
     <string name="nickname_validation">별명 (중복불가)</string>
+<<<<<<< HEAD
 
+=======
+    <string name="category_explanation">관심있는 키워드를\n3개 선택해주세요.</string>
+    <string name="category_new">신조어</string>
+    <string name="category_spelling">맞춤법</string>
+    <string name="category_nonsense">넌센스</string>
+    <string name="category_idiom">사자성어</string>
+    <string name="category_word">단어 의미</string>
+    <string name="finish_signup">회원가입 완료</string>
+    <string name="sir">님!</string>
+    <string name="finish_signup_explanation">회원가입이 완료되었어요.</string>
+    <string name="start_moge">머지 시작하기</string>
+>>>>>>> 3278354600116fe33c986ec2a228635c0d6e3e72
 </resources>

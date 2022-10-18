@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_start_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.cmccx.moge.presentation.view.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_tosFragment"
+            app:destination="@id/tosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tosFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.TosFragment"
+        android:label="TosFragment"
+        tools:layout="@layout/fragment_tos">
+        <action
+            android:id="@+id/action_tosFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.EmailFragment"
+        android:label="EmailFragment"
+        tools:layout="@layout/fragment_email">
+        <action
+            android:id="@+id/action_emailFragment_to_emailValidFragment"
+            app:destination="@id/emailValidFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/emailValidFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.EmailValidFragment"
+        android:label="EmailValidFragment"
+        tools:layout="@layout/fragment_email_valid">
+        <action
+            android:id="@+id/action_emailValidFragment_to_pwdValidFragment"
+            app:destination="@id/pwdValidFragment"
+            app:popUpTo="@id/emailFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/pwdValidFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.PwdValidFragment"
+        android:label="PwdValidFragment"
+        tools:layout="@layout/fragment_pwd_valid">
+        <action
+            android:id="@+id/action_pwdValidFragment_to_nicknameFragment"
+            app:destination="@id/nicknameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nicknameFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.NicknameFragment"
+        android:label="NicknameFragment"
+        tools:layout="@layout/fragment_nickname">
+        <action
+            android:id="@+id/action_nicknameFragment_to_favoriteCategoryFragment"
+            app:destination="@id/favoriteCategoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteCategoryFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.FavoriteCategoryFragment"
+        android:label="FavoriteCategoryFragment"
+        tools:layout="@layout/fragment_favorite_category">
+        <action
+            android:id="@+id/action_favoriteCategoryFragment_to_finishSignupFragment"
+            app:destination="@id/finishSignupFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/finishSignupFragment"
+        android:name="com.cmccx.moge.presentation.view.signup.FinishSignupFragment"
+        android:label="FinishSignupFragment"
+        tools:layout="@layout/fragment_finish_signup">
+        <action
+            android:id="@+id/action_finishSignupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+</navigation>
