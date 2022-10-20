@@ -8,22 +8,28 @@
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/gray_solid_btn_bg.xml" value="0.269" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/gray_stroke_btn_bg.xml" value="0.269" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/icon_nav_home_selector.xml" value="0.293" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/icon_nav_mypage_selector.xml" value="0.293" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/icon_nav_search_selector.xml" value="0.293" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/icon_nav_shop_selector.xml" value="0.293" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/drawable/primary_main_color_btn_bg.xml" value="0.293" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/activity_login.xml" value="0.27564102564102566" />
-        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/activity_main.xml" value="0.3359375" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/bottom_sheet_quiz.xml" value="0.2747863247863248" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_chatting.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_email.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_finish_signup.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_login.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_my_page.xml" value="0.3359375" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_search.xml" value="0.3359375" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_shop.xml" value="0.3359375" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_temp1.xml" value="0.3359375" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/fragment_tos.xml" value="0.27564102564102566" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/item_chat_date.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/item_feed_round_profile.xml" value="0.27564102564102566" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/item_quiz_card.xml" value="0.43897996357012753" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/item_quiz_content.xml" value="0.33" />
+        <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/layout/layout_action_bar.xml" value="0.2747863247863248" />
         <entry key="..\:/HS/android_programming/MOGE/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33489583333333334" />
       </map>
     </option>

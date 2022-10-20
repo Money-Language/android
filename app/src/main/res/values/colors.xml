@@ -12,6 +12,7 @@
     <color name="primary_dark">#D0CAB8 </color>
     <color name="primary_deep_dark">#9C906B</color>
     <color name="secondary_main">#8A46E3</color>
+    <color name="secondary_light">#CBA8F8</color>
 
     <color name="white_transfer">#59FFFFFF</color>
     <color name="alert_color">#FF6060</color>

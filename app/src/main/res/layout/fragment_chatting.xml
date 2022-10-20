@@ -69,7 +69,7 @@
                 android:id="@+id/chat_info_quiz_fav_icon_iv"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/icon_fav"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/chat_info_quiz_fav_content_tv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
                 android:id="@+id/chat_info_quiz_comment_icon_iv"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/icon_comment"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/chat_info_quiz_comment_content_tv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +139,7 @@
                 android:id="@+id/chat_info_user_point_icon_iv"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/icon_point"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/chat_info_user_point_content_tv"
                 app:layout_constraintStart_toStartOf="parent"
@@ -189,14 +189,20 @@
             android:id="@+id/chat_input_etv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4" />
+            android:layout_marginStart="21.36dp"
+            android:layout_weight="4"
+            android:background="@color/white"
+            android:hint="정답 입력하기"
+            android:textColorHint="@color/light_brown"
+            android:textSize="16dp" />
 
         <ImageView
             android:id="@+id/chat_input_btn_iv"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/icon_send_btn" />
 
     </LinearLayout>
 
