@@ -55,7 +55,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     // MainOwner interface에서 상속 -> Fragment에서 활용하기 위해, 액션 바 visible
     override fun setActionBarVisible(visible: Boolean) {
         val actionBar = supportActionBar
-
         if (visible) {
             actionBar!!.show()
         } else {
