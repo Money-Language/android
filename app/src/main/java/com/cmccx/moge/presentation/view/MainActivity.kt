@@ -1,22 +1,16 @@
 package com.cmccx.moge.presentation.view
 
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.cmccx.moge.R
 import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseActivity
 import com.cmccx.moge.databinding.ActivityMainBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainOwner {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    private lateinit var navController: NavController
-    lateinit var floatingBtn: FloatingActionButton
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +21,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         ApplicationClass.bottomNav = binding.mainNavBnv
 
         setupBottomNav()
-        setupActionBar()
     }
 
     private fun setupBottomNav() {
         val bottomNavigationView = binding.mainNavBnv
         bottomNavigationView.setupWithNavController(navController)
     }
-
+    
     // 액션 바 세팅
     private fun setupActionBar() {
         val toolbar = binding.mainActionbarTb
@@ -81,5 +74,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             floatingBtn.visibility = View.GONE
         }
     }
-
 }
