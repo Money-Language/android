@@ -2,7 +2,9 @@ package com.cmccx.moge.presentation.view.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.cmccx.moge.R
 import com.cmccx.moge.databinding.ItemQuizContentBinding
 
 class QuizAdapter() : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
@@ -21,6 +23,11 @@ class QuizAdapter() : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
         val curItem = quizList[position]
 
         holder.quizTitle.text = curItem
+
+        // 퀴즈 클릭 시 프래그먼트 이동
+        holder.container.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_chattingFragment)
+        }
 
         holder.optionBtn.setOnClickListener {
 
@@ -42,6 +49,7 @@ class QuizAdapter() : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(binding: ItemQuizContentBinding) : RecyclerView.ViewHolder(binding.root) {
+        val container = binding.itemQuizCl
         val quizTitle = binding.itemQuizContentTitleTv
         val optionBtn = binding.itemQuizContentOptionImv
     }
