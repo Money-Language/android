@@ -83,5 +83,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             floatingBtn.visibility = View.GONE
         }
     }
-
 }

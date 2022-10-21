@@ -49,4 +49,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         binding.homeQuizVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.homeQuizCi.setViewPager(binding.homeQuizVp)
     }
+
 }

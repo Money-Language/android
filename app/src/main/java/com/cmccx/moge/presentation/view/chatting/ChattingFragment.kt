@@ -34,5 +34,4 @@ class ChattingFragment: BaseFragment<FragmentChattingBinding>(FragmentChattingBi
         owner.setBottomNavVisible(true)
         owner.setFloatingBtnVisible(true)
     }
-
 }

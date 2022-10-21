@@ -8,7 +8,7 @@
     android:layout_marginBottom="5.87dp"
     android:background="@color/bg_quiz">
 
-    <!-- 퀴즈 풀이 상황 -->
+    <!-- 퀴즈 풀이  상황 -->
     <View
         android:id="@+id/item_quiz_content_progress_v"
         android:layout_width="3dp"

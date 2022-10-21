@@ -17,6 +17,6 @@ class SplashActivity : AppCompatActivity() {
             Log.d("splash", "loop")
             startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
-        }, 500)
+        }, 300)
     }
 }

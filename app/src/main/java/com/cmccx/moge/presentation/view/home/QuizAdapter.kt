@@ -53,4 +53,5 @@ class QuizAdapter() : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
         val quizTitle = binding.itemQuizContentTitleTv
         val optionBtn = binding.itemQuizContentOptionImv
     }
+
 }

@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
             binding.loginPasswordEt.clearFocus()
         }
 
-        /** 임시!!!!!!! **/
+        /** 임시!!!!!!!! **/
         binding.loginBtn.setOnClickListener {
             val intent = Intent(this.requireContext(), MainActivity::class.java)
             startActivity(intent)
