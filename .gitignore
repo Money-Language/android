@@ -121,6 +121,10 @@ obj/
 .idea/navEditor.xml
 .idea/discord.xml
 
+# CodeStyle
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+
 # Legacy Eclipse project files
 .classpath
 .project

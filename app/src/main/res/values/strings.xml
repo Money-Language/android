@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MOGE</string>
-
     <string name="login_explanation">사용하시기 전에 로그인은 필수!</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
@@ -26,7 +25,6 @@
     <string name="password_validation">비밀번호 확인</string>
     <string name="nickname_explanation">머지(MOGE)에서 활동하실\n별명을 입력해 주세요.</string>
     <string name="nickname_validation">별명 (중복불가)</string>
-
     <string name="category_explanation">관심있는 키워드를\n3개 선택해주세요.</string>
     <string name="category_new">신조어</string>
     <string name="category_spelling">맞춤법</string>
