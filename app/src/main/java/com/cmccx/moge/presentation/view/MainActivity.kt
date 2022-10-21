@@ -1,16 +1,22 @@
 package com.cmccx.moge.presentation.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.cmccx.moge.R
 import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseActivity
 import com.cmccx.moge.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainOwner {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
+    lateinit var floatingBtn: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +27,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         ApplicationClass.bottomNav = binding.mainNavBnv
 
         setupBottomNav()
+        setupActionBar()
     }
 
     private fun setupBottomNav() {
         val bottomNavigationView = binding.mainNavBnv
         bottomNavigationView.setupWithNavController(navController)
     }
-    
+
     // 액션 바 세팅
     private fun setupActionBar() {
-        val toolbar = binding.mainActionbarTb
-        setSupportActionBar(toolbar)
+        val toolbar = binding.mainActionbarTb;
+        setSupportActionBar(toolbar);
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -48,11 +55,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     // MainOwner interface에서 상속 -> Fragment에서 활용하기 위해, 액션 바 visible
     override fun setActionBarVisible(visible: Boolean) {
         val actionBar = supportActionBar
+
         if (visible) {
             actionBar!!.show()
         } else {
             actionBar!!.hide()
         }
+
     }
 
     // 바텀 네비 visible

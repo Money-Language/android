@@ -19,4 +19,8 @@
         <item name="colorPrimary">@color/primary_main</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
     </style>
+    <style name="ActionBarTheme" parent="Theme.AppCompat.Light">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+    </style>
 </resources>
