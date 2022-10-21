@@ -37,8 +37,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     // 액션 바 세팅
     private fun setupActionBar() {
-        val toolbar = binding.mainActionbarTb;
-        setSupportActionBar(toolbar);
+        val toolbar = binding.mainActionbarTb
+        setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -61,7 +61,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         } else {
             actionBar!!.hide()
         }
-
     }
 
     // 바텀 네비 visible
