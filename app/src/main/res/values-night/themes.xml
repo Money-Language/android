@@ -12,19 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/gray</item>
-        <item name="android:editTextColor">@color/black</item>
     </style>
     
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>
         <item name="colorPrimary">@color/primary_main</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-    </style>
-
-    <style name="ActionBarTheme" parent="Theme.AppCompat.Light">
-        <item name="contentInsetStart">0dp</item>
-        <item name="contentInsetEnd">0dp</item>
     </style>
 </resources>

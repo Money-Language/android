@@ -1,6 +1,5 @@
 package com.cmccx.moge.presentation.view.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +7,6 @@ import android.view.View
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentLoginBinding
-import com.cmccx.moge.presentation.view.MainActivity
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login) {
 
@@ -31,12 +29,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
             hideKeyboard()
             binding.loginEmailEt.clearFocus()
             binding.loginPasswordEt.clearFocus()
-        }
-
-        /** 임시!!!!!!! **/
-        binding.loginBtn.setOnClickListener {
-            val intent = Intent(this.requireContext(), MainActivity::class.java)
-            startActivity(intent)
         }
     }
 

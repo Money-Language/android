@@ -1,7 +1,6 @@
 package com.cmccx.moge.base
 
 import android.app.Application
-import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ApplicationClass : Application() {
