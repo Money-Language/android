@@ -1,37 +1,25 @@
 package com.cmccx.moge.presentation.view.home
 
-import android.content.Context
 import android.os.Bundle
 import android.system.Os.bind
 import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentHomeBinding
-import com.cmccx.moge.presentation.view.MainOwner
-
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
     private val cateList = arrayListOf<String>()
-    private lateinit var owner: MainOwner
 
     init {
         // dummy data
         cateList.add("1번 카테")
         cateList.add("2번 카테")
         cateList.add("3번 카테 ")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        owner = context as MainOwner
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        owner.setActionBarVisible(false)
     }
 
     override fun onStart() {
