@@ -12,7 +12,7 @@
         android:id="@+id/chat_info_cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/chatting_info_bg"
+        android:background="@drawable/bg_chatting_info"
         android:paddingVertical="12.57dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_shop" />
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.cmccx.moge.presentation.view.MyPageFragment"
+        android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
         android:label="@layout/fragment_my_page" />
     <fragment
         android:id="@+id/chattingFragment"

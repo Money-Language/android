@@ -60,7 +60,7 @@
             android:layout_height="46.56dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="22.1dp"
-            android:background="@drawable/primary_main_color_btn_bg"
+            android:background="@drawable/bg_primary_main_color_btn"
             app:layout_constraintEnd_toStartOf="@id/home_review_quiz_btn_cl"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_header_cl">
@@ -111,7 +111,7 @@
             android:layout_height="46.56dp"
             android:layout_marginTop="22.1dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/primary_main_color_btn_bg"
+            android:background="@drawable/bg_primary_main_color_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/home_today_quiz_btn_cl"
             app:layout_constraintTop_toBottomOf="@id/home_header_cl">
@@ -196,7 +196,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="11.65dp"
-            android:background="@drawable/gray_stroke_btn_bg"
+            android:background="@drawable/bg_gray_stroke_btn"
             android:text="변경"
             android:textAlignment="center"
             android:textColor="@color/gray"
