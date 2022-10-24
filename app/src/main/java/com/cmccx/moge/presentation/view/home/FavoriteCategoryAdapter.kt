@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.cmccx.moge.databinding.ItemQuizCardBinding
+import com.cmccx.moge.databinding.ItemBoardCardBinding
 
 class FavoriteCategoryAdapter(
     private val context: Context,
@@ -15,7 +14,7 @@ class FavoriteCategoryAdapter(
         parent: ViewGroup,
         viewType: Int
     ): FavoriteCategoryAdapter.ViewHolder {
-        val view = ItemQuizCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemBoardCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
@@ -35,8 +34,8 @@ class FavoriteCategoryAdapter(
         return cateList.size
     }
 
-    inner class ViewHolder(binding: ItemQuizCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        val cateName = binding.itemQuizCardCategoryTitleTv
-        val cardRecyclerView = binding.itemQuizCardRv
+    inner class ViewHolder(binding: ItemBoardCardBinding) : RecyclerView.ViewHolder(binding.root) {
+        val cateName = binding.itemBoardCardCategoryTitleTv
+        val cardRecyclerView = binding.itemBoardCardRv
     }
 }

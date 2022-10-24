@@ -1,15 +1,14 @@
-package com.cmccx.moge.presentation.view.chatting
+package com.cmccx.moge.presentation.view.quiz
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.cmccx.moge.R
-import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseFragment
-import com.cmccx.moge.databinding.FragmentChattingBinding
+import com.cmccx.moge.databinding.FragmentQuizBinding
 import com.cmccx.moge.presentation.view.MainOwner
 
-class ChattingFragment: BaseFragment<FragmentChattingBinding>(FragmentChattingBinding::bind, R.layout.fragment_chatting) {
+class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind, R.layout.fragment_quiz) {
 
     private lateinit var owner: MainOwner
 

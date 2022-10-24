@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_chattingFragment"
-            app:destination="@id/chattingFragment" />
+            android:id="@+id/action_homeFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 
     <fragment
@@ -30,8 +30,8 @@
         android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
         android:label="@layout/fragment_my_page" />
     <fragment
-        android:id="@+id/chattingFragment"
-        android:name="com.cmccx.moge.presentation.view.chatting.ChattingFragment"
-        android:label="fragment_chatting"
-        tools:layout="@layout/fragment_chatting" />
+        android:id="@+id/quizFragment"
+        android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
 </navigation>

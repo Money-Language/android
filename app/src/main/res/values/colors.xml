@@ -33,5 +33,6 @@
     <color name="chat_date_bg">#B8AE92</color>
 
     <color name="light_gray">#AAAAAA</color>
+    <color name="light_gray_transfer">#26AAAAAA</color>
     <color name="divider_transfer">#4DD0CAB8</color>
 </resources>
