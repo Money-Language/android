@@ -25,7 +25,6 @@ class QuizAdapter(
     override fun onBindViewHolder(holder: QuizAdapter.ViewHolder, position: Int) {
         val curItem = dummy[position]
 
-//        var choiceStatus -> enum class
         var tryStatus = true
 
         with (holder) {

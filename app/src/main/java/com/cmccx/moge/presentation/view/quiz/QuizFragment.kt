@@ -9,6 +9,7 @@ import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentQuizBinding
 import com.cmccx.moge.presentation.view.MainOwner
 import com.cmccx.moge.presentation.view.home.FavoriteCategoryAdapter
+import com.cmccx.moge.presentation.viewmodel.QuizViewModel
 
 class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind, R.layout.fragment_quiz) {
 
@@ -28,6 +29,11 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(true)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setAdapter()
     }
 
     override fun onDestroyView() {
