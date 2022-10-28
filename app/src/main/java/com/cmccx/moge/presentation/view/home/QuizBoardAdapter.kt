@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cmccx.moge.R
 import com.cmccx.moge.databinding.ItemBoardContentBinding
 
-class QuizAdapter() : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
+class QuizBoardAdapter() : RecyclerView.Adapter<QuizBoardAdapter.ViewHolder>() {
 
     private val quizList = arrayListOf<String>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): QuizAdapter.ViewHolder {
+    ): QuizBoardAdapter.ViewHolder {
         val view = ItemBoardContentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: QuizAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuizBoardAdapter.ViewHolder, position: Int) {
         val curItem = quizList[position]
 
         holder.quizTitle.text = curItem

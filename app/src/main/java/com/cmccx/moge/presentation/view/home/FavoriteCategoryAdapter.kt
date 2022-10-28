@@ -24,7 +24,7 @@ class FavoriteCategoryAdapter(
         with (holder) {
             cateName.text = curItem
 
-            cardRecyclerView.adapter = QuizAdapter()
+            cardRecyclerView.adapter = QuizBoardAdapter()
             cardRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 

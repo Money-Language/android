@@ -3,10 +3,12 @@ package com.cmccx.moge.presentation.view.quiz
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentQuizBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.view.home.FavoriteCategoryAdapter
 
 class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind, R.layout.fragment_quiz) {
 
@@ -32,5 +34,11 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
         super.onDestroyView()
         owner.setBottomNavVisible(true)
         owner.setFloatingBtnVisible(true)
+    }
+
+    private fun setAdapter() {
+        // 퀴즈 뷰페이저
+        binding.quizBoardVp.adapter = QuizAdapter(this.requireContext())
+        binding.quizBoardVp.orientation = ViewPager2.ORIENTATION_VERTICAL
     }
 }

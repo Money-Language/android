@@ -147,9 +147,9 @@
 
     </LinearLayout>
 
-    <!-- 채팅 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/quiz_list_rcv"
+    <!-- 퀴즈 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/quiz_board_vp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -157,7 +157,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quiz_info_ll"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_quiz_card" />
+        tools:listitem="@layout/item_quiz_card"/>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/quiz_board_vp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:paddingHorizontal="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/quiz_info_ll"-->
+<!--        tools:listitem="@layout/item_quiz_card"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
