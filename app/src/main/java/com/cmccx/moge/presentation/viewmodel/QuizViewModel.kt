@@ -1,13 +1,10 @@
 package com.cmccx.moge.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.cmccx.moge.data.remote.api.QuizApi
-import com.cmccx.moge.data.remote.model.FromServerQuizAnswer
-import com.cmccx.moge.data.remote.model.FromServerQuizQuestion
-import com.cmccx.moge.data.remote.model.Quiz
+import com.cmccx.moge.data.remote.model.QuizAnswer
+import com.cmccx.moge.data.remote.model.QuizChoice
+import com.cmccx.moge.data.remote.model.QuizQuestion
 import kotlinx.coroutines.launch
 
 class QuizViewModel: ViewModel() {
@@ -17,63 +14,65 @@ class QuizViewModel: ViewModel() {
     enum class QuizTry { DONE, YET }
 
     // api 연결 상태
-    private val _status = MutableLiveData<QuizApiStatus>()
-    val status: LiveData<QuizApiStatus> = _status
+    private val _apiStatus = MutableLiveData<QuizApiStatus>()
+    val apiStatus: LiveData<QuizApiStatus> = _apiStatus
 
     // 퀴즈 도전 상태
     private val _tryStatus = MutableLiveData<QuizTry>()
     val tryStatus: LiveData<QuizTry> = _tryStatus
 
     // 서버에서 받아오는 퀴즈 result 값
-    private var _quizQuestion = listOf<FromServerQuizQuestion>()            // 퀴즈 문제
-    private var _quizAnswer = listOf<FromServerQuizAnswer>()                // 퀴즈 보기, 정답
+    private var _quizQuestion = MutableLiveData<List<QuizQuestion>>()
+    val quizQuestion: LiveData<List<QuizQuestion>> = _quizQuestion
 
-    // 퀴즈
-    private val _quizList = MutableLiveData<List<Quiz>>()
-    val quizList: LiveData<List<Quiz>> = _quizList
+    private var _quizChoice = MutableLiveData<List<QuizChoice>>()
+    val quizChoice: LiveData<List<QuizChoice>> = _quizChoice
 
-    private var _curQuizIdx = 0
+    private var _quizAnswer = MutableLiveData<List<QuizAnswer>>()
+    val quizAnswer: LiveData<List<QuizAnswer>> = _quizAnswer
+
 
     init {
 
     }
 
     // API 통신 -> 퀴즈 문제 가져오기
-    fun getQuizList(boardIdx: Int) {
+    fun getQuizQuestion(boardIdx: Int) {
         viewModelScope.launch {
-            _status.value = QuizApiStatus.LOADING
+            _apiStatus.value = QuizApiStatus.LOADING
             try {
-                _quizQuestion = QuizApi.retrofitService.getQuizQuestion(boardIdx = boardIdx)
-                _status.value = QuizApiStatus.DONE
+                _quizQuestion.value = QuizApi.retrofitService.getQuizQuestion(boardIdx = boardIdx)
+                _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
-                _status.value = QuizApiStatus.ERROR
-                _quizList.value = listOf()
+                _apiStatus.value = QuizApiStatus.ERROR
             }
         }
     }
 
-    // API 통신 -> 퀴즈 보기, 정답 가져오기
-    fun getQuizAnswer(boardIdx: Int, quizIdx: Int) {
+    // API 통신 -> 퀴즈 보기 가져오기
+    fun getQuizChoice(boardIdx: Int, quizIdx:Int) {
         viewModelScope.launch {
-            _status.value = QuizApiStatus.LOADING
+            _apiStatus.value = QuizApiStatus.LOADING
             try {
-                _quizAnswer = QuizApi.retrofitService.getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx)
-                _status.value = QuizApiStatus.DONE
+                _quizChoice.value = QuizApi.retrofitService.getQuizChoice(boardIdx = boardIdx, quizIdx = quizIdx)
+                _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
-                _status.value = QuizApiStatus.ERROR
-                _quizList.value = listOf()
+                _apiStatus.value = QuizApiStatus.ERROR
             }
         }
     }
 
-    // 포지션 인덱스 증가
-    fun plusCurQuizIdx() {
-        _curQuizIdx++
-    }
-
-    // 퀴즈 재조합
-    private fun makeQuiz() {
-
+    // API 통신 -> 퀴즈 정답 가져오기
+    fun getQuizAnswer(boardIdx: Int, quizIdx: Int, quizChoiceIdx: String) {
+        viewModelScope.launch {
+            _apiStatus.value = QuizApiStatus.LOADING
+            try {
+                _quizAnswer.value = QuizApi.retrofitService.getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx, quizChoiceIdx = quizChoiceIdx)
+                _apiStatus.value = QuizApiStatus.DONE
+            } catch (e: Exception) {
+                _apiStatus.value = QuizApiStatus.ERROR
+            }
+        }
     }
 
 }

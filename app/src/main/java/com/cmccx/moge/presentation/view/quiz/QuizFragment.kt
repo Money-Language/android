@@ -3,17 +3,19 @@ package com.cmccx.moge.presentation.view.quiz
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentQuizBinding
 import com.cmccx.moge.presentation.view.MainOwner
-import com.cmccx.moge.presentation.view.home.FavoriteCategoryAdapter
 import com.cmccx.moge.presentation.viewmodel.QuizViewModel
+
 
 class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind, R.layout.fragment_quiz) {
 
     private lateinit var owner: MainOwner
+    private val viewModel: QuizViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -29,6 +31,9 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(true)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
     override fun onStart() {
@@ -44,7 +49,17 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
 
     private fun setAdapter() {
         // 퀴즈 뷰페이저
-        binding.quizBoardVp.adapter = QuizAdapter(this.requireContext())
-        binding.quizBoardVp.orientation = ViewPager2.ORIENTATION_VERTICAL
+        val quizBoardVp = binding.quizBoardVp
+        with (quizBoardVp) {
+            adapter = QuizAdapter()
+            orientation = ViewPager2.ORIENTATION_VERTICAL
+            clipChildren = false
+            offscreenPageLimit = 3
+
+            // viewmodel에서 try가 yet일 때
+//            isUserInputEnabled = false
+//            // viewmodel에서 try가 done일 때
+//            isUserInputEnabled = true
+        }
     }
 }

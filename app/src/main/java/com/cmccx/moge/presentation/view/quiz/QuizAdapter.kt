@@ -1,16 +1,15 @@
 package com.cmccx.moge.presentation.view.quiz
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cmccx.moge.databinding.ItemBoardCardBinding
+import com.cmccx.moge.data.remote.model.QuizQuestion
 import com.cmccx.moge.databinding.ItemQuizCardBinding
 
-class QuizAdapter(
-    private val context: Context) : RecyclerView.Adapter<QuizAdapter.ViewHolder>() {
+class QuizAdapter() : ListAdapter<QuizQuestion, QuizAdapter.ViewHolder>(DiffCallback){
 
     private val dummy = arrayListOf<String>()
 
@@ -25,8 +24,6 @@ class QuizAdapter(
     override fun onBindViewHolder(holder: QuizAdapter.ViewHolder, position: Int) {
         val curItem = dummy[position]
 
-        var tryStatus = true
-
         with (holder) {
             // 데이터 세팅
             quizQ.text = curItem
@@ -36,7 +33,7 @@ class QuizAdapter(
                 date.visibility = View.VISIBLE
             }
             // 마지막 문제고, 문제를 푼 상태인 경우
-            else if (position == dummy.size - 1 && tryStatus) {
+            if (position == dummy.size - 1) {
                 last.visibility = View.VISIBLE
             }
         }
@@ -61,5 +58,18 @@ class QuizAdapter(
         val last = binding.itemQuizBtmResultLastCl
 
         val quizQ = binding.itemQuizCardQuestionTv
+
+
+        val test = binding.itemQuizCardContainerCl
+    }
+
+    companion object DiffCallback : DiffUtil.ItemCallback<QuizQuestion>() {
+        override fun areItemsTheSame(oldItem: QuizQuestion, newItem: QuizQuestion): Boolean {
+            return oldItem.quizIdx == newItem.quizIdx
+        }
+
+        override fun areContentsTheSame(oldItem: QuizQuestion, newItem: QuizQuestion): Boolean {
+            return oldItem.quizIdx == newItem.quizIdx
+        }
     }
 }
