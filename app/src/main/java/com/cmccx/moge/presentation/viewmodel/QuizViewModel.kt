@@ -7,6 +7,7 @@ import com.cmccx.moge.data.remote.model.Quiz
 import com.cmccx.moge.data.remote.model.QuizAnswer
 import com.cmccx.moge.data.remote.model.QuizChoice
 import com.cmccx.moge.data.remote.model.QuizQuestion
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class QuizViewModel: ViewModel() {
@@ -24,8 +25,8 @@ class QuizViewModel: ViewModel() {
     val tryStatus: LiveData<QuizTry> = _tryStatus
 
     // 사용자의 정답 여부
-    private val _userTryResult = MutableLiveData<QuizResult>()
-    val userTryResult: LiveData<QuizResult> = _userTryResult
+    private val _tryResult = MutableLiveData<QuizResult>()
+    val tryResult: LiveData<QuizResult> = _tryResult
 
     // 서버에서 받아오는 퀴즈 result 값
     private var _quizQuestion = MutableLiveData<List<QuizQuestion>>()
@@ -41,12 +42,12 @@ class QuizViewModel: ViewModel() {
     val quizAnswer: LiveData<QuizAnswer> = _quizAnswer
 
     // 퀴즈
-    var tempQuiz = arrayOf<Quiz>()
+
     private var _quiz = MutableLiveData<List<Quiz>>()
     val quiz: LiveData<List<Quiz>> = _quiz
+    private var _curPosition = 0
 
     // 사용자 선택
-    private var _curPosition = 0
     private var _userBoard = MutableLiveData<Int>()
     private var _userQuiz = MutableLiveData<Int>()
     private var _userChoice = MutableLiveData<String>()
@@ -55,44 +56,14 @@ class QuizViewModel: ViewModel() {
     init {
         /** !!! 보드 id 파셀라이즈 처리 해야함 !!! **/
         _userBoard.value = 1
+
+        /** 이상한데 얘 동작 안 하는데 **/
         _tryStatus.value = QuizTry.YET
 
         getQuizQuestion(_userBoard.value!!)
 
+        makeQuiz(_curPosition)
 
-    }
-
-    private fun getQuiz(){
-        for (i in 0 until _quizQuestion.value!!.size) {
-            val boardIdx = _userBoard.value!!
-            val quizIdx = _quizQuestion.value!![i].quizIdx
-
-            // 보기 받아오기
-            if (_quizQuestion.value!![i].quizType == "객관식") {
-                getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = quizIdx)
-                getQuizChoiceSecond(boardIdx = boardIdx, quizIdx = quizIdx)
-            } else {
-                getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = quizIdx)
-            }
-
-            // 정답 받아오기
-            getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx, quizChoiceIdx = _userChoice.value!!)
-
-            val test = Quiz(
-                boardIdx= boardIdx,
-                quizIdx= quizIdx,
-                quizType= _quizQuestion.value!![i].quizType,          // 퀴즈 분류 - 객관식, 주관식
-                quizQuestion= _quizQuestion.value!![i].quizQuestion,      // 퀴즈 문제
-                choiceHint= _quizChoiceFirst.value!![0].quizChoice,        // 주관식 힌트
-                choiceFirstIdx= _quizChoiceFirst.value!![0].choiceIdx,    // 보기1 인덱스
-                choiceFirst= _quizChoiceFirst.value!![1].quizChoice,       // 보기1
-                choiceSecondIdx= _quizChoiceSecond.value!![1].choiceIdx,   // 보기2 인덱스
-                choiceSecond= _quizChoiceSecond.value!![0].quizChoice,      // 보기2
-                quizAnswer= _quizAnswer.value!!.quizAnswerValue         // 정답
-            )
-
-            _quiz.value = listOf(test)
-        }
     }
 
     // API 통신 -> 퀴즈 문제 가져오기
@@ -103,9 +74,18 @@ class QuizViewModel: ViewModel() {
                 val response = QuizApi.retrofitService.getQuizQuestion(boardIdx = boardIdx)
                 _quizQuestion.value = response.result
                 Log.d("TEST-문제", _quizQuestion.value.toString())
-                _apiStatus.value = QuizApiStatus.DONE
 
-                getQuiz()
+                // 보기 받아오기
+                if (_quizQuestion.value!![_curPosition].quizType == "객관식") {
+                    getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = _curPosition+1)
+                    getQuizChoiceSecond(boardIdx = boardIdx, quizIdx = _curPosition+1)
+                    //getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
+                } else {
+                    getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = _curPosition+1)
+                    //getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
+                }
+
+                _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
                 Log.d("TEST-문제", e.toString())
                 _apiStatus.value = QuizApiStatus.ERROR
@@ -175,6 +155,32 @@ class QuizViewModel: ViewModel() {
             _curPosition += 1
         } else {
             // !!!!!!!!!
+        }
+    }
+
+    private fun makeQuiz(idx: Int) {
+        viewModelScope.launch {
+            delay(200)
+            try {
+                val test = Quiz(
+                    boardIdx= 1,
+                    quizIdx= idx+1,
+                    quizTotal= _quizQuestion.value!!.size.toString(),           // 퀴즈 총 갯수
+                    quizType= _quizQuestion.value!![idx].quizType,              // 퀴즈 분류 - 객관식, 주관식
+                    quizQuestion= _quizQuestion.value!![idx].quizQuestion,      // 퀴즈 문제
+                    choiceHint= _quizChoiceFirst.value!![0].quizChoice,         // 주관식 힌트
+                    choiceFirstIdx= "_quizChoiceFirst.value!![0].choiceIdx",    // 보기1 인덱스
+                    choiceFirst= _quizChoiceFirst.value!![0].quizChoice,        // 보기1
+                    choiceSecondIdx= "_quizChoiceSecond.value!![0].choiceIdx",  // 보기2 인덱스
+                    choiceSecond= _quizChoiceSecond.value!![0].quizChoice,      // 보기2
+                    quizAnswer= "_quizAnswer.value!!.quizAnswerValue"           // 정답
+                )
+
+                _quiz.value = listOf(test)
+                Log.d("TEST-완성", test.toString())
+            } catch (e: Exception) {
+                Log.d("TEST-완성", e.toString())
+            }
         }
     }
 

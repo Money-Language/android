@@ -100,6 +100,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
+                            android:text="@{quiz.quizTotal}"
                             android:textSize="12dp"
                             tools:text="5" />
                     </LinearLayout>
@@ -280,7 +281,7 @@
                     android:id="@+id/item_quiz_card_result_cl"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    app:isGone="@{viewModel.tryStatus == isTry.YET ? true : false}"
+                    app:setTryVisible="@{viewModel.tryStatus}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/item_quiz_card_alert_iv"
                     app:layout_constraintHorizontal_bias="0"
@@ -291,7 +292,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icon_get_point"
-                        app:isGone="@{viewModel.userTryResult == result.WRONG ? true : false}"
+                        app:isGone="@{viewModel.tryResult == result.WRONG ? true : false}"
                         app:layout_constraintBottom_toTopOf="@id/item_quiz_card_result_icon_iv"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -303,11 +304,11 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/item_quiz_card_result_get_point_iv"
-                        app:setResultIconImg="@{viewModel.userTryResult == result.CORRECT ? true : false}" />
+                        app:setResultIconImg="@{viewModel.tryResult}" />
 
                     <TextView
                         android:id="@+id/item_quiz_card_result_text_tv"
-                        setResultTxt="@{viewModel.userTryResult == result.CORRECT ? true : false}"
+                        app:setResultTxt="@{viewModel.tryResult == result.CORRECT ? true : false}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="7dp"
