@@ -165,8 +165,8 @@
             android:paddingHorizontal="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            quizData="@{viewModel.quizQuestion}"
             app:layout_constraintTop_toBottomOf="@id/quiz_info_ll"
+            app:quizData="@{viewModel.quiz}"
             tools:listitem="@layout/item_quiz_card" />
 
         <!--    <androidx.recyclerview.widget.RecyclerView-->

@@ -6,12 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cmccx.moge.data.remote.model.QuizQuestion
+import com.cmccx.moge.data.remote.model.Quiz
 import com.cmccx.moge.databinding.ItemQuizCardBinding
 
-class QuizAdapter() : ListAdapter<QuizQuestion, QuizAdapter.ViewHolder>(DiffCallback){
-
-    private val dummy = arrayListOf<String>()
+class QuizAdapter() : ListAdapter<Quiz, QuizAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,53 +20,42 @@ class QuizAdapter() : ListAdapter<QuizQuestion, QuizAdapter.ViewHolder>(DiffCall
     }
 
     override fun onBindViewHolder(holder: QuizAdapter.ViewHolder, position: Int) {
-        val curItem = dummy[position]
+        val curItem = getItem(position)
+        holder.bind(curItem)
 
-        with (holder) {
-            // 데이터 세팅
-            quizQ.text = curItem
-
+        with(holder) {
             // 처음 문제인 경우
             if (position == 0) {
-                date.visibility = View.VISIBLE
+                quizTryDate.visibility = View.VISIBLE
             }
-            // 마지막 문제고, 문제를 푼 상태인 경우
-            if (position == dummy.size - 1) {
-                last.visibility = View.VISIBLE
-            }
+
+            quizCur.text = (position + 1).toString()
         }
 
     }
 
-    override fun getItemCount(): Int {
-        return dummy.size
+    inner class ViewHolder(private val binding: ItemQuizCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val quizTryDate = binding.itemQuizCardTryDateTv
+
+        // 문제 인덱스
+        val quizCur = binding.itemQuizCardPcsCurrentTv
+
+        // 문제
+        val quizQuestion = binding.itemQuizCardQuestionTv
+
+        fun bind(quiz: Quiz) {
+            binding.quiz = quiz
+        }
+
     }
 
-    init {
-        dummy.add("1번 dummy 문제")
-        dummy.add("2번 dummy 문제")
-        dummy.add("3번 dummy 문제")
-        dummy.add("4번 dummy 문제")
-        dummy.add("5번 dummy 문제")
-
-    }
-
-    inner class ViewHolder(binding: ItemQuizCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        val date = binding.itemQuizCardTryDateTv
-        val last = binding.itemQuizBtmResultLastCl
-
-        val quizQ = binding.itemQuizCardQuestionTv
-
-
-        val test = binding.itemQuizCardContainerCl
-    }
-
-    companion object DiffCallback : DiffUtil.ItemCallback<QuizQuestion>() {
-        override fun areItemsTheSame(oldItem: QuizQuestion, newItem: QuizQuestion): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Quiz>() {
+        override fun areItemsTheSame(oldItem: Quiz, newItem: Quiz): Boolean {
             return oldItem.quizIdx == newItem.quizIdx
         }
 
-        override fun areContentsTheSame(oldItem: QuizQuestion, newItem: QuizQuestion): Boolean {
+        override fun areContentsTheSame(oldItem: Quiz, newItem: Quiz): Boolean {
             return oldItem.quizIdx == newItem.quizIdx
         }
     }

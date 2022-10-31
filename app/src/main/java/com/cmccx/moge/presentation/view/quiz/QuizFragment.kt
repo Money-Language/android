@@ -48,18 +48,6 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
     }
 
     private fun setAdapter() {
-        // 퀴즈 뷰페이저
-        val quizBoardVp = binding.quizBoardVp
-        with (quizBoardVp) {
-            adapter = QuizAdapter()
-            orientation = ViewPager2.ORIENTATION_VERTICAL
-            clipChildren = false
-            offscreenPageLimit = 3
-
-            // viewmodel에서 try가 yet일 때
-//            isUserInputEnabled = false
-//            // viewmodel에서 try가 done일 때
-//            isUserInputEnabled = true
-        }
+        binding.quizBoardVp.adapter = QuizAdapter()
     }
 }
