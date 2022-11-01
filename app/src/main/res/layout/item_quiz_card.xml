@@ -99,8 +99,8 @@
                             android:id="@+id/item_quiz_card_pcs_total_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:text="@{quiz.quizTotal}"
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             tools:text="5" />
                     </LinearLayout>
@@ -173,7 +173,6 @@
                 </LinearLayout>
 
                 <!-- 주관식 -->
-<!--                android:onClick="@{() -> viewModel.tryStatus == isTry.YET ? viewModel.onClickQuizChoice(isTry.DONE) : null}"-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/item_quiz_card_short_choice_cl"
                     android:layout_width="match_parent"
@@ -227,7 +226,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- 객관식 -->
-<!--                android:onClick="@{() -> viewModel.tryStatus == isTry.YET ? viewModel.onClickQuizChoice(isTry.DONE) : null}"-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/item_quiz_card_multi_choice_cl"
                     android:layout_width="match_parent"
@@ -281,7 +279,7 @@
                     android:id="@+id/item_quiz_card_result_cl"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    app:setTryVisible="@{viewModel.tryStatus}"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/item_quiz_card_alert_iv"
                     app:layout_constraintHorizontal_bias="0"
@@ -292,7 +290,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icon_get_point"
-                        app:isGone="@{viewModel.tryResult == result.WRONG ? true : false}"
                         app:layout_constraintBottom_toTopOf="@id/item_quiz_card_result_icon_iv"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -303,12 +300,10 @@
                         android:layout_height="40dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/item_quiz_card_result_get_point_iv"
-                        app:setResultIconImg="@{viewModel.tryResult}" />
+                        app:layout_constraintTop_toBottomOf="@id/item_quiz_card_result_get_point_iv" />
 
                     <TextView
                         android:id="@+id/item_quiz_card_result_text_tv"
-                        app:setResultTxt="@{viewModel.tryResult == result.CORRECT ? true : false}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="7dp"
@@ -359,11 +354,11 @@
 
         <!-- 퀴즈 결과 -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_quiz_card_btm_result_cl"
+            android:id="@+id/item_quiz_btm_result_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            app:isGone="@{viewModel.tryStatus == isTry.YET ? true : false}"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_quiz_card_cv">

@@ -18,5 +18,5 @@ data class QuizAnswerResponse (
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: QuizAnswer
+    val result: List<QuizAnswer>
 )

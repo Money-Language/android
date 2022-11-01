@@ -13,12 +13,17 @@ import kotlinx.coroutines.launch
 class QuizViewModel: ViewModel() {
 
     enum class QuizApiStatus { LOADING, ERROR, DONE }
+    enum class QuizType { MULTI, SHORT } // 객관식, 주관식
     enum class QuizTry { DONE, YET }
     enum class QuizResult { CORRECT, WRONG }    // 정답 여부
 
     // api 연결 상태
     private val _apiStatus = MutableLiveData<QuizApiStatus>()
     val apiStatus: LiveData<QuizApiStatus> = _apiStatus
+
+    // 퀴즈 타입
+    private val _quizType = MutableLiveData<QuizType>()
+    val quizType: LiveData<QuizType> = _quizType
 
     // 퀴즈 도전 상태
     private val _tryStatus = MutableLiveData<QuizTry>()
@@ -38,19 +43,21 @@ class QuizViewModel: ViewModel() {
     private var _quizChoiceSecond = MutableLiveData<List<QuizChoice>>()
     val quizChoiceSecond: LiveData<List<QuizChoice>> = _quizChoiceSecond
 
-    private var _quizAnswer = MutableLiveData<QuizAnswer>()
-    val quizAnswer: LiveData<QuizAnswer> = _quizAnswer
+    private var _quizAnswer = MutableLiveData<List<QuizAnswer>>()
+    val quizAnswer: LiveData<List<QuizAnswer>> = _quizAnswer
 
     // 퀴즈
-
-    private var _quiz = MutableLiveData<List<Quiz>>()
-    val quiz: LiveData<List<Quiz>> = _quiz
+    private var _quiz = MutableLiveData<ArrayList<Quiz>>()
+    val quiz: LiveData<ArrayList<Quiz>> = _quiz
     private var _curPosition = 0
+    val curPosition get() = _curPosition
 
     // 사용자 선택
-    private var _userBoard = MutableLiveData<Int>()
-    private var _userQuiz = MutableLiveData<Int>()
-    private var _userChoice = MutableLiveData<String>()
+    private val _userBoard = MutableLiveData<Int>()
+    val userBoard: LiveData<Int> = _userBoard
+
+    private val _userQuiz = MutableLiveData<Int>()
+    private val _userChoice = MutableLiveData<String>()
 
 
     init {
@@ -67,6 +74,10 @@ class QuizViewModel: ViewModel() {
 
     fun setBoardIdx(input: Int) {
         _userBoard.value = input
+    }
+
+    fun plusCurPos() {
+        _curPosition++
     }
 
     fun isTry(input: Boolean) {
@@ -96,12 +107,14 @@ class QuizViewModel: ViewModel() {
 
                 // 보기 받아오기
                 if (_quizQuestion.value!![_curPosition].quizType == "객관식") {
+                    _quizType.value = QuizType.MULTI
                     getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = _curPosition+1)
                     getQuizChoiceSecond(boardIdx = boardIdx, quizIdx = _curPosition+1)
-                    //getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
+                    getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
                 } else {
+                    _quizType.value = QuizType.SHORT
                     getQuizChoiceFirst(boardIdx = boardIdx, quizIdx = _curPosition+1)
-                    //getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
+                    getQuizAnswer(boardIdx = boardIdx, quizIdx = _curPosition+1, quizChoiceIdx = "01")
                 }
 
                 _apiStatus.value = QuizApiStatus.DONE
@@ -150,7 +163,7 @@ class QuizViewModel: ViewModel() {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
                 val response = QuizApi.retrofitService.getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx, quizChoiceIdx = quizChoiceIdx)
-                _quizAnswer.value = response.result
+                _quizAnswer.value = listOf(response.result[0])
                 Log.d("TEST-정답", response.result.toString())
                 _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
@@ -177,7 +190,9 @@ class QuizViewModel: ViewModel() {
         }
     }
 
-    private fun makeQuiz(idx: Int) {
+    val quizArr = arrayListOf<Quiz>()
+
+    fun makeQuiz(idx: Int) {
         viewModelScope.launch {
             delay(200)
             try {
@@ -188,14 +203,17 @@ class QuizViewModel: ViewModel() {
                     quizType= _quizQuestion.value!![idx].quizType,              // 퀴즈 분류 - 객관식, 주관식
                     quizQuestion= _quizQuestion.value!![idx].quizQuestion,      // 퀴즈 문제
                     choiceHint= _quizChoiceFirst.value!![0].quizChoice,         // 주관식 힌트
-                    choiceFirstIdx= "_quizChoiceFirst.value!![0].choiceIdx",    // 보기1 인덱스
+                    choiceFirstIdx= "01",    // 보기1 인덱스
+                    //choiceFirstIdx= _quizChoiceFirst.value!![0].choiceIdx,    // 보기1 인덱스
                     choiceFirst= _quizChoiceFirst.value!![0].quizChoice,        // 보기1
-                    choiceSecondIdx= "_quizChoiceSecond.value!![0].choiceIdx",  // 보기2 인덱스
+                    choiceSecondIdx= "02",  // 보기2 인덱스
+                    //choiceSecondIdx= _quizChoiceSecond.value!![0].choiceIdx,  // 보기2 인덱스
                     choiceSecond= _quizChoiceSecond.value!![0].quizChoice,      // 보기2
-                    quizAnswer= "_quizAnswer.value!!.quizAnswerValue"           // 정답
+                    quizAnswer= _quizAnswer.value!![0].quizAnswerValue           // 정답
                 )
+                quizArr.add(test)
 
-                _quiz.value = listOf(test)
+                _quiz.value = quizArr
                 Log.d("TEST-완성", test.toString())
             } catch (e: Exception) {
                 Log.d("TEST-완성", e.toString())

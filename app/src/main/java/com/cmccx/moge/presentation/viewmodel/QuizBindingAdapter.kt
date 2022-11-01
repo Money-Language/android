@@ -23,30 +23,6 @@ fun bindViewPager(
     viewPager2.offscreenPageLimit = 3
 }
 
-@BindingAdapter("isGone")
-fun bindIsGone(view: View, isGone: Boolean) {
-    view.visibility = if (isGone) {
-        View.GONE
-    } else {
-        View.VISIBLE
-    }
-}
-
-@BindingAdapter("setTryVisible")
-fun bindSetTryVisible(view: ConstraintLayout, tryStatus: QuizViewModel.QuizTry?) {
-    when (tryStatus) {
-        QuizViewModel.QuizTry.YET -> {
-            view.visibility = View.INVISIBLE
-        }
-        QuizViewModel.QuizTry.DONE -> {
-            view.visibility = View.VISIBLE
-        }
-        else -> {
-            view.visibility = View.INVISIBLE
-        }
-    }
-}
-
 @BindingAdapter("setQuizChoice")
 fun bindSetQuizChoice(view: TextView, choice: String) {
     view.text = choice
