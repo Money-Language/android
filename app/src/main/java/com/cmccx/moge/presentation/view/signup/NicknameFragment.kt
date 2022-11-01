@@ -4,22 +4,40 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentNicknameBinding
 import java.util.regex.Pattern
 
+// TODO flag 값에 따라서 넘겨줘야 하는 인자 값 다르게 설정하기 (1: 일반 로그인 / 2: 카카오 로그인 / 3: 네이버 로그인)
+// TODO 닉네임 중복 여부 체크 API 추가
 class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameBinding::bind, R.layout.fragment_nickname) {
 
     private var nickname: String = ""
     private val nicknameValidation = "^[가-힣a-zA-Z0-9]{1,20}$"
     private var isValidNickname: Boolean = false
 
+    // 이전 Fragment에서 넘겨받은 인자들
+    private val args: NicknameFragmentArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // edittext에 입력한 값(nickname) 받아오기
         getNickname()
+
+        when(args.flag) {
+            "1" -> {
+                binding.nicknamePagingTv.visibility = View.VISIBLE
+                binding.nicknamePagingTotalTv.visibility = View.VISIBLE
+            }
+            "2", "3" -> {
+                binding.nicknamePagingTv.visibility = View.GONE
+                binding.nicknamePagingTotalTv.visibility = View.GONE
+            }
+        }
 
         // 뒤로 가기 클릭 시 비밀번호 설정으로 돌아감
         binding.nicknameBackIv.setOnClickListener {
@@ -65,7 +83,9 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
         if(isValidNickname) {
             binding.nicknameErrorTv.visibility = View.GONE
-            moveFragment(R.id.action_nicknameFragment_to_favoriteCategoryFragment)
+
+            val action = NicknameFragmentDirections.actionNicknameFragmentToFavoriteCategoryFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, args.password, args.rePassword, nickname)
+            findNavController().navigate(action)
         }
         else {
             binding.nicknameErrorTv.visibility = View.VISIBLE

@@ -36,10 +36,31 @@
         app:layout_constraintTop_toBottomOf="@id/tos_back_cl">
 
         <TextView
-            android:id="@+id/tos_explanation_tv"
+            android:id="@+id/tos_paging_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
+            android:text="1"
+            android:textSize="20dp"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tos_paging_total_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/5"
+            android:textSize="20dp"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toTopOf="@id/tos_paging_tv"
+            app:layout_constraintStart_toEndOf="@id/tos_paging_tv"/>
+
+        <TextView
+            android:id="@+id/tos_explanation_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
             android:text="@string/agree_tos_explanation"
             android:textSize="20dp"
             android:textColor="@color/black"

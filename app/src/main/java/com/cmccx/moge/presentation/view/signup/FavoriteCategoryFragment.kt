@@ -3,6 +3,8 @@ package com.cmccx.moge.presentation.view.signup
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentFavoriteCategoryBinding
@@ -10,6 +12,9 @@ import com.cmccx.moge.databinding.FragmentFavoriteCategoryBinding
 class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(FragmentFavoriteCategoryBinding::bind, R.layout.fragment_favorite_category), View.OnClickListener {
 
     private var favoriteCategory: MutableList<Int> = mutableListOf()   // defalut값은 null, 건너뛰기 가능
+
+    // 이전 Fragment에서 넘겨받은 인자들
+    private val args: FavoriteCategoryFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,7 +26,8 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
         }
 
         binding.favoriteCategoryNextSelectBtn.setOnClickListener {
-            moveFragment(R.id.action_favoriteCategoryFragment_to_finishSignupFragment)
+            val action = FavoriteCategoryFragmentDirections.actionFavoriteCategoryFragmentToFinishSignupFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, args.password, args.rePassword, args.nickname)
+            findNavController().navigate(action)
         }
     }
 
@@ -123,52 +129,4 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
             binding.favoriteCategoryNextSelectBtn.visibility = View.GONE
         }
     }
-
-
-    /*private var categoryList = arrayListOf<String>()
-    private var favoriteCategoryList = arrayListOf<Int>()
-    private var adapter = FavoriteCategorySelectAdapter(categoryList)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initList()
-        initAdapter()
-    }
-
-    private fun initList() {
-        categoryList.add(getString(R.string.category_new))
-        categoryList.add(getString(R.string.category_spelling))
-        categoryList.add(getString(R.string.category_nonsense))
-        categoryList.add(getString(R.string.category_idiom))
-        categoryList.add(getString(R.string.category_word))
-    }
-
-    private fun initAdapter() {
-        // 관심있는 키워드
-        adapter.setCategoryClickListener(object: FavoriteCategorySelectAdapter.CategoryClickListener {
-            override fun onItemClick(categoryList: String, isClicked: Boolean) {
-                Log.d("click", isClicked.toString())
-                if (isClicked) {
-                    when(categoryList) {
-                        "신조어" -> favoriteCategoryList.add(1)
-                        "맞춤법" -> favoriteCategoryList.add(2)
-                        "넌센스" -> favoriteCategoryList.add(3)
-                        "사자성어" -> favoriteCategoryList.add(4)
-                        "단어 의미" -> favoriteCategoryList.add(5)
-                    }
-                } else {
-                    when(categoryList) {
-                        "신조어" -> favoriteCategoryList.remove(1)
-                        "맞춤법" -> favoriteCategoryList.remove(2)
-                        "넌센스" -> favoriteCategoryList.remove(3)
-                        "사자성어" -> favoriteCategoryList.remove(4)
-                        "단어 의미" -> favoriteCategoryList.remove(5)
-                    }
-                }
-            }
-        })
-
-        binding.favoriteCategoryRv.adapter = adapter
-        binding.favoriteCategoryRv.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-    }*/
 }

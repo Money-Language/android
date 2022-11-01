@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
-import com.cmccx.moge.databinding.FragmentPwdValidBinding
+import com.cmccx.moge.databinding.FragmentPwdBinding
 import java.util.regex.Pattern
 
-class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidBinding::bind, R.layout.fragment_pwd_valid) {
+// TODO 패스워드 validation API 추가
+class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R.layout.fragment_pwd) {
 
     private var pwd: String = ""
     private var checkPwd : String = ""
@@ -17,6 +20,9 @@ class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidB
     private var isValidPwd: Boolean = false
     private var isValidCheckPwd : Boolean = false
     private var isSame : Boolean = false
+
+    // 이전 Fragment에서 넘겨받은 인자들
+    private val args: PwdFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,12 +32,12 @@ class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidB
         getCheckPwd()
 
         // 뒤로 가기 클릭 시 이메일 인증으로 돌아감
-        binding.pwdValidBackIv.setOnClickListener {
+        binding.pwdBackIv.setOnClickListener {
             backFragment()
         }
 
         // 다음 버튼 클릭 시 비밀번호 validation 후 닉네임 입력로 넘어감
-        binding.pwdValidNextSelectBtn.setOnClickListener {
+        binding.pwdNextSelectBtn.setOnClickListener {
             checkValidPwd()
         }
 
@@ -49,12 +55,12 @@ class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidB
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0.isNullOrBlank()) {
-                    binding.pwdValidNextUnselectBtn.visibility = View.VISIBLE
-                    binding.pwdValidNextSelectBtn.visibility = View.GONE
+                    binding.pwdNextUnselectBtn.visibility = View.VISIBLE
+                    binding.pwdNextSelectBtn.visibility = View.GONE
                 }
                 else {
-                    binding.pwdValidNextUnselectBtn.visibility = View.GONE
-                    binding.pwdValidNextSelectBtn.visibility = View.VISIBLE
+                    binding.pwdNextUnselectBtn.visibility = View.GONE
+                    binding.pwdNextSelectBtn.visibility = View.VISIBLE
                 }
             }
 
@@ -70,12 +76,12 @@ class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidB
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0.isNullOrBlank()) {
-                    binding.pwdValidNextUnselectBtn.visibility = View.VISIBLE
-                    binding.pwdValidNextSelectBtn.visibility = View.GONE
+                    binding.pwdNextUnselectBtn.visibility = View.VISIBLE
+                    binding.pwdNextSelectBtn.visibility = View.GONE
                 }
                 else {
-                    binding.pwdValidNextUnselectBtn.visibility = View.GONE
-                    binding.pwdValidNextSelectBtn.visibility = View.VISIBLE
+                    binding.pwdNextUnselectBtn.visibility = View.GONE
+                    binding.pwdNextSelectBtn.visibility = View.VISIBLE
                 }
             }
 
@@ -96,18 +102,18 @@ class PwdValidFragment : BaseFragment<FragmentPwdValidBinding>(FragmentPwdValidB
         if(isValidPwd && isValidCheckPwd && isSame) {
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.GONE
-            moveFragment(R.id.action_pwdValidFragment_to_nicknameFragment)
+
+            val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd)
+            findNavController().navigate(action)
         }
         else {
             if(!isValidPwd) {
                 binding.pwdErrorTv.visibility = View.VISIBLE
                 binding.pwdValidErrorTv.visibility = View.GONE
-                // TODO 비밀번호 validation 에러 메세지 출력
             }
             else {
                 binding.pwdErrorTv.visibility = View.GONE
                 binding.pwdValidErrorTv.visibility = View.VISIBLE
-                // TODO 비밀번호 확인 validation 에러 메세지 출력
             }
         }
     }

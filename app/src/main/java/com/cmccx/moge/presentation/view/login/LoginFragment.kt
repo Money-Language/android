@@ -4,13 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
+import com.cmccx.moge.data.remote.api.LoginService
+import com.cmccx.moge.data.remote.api.LoginView
+import com.cmccx.moge.data.remote.model.Login
+import com.cmccx.moge.data.remote.model.UserResult
 import com.cmccx.moge.databinding.FragmentLoginBinding
 import com.cmccx.moge.presentation.view.MainActivity
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login) {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView {
 
     private var email: String = ""
     private var pwd: String = ""
@@ -24,7 +31,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
         // 회원가입 클릭 시 회원가입으로 넘어감
         binding.loginSignupEmailCl.setOnClickListener {
-            moveFragment(R.id.action_loginFragment_to_tosFragment)
+            val action = LoginFragmentDirections.actionLoginFragmentToTosFragment("1")
+            findNavController().navigate(action)
         }
 
         binding.loginMainCl.setOnClickListener {
@@ -33,10 +41,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
             binding.loginPasswordEt.clearFocus()
         }
 
-        /** 임시!!!!!!!! **/
         binding.loginBtn.setOnClickListener {
-            val intent = Intent(this.requireContext(), MainActivity::class.java)
-            startActivity(intent)
+            login()
+        }
+
+        // TODO 카카오 로그인
+        binding.loginKakaoIv.setOnClickListener {
+            kakaoLogin()
+            val action = LoginFragmentDirections.actionLoginFragmentToNicknameFragment("2", "", "", "", "", "", "", "")
+            findNavController().navigate(action)
+        }
+
+        // TODO 네이버 로그인
+        binding.loginNaverIv.setOnClickListener {
+            naverLogin()
+            val action = LoginFragmentDirections.actionLoginFragmentToNicknameFragment("3", "", "", "", "", "", "", "")
+            findNavController().navigate(action)
         }
     }
 
@@ -63,5 +83,28 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
                 pwd = binding.loginPasswordEt.text.toString()
             }
         })
+    }
+
+    private fun login() {
+        val loginService = LoginService(this)
+        loginService.login(Login(email, pwd))
+    }
+
+    override fun onGetLoginResultSuccess(result: UserResult) {
+        startActivity(Intent(requireContext(), MainActivity::class.java))
+        //moveFragment(R.id.action_loginFragment_to_mainActivity)
+    }
+
+    override fun onGetLoginResultFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Log.d("signUp/API", message)
+    }
+
+    private fun kakaoLogin() {
+
+    }
+
+    private fun naverLogin() {
+
     }
 }
