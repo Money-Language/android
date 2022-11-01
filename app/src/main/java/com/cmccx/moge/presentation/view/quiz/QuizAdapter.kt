@@ -37,9 +37,8 @@ class QuizAdapter(
             // 처음 문제인 경우
             if (position == 0) {
                 quizTryDate.visibility = View.VISIBLE
-            // 마지막 문제 경우
-            } else if (position == viewModel.quiz.value!!.size) {
-
+            } else {
+                quizTryDate.visibility = View.GONE
             }
 
             // 퀴즈 인포 - 현재 퀴즈 넘버
@@ -74,18 +73,6 @@ class QuizAdapter(
 
             }
 
-            // 다음 문제로
-            quizNextContainer.setOnClickListener {
-                viewModel.plusCurPos()
-
-                viewModel.getQuizChoiceFirst(boardIdx = viewModel.userBoard.value!!.toInt(), quizIdx=viewModel.curPosition)
-                viewModel.getQuizChoiceSecond(boardIdx = viewModel.userBoard.value!!.toInt(), quizIdx=viewModel.curPosition)
-                viewModel.getQuizAnswer(boardIdx = viewModel.userBoard.value!!.toInt(), quizIdx=viewModel.curPosition, quizChoiceIdx = "01")
-
-                viewModel.makeQuiz(viewModel.curPosition)
-            }
-
-
         }
 
     }
@@ -112,9 +99,6 @@ class QuizAdapter(
         val quizResultIcon = binding.itemQuizCardResultIconIv
         val quizResultText = binding.itemQuizCardResultTextTv
 
-        // 다음 문제
-        val quizNextContainer = binding.itemQuizBtmResultCl
-
         fun bind(quiz: Quiz) {
             binding.quiz = quiz
         }
@@ -136,11 +120,8 @@ class QuizAdapter(
                     quizResultText.text = "오답입니다."
                 }
 
-                quizNextContainer.visibility = View.VISIBLE
-
             } else {
                 quizResultContainer.visibility = View.INVISIBLE
-                quizNextContainer.visibility = View.INVISIBLE
             }
         }
 

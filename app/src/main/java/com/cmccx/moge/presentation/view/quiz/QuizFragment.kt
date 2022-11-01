@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentQuizBinding

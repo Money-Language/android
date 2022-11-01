@@ -14,7 +14,7 @@ class QuizViewModel: ViewModel() {
 
     enum class QuizApiStatus { LOADING, ERROR, DONE }
     enum class QuizType { MULTI, SHORT } // 객관식, 주관식
-    enum class QuizTry { DONE, YET }
+    enum class QuizTry { DONE, YET, LAST }
     enum class QuizResult { CORRECT, WRONG }    // 정답 여부
 
     // api 연결 상태
@@ -47,6 +47,7 @@ class QuizViewModel: ViewModel() {
     val quizAnswer: LiveData<List<QuizAnswer>> = _quizAnswer
 
     // 퀴즈
+    private val _tempQuizArr = arrayListOf<Quiz>()
     private var _quiz = MutableLiveData<ArrayList<Quiz>>()
     val quiz: LiveData<ArrayList<Quiz>> = _quiz
     private var _curPosition = 0
@@ -55,7 +56,6 @@ class QuizViewModel: ViewModel() {
     // 사용자 선택
     private val _userBoard = MutableLiveData<Int>()
     val userBoard: LiveData<Int> = _userBoard
-
     private val _userQuiz = MutableLiveData<Int>()
     private val _userChoice = MutableLiveData<String>()
 
@@ -96,6 +96,22 @@ class QuizViewModel: ViewModel() {
         }
     }
 
+    fun getNextQuiz() {
+        plusCurPos()
+
+        getQuizChoiceFirst(boardIdx = userBoard.value!!.toInt(), quizIdx=_curPosition)
+        getQuizChoiceSecond(boardIdx = userBoard.value!!.toInt(), quizIdx=_curPosition)
+        getQuizAnswer(boardIdx = userBoard.value!!.toInt(), quizIdx=_curPosition, quizChoiceIdx = "01")
+
+        makeQuiz(_curPosition)
+
+        if (_curPosition == _quiz.value!![0].quizTotal.toInt()) {
+            _tryStatus.value = QuizTry.LAST
+        } else {
+            _tryStatus.value = QuizTry.YET
+        }
+    }
+
     // API 통신 -> 퀴즈 문제 가져오기
     private fun getQuizQuestion(boardIdx: Int) {
         viewModelScope.launch {
@@ -126,7 +142,7 @@ class QuizViewModel: ViewModel() {
     }
 
     // API 통신 -> 퀴즈 보기 가져오기
-    fun getQuizChoiceFirst(boardIdx: Int, quizIdx:Int) {
+    private fun getQuizChoiceFirst(boardIdx: Int, quizIdx:Int) {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
@@ -142,7 +158,7 @@ class QuizViewModel: ViewModel() {
     }
 
     // API 통신 -> 퀴즈 보기 가져오기
-    fun getQuizChoiceSecond(boardIdx: Int, quizIdx:Int) {
+    private fun getQuizChoiceSecond(boardIdx: Int, quizIdx:Int) {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
@@ -158,7 +174,7 @@ class QuizViewModel: ViewModel() {
     }
 
     // API 통신 -> 퀴즈 정답 가져오기
-    fun getQuizAnswer(boardIdx: Int, quizIdx: Int, quizChoiceIdx: String) {
+    private fun getQuizAnswer(boardIdx: Int, quizIdx: Int, quizChoiceIdx: String) {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
@@ -173,26 +189,7 @@ class QuizViewModel: ViewModel() {
         }
     }
 
-    // 사용자가 퀴즈를 풀었을 때
-    fun onClickQuizChoice(input: QuizTry, idx: String) {
-        if (input == QuizTry.DONE) {
-            _tryStatus.value = QuizTry.DONE
-
-            _userBoard.value = _quiz.value!![_curPosition].boardIdx
-            _userQuiz.value = _quiz.value!![_curPosition].quizIdx
-            _userChoice.value = idx
-
-            //getQuizAnswer(_userBoard.value!!, _userQuiz.value!!, _userChoice.value!!)
-
-            _curPosition += 1
-        } else {
-            // !!!!!!!!!
-        }
-    }
-
-    val quizArr = arrayListOf<Quiz>()
-
-    fun makeQuiz(idx: Int) {
+    private fun makeQuiz(idx: Int) {
         viewModelScope.launch {
             delay(200)
             try {
@@ -203,17 +200,15 @@ class QuizViewModel: ViewModel() {
                     quizType= _quizQuestion.value!![idx].quizType,              // 퀴즈 분류 - 객관식, 주관식
                     quizQuestion= _quizQuestion.value!![idx].quizQuestion,      // 퀴즈 문제
                     choiceHint= _quizChoiceFirst.value!![0].quizChoice,         // 주관식 힌트
-                    choiceFirstIdx= "01",    // 보기1 인덱스
-                    //choiceFirstIdx= _quizChoiceFirst.value!![0].choiceIdx,    // 보기1 인덱스
+                    choiceFirstIdx= _quizChoiceFirst.value!![0].choiceIdx,    // 보기1 인덱스
                     choiceFirst= _quizChoiceFirst.value!![0].quizChoice,        // 보기1
-                    choiceSecondIdx= "02",  // 보기2 인덱스
-                    //choiceSecondIdx= _quizChoiceSecond.value!![0].choiceIdx,  // 보기2 인덱스
+                    choiceSecondIdx= _quizChoiceSecond.value!![0].choiceIdx,  // 보기2 인덱스
                     choiceSecond= _quizChoiceSecond.value!![0].quizChoice,      // 보기2
                     quizAnswer= _quizAnswer.value!![0].quizAnswerValue           // 정답
                 )
-                quizArr.add(test)
+                _tempQuizArr.add(test)
 
-                _quiz.value = quizArr
+                _quiz.value = _tempQuizArr
                 Log.d("TEST-완성", test.toString())
             } catch (e: Exception) {
                 Log.d("TEST-완성", e.toString())
