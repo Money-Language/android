@@ -48,6 +48,6 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
     }
 
     private fun setAdapter() {
-        binding.quizBoardVp.adapter = QuizAdapter()
+        binding.quizBoardVp.adapter = QuizAdapter(viewModel)
     }
 }

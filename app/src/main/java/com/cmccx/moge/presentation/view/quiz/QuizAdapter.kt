@@ -1,5 +1,6 @@
 package com.cmccx.moge.presentation.view.quiz
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cmccx.moge.data.remote.model.Quiz
 import com.cmccx.moge.databinding.ItemQuizCardBinding
+import com.cmccx.moge.presentation.viewmodel.QuizViewModel
 
-class QuizAdapter() : ListAdapter<Quiz, QuizAdapter.ViewHolder>(DiffCallback) {
+class QuizAdapter(val viewModel: QuizViewModel) : ListAdapter<Quiz, QuizAdapter.ViewHolder>(DiffCallback) {
+
+    /**
+     * viewModel 가져와서 visible 관리하자
+     * **/
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,6 +28,14 @@ class QuizAdapter() : ListAdapter<Quiz, QuizAdapter.ViewHolder>(DiffCallback) {
     override fun onBindViewHolder(holder: QuizAdapter.ViewHolder, position: Int) {
         val curItem = getItem(position)
         holder.bind(curItem)
+
+        Log.d("STATUS-1", viewModel.tryStatus.value.toString())
+        if (viewModel.tryStatus.value.toString() == "DONE") {
+            Log.d("STATUS-", "ddddd")
+            viewModel.isTry(true)
+        }
+
+        Log.d("STATUS-2", viewModel.tryStatus.value.toString())
 
         with(holder) {
             // 처음 문제인 경우

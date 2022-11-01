@@ -57,13 +57,32 @@ class QuizViewModel: ViewModel() {
         /** !!! 보드 id 파셀라이즈 처리 해야함 !!! **/
         _userBoard.value = 1
 
-        /** 이상한데 얘 동작 안 하는데 **/
         _tryStatus.value = QuizTry.YET
 
         getQuizQuestion(_userBoard.value!!)
 
         makeQuiz(_curPosition)
 
+    }
+
+    fun setBoardIdx(input: Int) {
+        _userBoard.value = input
+    }
+
+    fun isTry(input: Boolean) {
+        if (input) {
+            _tryStatus.value = QuizTry.DONE
+        } else {
+            _tryStatus.value = QuizTry.YET
+        }
+    }
+
+    fun isCorrect(input: Boolean) {
+        if (input) {
+            _tryResult.value = QuizResult.CORRECT
+        } else {
+            _tryResult.value = QuizResult.WRONG
+        }
     }
 
     // API 통신 -> 퀴즈 문제 가져오기
