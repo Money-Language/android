@@ -10,13 +10,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
-    // 테스트 서버 주소
-    val API_URL_J = "https://dev.ssacyj.shop"
+    // 와니 테스트 서버 주소
+    val W_API_URL = "https://dev.wani-softsquared.shop"
+    // 지니 테스트 서버 주소
+    val J_API_URL = "https://dev.ssacyj.shop"
 
     // 실 서버 주소
     // val API_URL = ""
 
     companion object {
+        lateinit var sWannyRetrofit: Retrofit
+
         lateinit var bottomNav: BottomNavigationView
 
         // Retrofit
@@ -27,7 +31,8 @@ class ApplicationClass : Application() {
         super.onCreate()
 
         initApiSdk()
-        initRetrofitInstance()
+        initWannyRetrofitInstance()
+        initJinnyRetrofitInstance()
     }
 
     // 소셜 로그인 구현 시 활용하는 API SDK 초기화 하는 메서드
@@ -39,20 +44,33 @@ class ApplicationClass : Application() {
         //
     }
 
-    // Retrofit 의 각종 설정값들 지정
-    private fun initRetrofitInstance() {
+    // 와니 서버 인스턴스 생성 메서드
+    private fun initWannyRetrofitInstance() {
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .readTimeout(5000, TimeUnit.MILLISECONDS)
+            .connectTimeout(5000, TimeUnit.MILLISECONDS)
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            //.addNetworkInterceptor(XAccessTokenInterceptor())
+            .build()
+
+        sWannyRetrofit = Retrofit.Builder()
+            .baseUrl(W_API_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+            
+    // 지니 서버 인스턴스 생성 메서드
+    private fun initJinnyRetrofitInstance() {
         val clientJ: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(5000, TimeUnit.MILLISECONDS)
             .connectTimeout(5000, TimeUnit.MILLISECONDS)
-            // 로그캣에 okhttp.OkHttpClient로 검색하면 http 통신 내용을 보여줍니다.
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             //.addNetworkInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
             .build()
 
-        // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드
-        // 이 전역변수로 http 요청을 서버로 보내면 됩니다.
         retrofitJ = Retrofit.Builder()
-            .baseUrl(API_URL_J)
+            .baseUrl(J_API_URL)
             .client(clientJ)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

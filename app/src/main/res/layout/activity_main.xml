@@ -10,7 +10,7 @@
         android:id="@+id/main_actionbar_tb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_main"
+        android:background="@color/primary_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,13 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_main"
-        app:itemIconTint="@color/nav_gray"
-        app:itemTextColor="@color/nav_gray"
+        android:theme="@style/BottomNavTheme"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"/>
 
     <!-- 플로팅 버튼 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

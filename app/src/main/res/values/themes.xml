@@ -27,4 +27,9 @@
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetEnd">0dp</item>
     </style>
+
+    <style name="BottomNavTheme">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/gray</item>
+    </style>
 </resources>

@@ -1,5 +1,6 @@
 package com.cmccx.moge.presentation.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavController
@@ -30,9 +31,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         setupActionBar()
     }
 
+    @SuppressLint("ResourceType", "UseCompatLoadingForColorStateLists")
     private fun setupBottomNav() {
         val bottomNavigationView = binding.mainNavBnv
         bottomNavigationView.setupWithNavController(navController)
+
+        bottomNavigationView.itemTextColor = resources.getColorStateList(R.drawable.selector_bottom_nav_color)
     }
 
     // 액션 바 세팅

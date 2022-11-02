@@ -1,17 +1,20 @@
-package com.cmccx.moge.presentation.view.chatting
+package com.cmccx.moge.presentation.view.quiz
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.cmccx.moge.R
-import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseFragment
-import com.cmccx.moge.databinding.FragmentChattingBinding
+import com.cmccx.moge.databinding.FragmentQuizBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.viewmodel.QuizViewModel
 
-class ChattingFragment: BaseFragment<FragmentChattingBinding>(FragmentChattingBinding::bind, R.layout.fragment_chatting) {
+
+class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind, R.layout.fragment_quiz) {
 
     private lateinit var owner: MainOwner
+    private val viewModel: QuizViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,11 +30,23 @@ class ChattingFragment: BaseFragment<FragmentChattingBinding>(FragmentChattingBi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(true)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setAdapter()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         owner.setBottomNavVisible(true)
         owner.setFloatingBtnVisible(true)
+    }
+
+    private fun setAdapter() {
+        binding.quizBoardVp.adapter = QuizAdapter(requireContext(), viewModel)
     }
 }
