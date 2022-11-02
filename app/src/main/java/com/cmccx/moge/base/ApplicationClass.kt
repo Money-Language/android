@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit
 class ApplicationClass : Application() {
     // 와니 테스트 서버 주소
     val W_API_URL = "https://dev.wani-softsquared.shop"
+    // 지니 테스트 서버 주소
+    val J_API_URL = "https://dev.ssacyj.shop"
 
     // 실 서버 주소
     // val API_URL = ""
@@ -20,6 +22,9 @@ class ApplicationClass : Application() {
         lateinit var sWannyRetrofit: Retrofit
 
         lateinit var bottomNav: BottomNavigationView
+
+        // Retrofit
+        lateinit var retrofitJ: Retrofit
     }
 
     override fun onCreate() {
@@ -27,6 +32,7 @@ class ApplicationClass : Application() {
 
         initApiSdk()
         initWannyRetrofitInstance()
+        initJinnyRetrofitInstance()
     }
 
     // 소셜 로그인 구현 시 활용하는 API SDK 초기화 하는 메서드
@@ -52,6 +58,23 @@ class ApplicationClass : Application() {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+            
+    // 지니 서버 인스턴스 생성 메서드
+    private fun initJinnyRetrofitInstance() {
+        val clientJ: OkHttpClient = OkHttpClient.Builder()
+            .readTimeout(5000, TimeUnit.MILLISECONDS)
+            .connectTimeout(5000, TimeUnit.MILLISECONDS)
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            //.addNetworkInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+            .build()
+
+        retrofitJ = Retrofit.Builder()
+            .baseUrl(J_API_URL)
+            .client(clientJ)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
     }
 
 }
