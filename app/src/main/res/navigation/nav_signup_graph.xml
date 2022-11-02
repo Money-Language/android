@@ -171,6 +171,7 @@
         <argument
             android:name="flag"
             app:argType="string" />
+        <!--
         <argument
             android:name="contract1"
             app:argType="string"
@@ -201,6 +202,15 @@
             app:nullable="true" />
         <argument
             android:name="nickname"
+            app:argType="string" />-->
+        <argument
+            android:name="jwt"
+            app:argType="string" />
+        <argument
+            android:name="userIdx"
+            app:argType="integer" />
+        <argument
+            android:name="nickname"
             app:argType="string" />
     </fragment>
 
@@ -213,6 +223,7 @@
             android:id="@+id/action_finishSignupFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"/>
+        <!--
         <argument
             android:name="flag"
             app:argType="string" />
@@ -244,6 +255,9 @@
             android:name="rePassword"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="nickname"
+            app:argType="string" />-->
         <argument
             android:name="nickname"
             app:argType="string" />

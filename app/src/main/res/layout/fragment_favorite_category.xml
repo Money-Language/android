@@ -107,7 +107,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_category_select"
+                android:src="@drawable/ic_category_new_select"
                 app:layout_constraintTop_toTopOf="@id/favorite_category_new_btn"
                 app:layout_constraintEnd_toEndOf="@id/favorite_category_new_btn"
                 android:visibility="gone"/>
@@ -141,7 +141,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_category_select"
+                android:src="@drawable/ic_category_spelling_select"
                 app:layout_constraintTop_toTopOf="@id/favorite_category_spelling_btn"
                 app:layout_constraintEnd_toEndOf="@id/favorite_category_spelling_btn"
                 android:visibility="gone"/>
@@ -175,7 +175,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_category_select"
+                android:src="@drawable/ic_category_nonsense_select"
                 app:layout_constraintTop_toTopOf="@id/favorite_category_nonsense_btn"
                 app:layout_constraintEnd_toEndOf="@id/favorite_category_nonsense_btn"
                 android:visibility="gone"/>
@@ -209,7 +209,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_category_select"
+                android:src="@drawable/ic_category_idiom_select"
                 app:layout_constraintTop_toTopOf="@id/favorite_category_idiom_btn"
                 app:layout_constraintEnd_toEndOf="@id/favorite_category_idiom_btn"
                 android:visibility="gone"/>
@@ -242,7 +242,7 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_category_select"
+                android:src="@drawable/ic_category_word_select"
                 app:layout_constraintTop_toTopOf="@id/favorite_category_word_btn"
                 app:layout_constraintEnd_toEndOf="@id/favorite_category_word_btn"
                 android:visibility="gone"/>
