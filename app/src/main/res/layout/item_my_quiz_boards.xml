@@ -11,55 +11,69 @@
         android:id="@+id/item_myquiz_quiz_boards_cl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_quiz"
-        android:padding="10dp">
+        android:background="@color/bg_quiz">
 
         <!-- 카테고리 타입 -->
-        <TextView
-            android:id="@+id/item_myquiz_boards_cate_hash_tv"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_myquiz_boards_cate_cl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="#"
-            android:textColor="@color/light_gray"
-            android:textSize="12dp"
-            android:textStyle="bold"
+            android:background="@color/yellow_transfer"
+            android:paddingHorizontal="11dp"
+            android:paddingVertical="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/item_myquiz_boards_cate_type_tv"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="카테고리"
-            android:textColor="@color/light_gray"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/item_myquiz_boards_cate_hash_tv"
-            app:layout_constraintStart_toEndOf="@id/item_myquiz_boards_cate_hash_tv"
-            app:layout_constraintTop_toTopOf="@id/item_myquiz_boards_cate_hash_tv" />
+            <TextView
+                android:id="@+id/item_myquiz_boards_cate_hash_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="#"
+                android:textColor="@color/light_gray"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_myquiz_boards_cate_type_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="카테고리"
+                android:textColor="@color/light_gray"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/item_myquiz_boards_cate_hash_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myquiz_boards_cate_hash_tv"
+                app:layout_constraintTop_toTopOf="@id/item_myquiz_boards_cate_hash_tv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- 카테고리 제목 -->
         <TextView
             android:id="@+id/item_myquiz_boards_cate_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="카테고리 제목"
-            android:textColor="@color/category_name"
+            android:textColor="@color/gray_dark"
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_myquiz_boards_cate_hash_tv" />
+            app:layout_constraintTop_toBottomOf="@id/item_myquiz_boards_cate_cl" />
 
         <!-- 퀴즈 정보 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_myquiz_info_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
