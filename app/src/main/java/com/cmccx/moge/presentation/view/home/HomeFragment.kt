@@ -2,27 +2,21 @@ package com.cmccx.moge.presentation.view.home
 
 import android.content.Context
 import android.os.Bundle
-import android.system.Os.bind
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.databinding.FragmentHomeBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.viewmodel.HomeViewModel
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
 
-    private val cateList = arrayListOf<String>()
     private lateinit var owner: MainOwner
-
-    init {
-        // dummy data
-        cateList.add("1번 카테")
-        cateList.add("2번 카테")
-        cateList.add("3번 카테 ")
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,6 +26,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(false)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
     override fun onStart() {
@@ -45,7 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         binding.homeFeedProfileRcv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // 퀴즈 뷰페이저
-        binding.homeQuizVp.adapter = FavoriteCategoryAdapter(this.requireContext(), cateList)
+        binding.homeQuizVp.adapter = FavoriteCategoryAdapter(this.requireContext(), viewModel)
         binding.homeQuizVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.homeQuizCi.setViewPager(binding.homeQuizVp)
     }

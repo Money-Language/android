@@ -12,14 +12,6 @@
         <variable
             name="viewModel"
             type="com.cmccx.moge.presentation.viewmodel.QuizViewModel" />
-
-        <variable
-            name="isTry"
-            type="com.cmccx.moge.presentation.viewmodel.QuizViewModel.QuizTry" />
-
-        <variable
-            name="result"
-            type="com.cmccx.moge.presentation.viewmodel.QuizViewModel.QuizResult" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

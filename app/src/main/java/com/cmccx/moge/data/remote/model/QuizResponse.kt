@@ -1,22 +1,15 @@
 package com.cmccx.moge.data.remote.model
 
+import com.cmccx.moge.base.BaseResponse
+
 data class QuizQuestionResponse (
-    val isSuccess: Boolean,
-    val code: Int,
-    val message: String,
     val result: List<QuizQuestion>
-)
+) : BaseResponse()
 
 data class QuizChoiceResponse (
-    val isSuccess: Boolean,
-    val code: Int,
-    val message: String,
     val result: List<QuizChoice>
-)
+) : BaseResponse()
 
 data class QuizAnswerResponse (
-    val isSuccess: Boolean,
-    val code: Int,
-    val message: String,
     val result: List<QuizAnswer>
-)
+) : BaseResponse()

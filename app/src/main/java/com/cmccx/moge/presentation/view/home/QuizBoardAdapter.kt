@@ -6,8 +6,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cmccx.moge.R
 import com.cmccx.moge.databinding.ItemBoardContentBinding
+import com.cmccx.moge.presentation.viewmodel.HomeViewModel
 
-class QuizBoardAdapter() : RecyclerView.Adapter<QuizBoardAdapter.ViewHolder>() {
+class QuizBoardAdapter(private val viewModel: HomeViewModel) : RecyclerView.Adapter<QuizBoardAdapter.ViewHolder>() {
 
     private val quizList = arrayListOf<String>()
 
