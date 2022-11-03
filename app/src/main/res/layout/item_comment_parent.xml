@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <!-- 상단 프로필 -->
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/item_comment_parent_profile_riv"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/primary_light"
+        android:scaleType="center"
+        android:src="@drawable/icon_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="@color/primary_dark"
+        app:riv_border_width="1dp"
+        app:riv_corner_radius="1dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="true" />
+
+    <TextView
+        android:id="@+id/item_comment_parent_nickname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="부모 댓글 닉네임"
+        android:textColor="@color/gray_dark"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/item_comment_parent_time_tv"
+        app:layout_constraintStart_toEndOf="@id/item_comment_parent_profile_riv"
+        app:layout_constraintTop_toTopOf="@id/item_comment_parent_profile_riv" />
+
+    <TextView
+        android:id="@+id/item_comment_parent_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="방금"
+        android:textColor="@color/light_gray"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_comment_parent_profile_riv"
+        app:layout_constraintStart_toEndOf="@id/item_comment_parent_profile_riv"
+        app:layout_constraintTop_toBottomOf="@id/item_comment_parent_nickname_tv" />
+
+    <ImageView
+        android:id="@+id/item_comment_parent_more_icon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:paddingHorizontal="3dp"
+        android:src="@drawable/ic_baseline_more_vert_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/item_comment_parent_profile_riv"
+        app:tint="@color/light_gray" />
+
+    <!-- 댓글 내용 -->
+    <TextView
+        android:id="@+id/item_comment_parent_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="13dp"
+        android:text="댓글 내용 줄바꿈이 되면 엄ㄴ암ㅈ랴모리만룬미ㅏ릉ㄴ미ㅏ릉ㄴㅁ히ㅏㅇ눔히ㅏㅇㄴ머햐"
+        android:textColor="@color/gray_dark"
+        android:textSize="13dp"
+        app:layout_constraintStart_toStartOf="@id/item_comment_parent_profile_riv"
+        app:layout_constraintTop_toBottomOf="@id/item_comment_parent_profile_riv" />
+
+    <ImageView
+        android:id="@+id/item_comment_parent_fav_icon_iv"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon_fav"
+        app:layout_constraintStart_toStartOf="@id/item_comment_parent_profile_riv"
+        app:layout_constraintTop_toBottomOf="@id/item_comment_parent_content_tv"
+        app:tint="@color/primary_deep_dark" />
+
+    <TextView
+        android:id="@+id/item_comment_parent_fav_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="3"
+        android:textColor="@color/primary_deep_dark"
+        app:layout_constraintBottom_toBottomOf="@id/item_comment_parent_fav_icon_iv"
+        app:layout_constraintStart_toEndOf="@id/item_comment_parent_fav_icon_iv"
+        app:layout_constraintTop_toTopOf="@id/item_comment_parent_fav_icon_iv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

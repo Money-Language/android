@@ -13,3 +13,7 @@ data class QuizChoiceResponse (
 data class QuizAnswerResponse (
     val result: List<QuizAnswer>
 ) : BaseResponse()
+
+data class QuizQuizResponse (
+    val result: List<QuizComment>
+) : BaseResponse()

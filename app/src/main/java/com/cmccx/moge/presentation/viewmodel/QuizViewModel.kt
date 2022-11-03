@@ -2,11 +2,9 @@ package com.cmccx.moge.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.cmccx.moge.data.remote.api.QuizApi
-import com.cmccx.moge.data.remote.model.Quiz
-import com.cmccx.moge.data.remote.model.QuizAnswer
-import com.cmccx.moge.data.remote.model.QuizChoice
-import com.cmccx.moge.data.remote.model.QuizQuestion
+import com.cmccx.moge.data.remote.api.QuizApiJinny
+import com.cmccx.moge.data.remote.api.QuizApiWanny
+import com.cmccx.moge.data.remote.model.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -46,6 +44,10 @@ class QuizViewModel: ViewModel() {
     private var _quizAnswer = MutableLiveData<List<QuizAnswer>>()
     val quizAnswer: LiveData<List<QuizAnswer>> = _quizAnswer
 
+    // 댓글
+    private var _comment = MutableLiveData<List<QuizComment>>()
+    val comment: LiveData<List<QuizComment>> = _comment
+
     // 퀴즈
     private val _tempQuizArr = arrayListOf<Quiz>()
     private var _quiz = MutableLiveData<ArrayList<Quiz>>()
@@ -61,8 +63,10 @@ class QuizViewModel: ViewModel() {
 
 
     init {
+        Log.d("TEST", "QUIZVIEWMODEL 시작")
         /** !!! 보드 id 파셀라이즈 처리 해야함 !!! **/
         _userBoard.value = 1
+        getQuizComment(_userBoard.value!!) /** 임시!!!!! **/
 
         _tryStatus.value = QuizTry.YET
 
@@ -117,7 +121,7 @@ class QuizViewModel: ViewModel() {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
-                val response = QuizApi.retrofitService.getQuizQuestion(boardIdx = boardIdx)
+                val response = QuizApiWanny.retrofitService.getQuizQuestion(boardIdx = boardIdx)
                 _quizQuestion.value = response.result
                 Log.d("TEST-문제", _quizQuestion.value.toString())
 
@@ -146,7 +150,7 @@ class QuizViewModel: ViewModel() {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
-                val response = QuizApi.retrofitService.getQuizChoice(boardIdx = boardIdx, quizIdx = quizIdx)
+                val response = QuizApiWanny.retrofitService.getQuizChoice(boardIdx = boardIdx, quizIdx = quizIdx)
                 _quizChoiceFirst.value = listOf(response.result[0])
                 Log.d("TEST-보기1", response.result.toString())
                 _apiStatus.value = QuizApiStatus.DONE
@@ -162,7 +166,7 @@ class QuizViewModel: ViewModel() {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
-                val response = QuizApi.retrofitService.getQuizChoice(boardIdx = boardIdx, quizIdx = quizIdx)
+                val response = QuizApiWanny.retrofitService.getQuizChoice(boardIdx = boardIdx, quizIdx = quizIdx)
                 _quizChoiceSecond.value = listOf(response.result[1])
                 Log.d("TEST-보기2", response.result.toString())
                 _apiStatus.value = QuizApiStatus.DONE
@@ -178,12 +182,28 @@ class QuizViewModel: ViewModel() {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
-                val response = QuizApi.retrofitService.getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx, quizChoiceIdx = quizChoiceIdx)
+                val response = QuizApiWanny.retrofitService.getQuizAnswer(boardIdx = boardIdx, quizIdx = quizIdx, quizChoiceIdx = quizChoiceIdx)
                 _quizAnswer.value = listOf(response.result[0])
                 Log.d("TEST-정답", response.result.toString())
                 _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
                 Log.d("TEST-정답", e.toString())
+                _apiStatus.value = QuizApiStatus.ERROR
+            }
+        }
+    }
+
+    // API 통신 -> 퀴즈 댓글 가져오기
+    private fun getQuizComment(boardIdx: Int) {
+        viewModelScope.launch {
+            _apiStatus.value = QuizApiStatus.LOADING
+            try {
+                val response = QuizApiJinny.retrofitService.getQuizComment(boardIdx = boardIdx)
+                _comment.value = response.result
+                Log.d("TEST-댓글", response.result.toString())
+                _apiStatus.value = QuizApiStatus.DONE
+            } catch (e: Exception) {
+                Log.d("TEST-댓글", e.toString())
                 _apiStatus.value = QuizApiStatus.ERROR
             }
         }

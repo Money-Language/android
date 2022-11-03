@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
@@ -29,6 +30,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        binding.homeTodayQuizBtnCl.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
+        }
     }
 
     override fun onStart() {

@@ -3,6 +3,7 @@ package com.cmccx.moge.data.remote.api
 import com.cmccx.moge.data.remote.model.QuizAnswerResponse
 import com.cmccx.moge.data.remote.model.QuizChoiceResponse
 import com.cmccx.moge.data.remote.model.QuizQuestionResponse
+import com.cmccx.moge.data.remote.model.QuizQuizResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -28,4 +29,10 @@ interface QuizApiService {
         @Query("quizIdx") quizIdx: Int,
         @Query("answerSelectIdx") quizChoiceIdx: String
     ): QuizAnswerResponse
+
+    // 퀴즈 댓글 조회
+    @GET("/app/boards/{boardIdx}/comments")
+    suspend fun getQuizComment(
+        @Path("boardIdx") boardIdx: Int,
+    ): QuizQuizResponse
 }
