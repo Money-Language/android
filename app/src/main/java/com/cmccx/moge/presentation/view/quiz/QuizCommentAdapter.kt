@@ -14,7 +14,7 @@ class QuizCommentAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OptionsMoreClickListener {
-        fun onOptionsMoreClicked(position: Int)
+        fun onOptionsMoreClicked(view: View, position: Int)
     }
 
     object CommentViewType {
@@ -81,7 +81,7 @@ class QuizCommentAdapter(
             like.text = item.commentLike.toString()
 
             more.setOnClickListener {
-                optionsMenuClickListener.onOptionsMoreClicked(position)
+                optionsMenuClickListener.onOptionsMoreClicked(it, adapterPosition)
             }
         }
 
@@ -103,7 +103,7 @@ class QuizCommentAdapter(
             like.text = item.commentLike.toString()
 
             more.setOnClickListener {
-                optionsMenuClickListener.onOptionsMoreClicked(position)
+                optionsMenuClickListener.onOptionsMoreClicked(it, adapterPosition)
             }
         }
 

@@ -1,6 +1,7 @@
 package com.cmccx.moge.presentation.view.quiz
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -60,8 +61,8 @@ class QuizCommentFragment : BottomSheetDialogFragment() {
     private fun setAdapter() {
         binding.commentContentsRv.adapter = QuizCommentAdapter(sharedViewModel.comments.value!!,
             object : QuizCommentAdapter.OptionsMoreClickListener {
-                override fun onOptionsMoreClicked(position: Int) {
-                    performOptionsMenuClick(position)
+                override fun onOptionsMoreClicked(view: View, position: Int) {
+                    performOptionsMenuClick(view, position)
                 }
             })
 
@@ -70,27 +71,27 @@ class QuizCommentFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun performOptionsMenuClick(position: Int) {
-
-        /** p부모인지 자식인지 INT로 상수 받아서 if로 **/
-
-        val popupMenu = PopupMenu(this.requireContext(), binding.commentContentsRv[position].findViewById(R.id.item_comment_parent_more_icon_iv))
+    private fun performOptionsMenuClick(view: View, position: Int) {
+        Log.d("TEST - 포지션", position.toString())
+        
+        val curComment = sharedViewModel.comments.value!![position]
+        val popupMenu = PopupMenu(context, binding.commentContentsRv[position].findViewById(view.id))
 
         popupMenu.inflate(R.menu.comment_menu)
 
-        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
-                when(item?.itemId){
+                when (item?.itemId) {
                     R.id.comment_modify -> {
                         Toast.makeText(requireContext(), "수정", Toast.LENGTH_SHORT).show()
                         return true
                     }
                     R.id.comment_delete -> {
-                        Toast.makeText(requireContext(), "삭제" , Toast.LENGTH_SHORT).show()
+                        deleteComment(commentIdx= curComment.commentIdx)
                         return true
                     }
                     R.id.comment_child -> {
-                        Toast.makeText(requireContext(), "대댓글" , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "대댓글", Toast.LENGTH_SHORT).show()
                         return true
                     }
                 }
@@ -99,7 +100,6 @@ class QuizCommentFragment : BottomSheetDialogFragment() {
         })
         popupMenu.show()
     }
-
 
     private fun sendCommentListener() {
         // 댓글 등록
@@ -123,6 +123,15 @@ class QuizCommentFragment : BottomSheetDialogFragment() {
                 Toast.makeText(this.requireContext(), "댓글을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun deleteComment(commentIdx: Int) {
+        sharedViewModel.deleteQuizComment(
+            jwt = getJwt(this.requireContext()),
+            boardIdx = sharedViewModel.userBoard.value!!,
+            commentIdx = commentIdx
+        )
+        sharedViewModel.getQuizComments(sharedViewModel.userBoard.value!!)
     }
 
 }

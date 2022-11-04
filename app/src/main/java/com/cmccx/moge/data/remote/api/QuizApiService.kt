@@ -39,4 +39,12 @@ interface QuizApiService {
         @Path("boardIdx") boardIdx: Int,
         @Body params: QuizCommentPost
     ): BaseResponse
+
+    // 퀴즈 댓글 삭제
+    @DELETE("/app/boards/{boardIdx}/comments/{commentIdx}")
+    suspend fun deleteQuizComment(
+        @Header("X-ACCESS-TOKEN") jwt : String,
+        @Path("boardIdx") boardIdx: Int,
+        @Path("commentIdx") commentIdx: Int
+    ): BaseResponse
 }

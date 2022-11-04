@@ -267,6 +267,30 @@ class QuizViewModel : ViewModel() {
         }
     }
 
+    // API 통신 -> 퀴즈 댓글 삭제
+    fun deleteQuizComment(
+        jwt: String,
+        boardIdx: Int,
+        commentIdx: Int
+    ) {
+        viewModelScope.launch {
+            _apiStatus.value = QuizApiStatus.LOADING
+            try {
+                val response = QuizApiJinny.retrofitService.deleteQuizComment(
+                    jwt = jwt,
+                    boardIdx = boardIdx,
+                    commentIdx = commentIdx
+                )
+
+                Log.d("TEST-댓글 삭제", response.message)
+                _apiStatus.value = QuizApiStatus.DONE
+            } catch (e: Exception) {
+                Log.d("TEST-댓글 삭제", e.toString())
+                _apiStatus.value = QuizApiStatus.ERROR
+            }
+        }
+    }
+
     private fun makeQuiz(idx: Int) {
         viewModelScope.launch {
             delay(200)
