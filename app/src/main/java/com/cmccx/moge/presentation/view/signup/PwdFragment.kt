@@ -103,7 +103,7 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.GONE
 
-            val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd)
+            val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd, "")
             findNavController().navigate(action)
         }
         else {

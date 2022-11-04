@@ -2,7 +2,9 @@ package com.cmccx.moge.base
 
 import android.app.Application
 import android.view.View
+import com.cmccx.moge.BuildConfig
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kakao.sdk.common.KakaoSdk
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,7 +40,7 @@ class ApplicationClass : Application() {
     // 소셜 로그인 구현 시 활용하는 API SDK 초기화 하는 메서드
     private fun initApiSdk() {
         // Kakao SDK
-        // KakaoSdk.init(this, BuildConfig.KAKAO_API_KEY)
+        KakaoSdk.init(this, BuildConfig.kakao_app_key)
 
         // Naver SDK
         //

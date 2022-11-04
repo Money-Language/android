@@ -22,7 +22,7 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("args.jwt", args.jwt)
+        args.jwt?.let { Log.d("args.jwt", it) }
         Log.d("args.userIdx", args.userIdx.toString())
 
         setClickEvent()
@@ -32,7 +32,7 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
         }
 
         binding.favoriteCategoryNextSelectBtn.setOnClickListener {
-            CategoryService(this).getCategory(args.jwt, args.userIdx, Category(favoriteCategory))
+            args.jwt?.let { it -> CategoryService(this).getCategory(it, args.userIdx, Category(favoriteCategory)) }
         }
     }
 

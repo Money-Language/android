@@ -6,3 +6,13 @@ interface LoginView {
     fun onGetLoginResultSuccess(result: UserResult)
     fun onGetLoginResultFailure(message: String)
 }
+
+interface KakaoLoginView {
+    fun onGetKakaoLoginResultSuccess(result: UserResult)
+    fun onGetKakaoLoginResultFailure(message: String)
+}
+
+interface NaverLoginView {
+    fun onGetNaverLoginResultSuccess(result: UserResult)
+    fun onGetNaverLoginResultFailure(message: String)
+}
