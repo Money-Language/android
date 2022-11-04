@@ -30,7 +30,7 @@ class HomeViewModel: ViewModel() {
     val quizBoard: LiveData<List<QuizBoard>> = _quizBoard
 
     init {
-        Log.d("카테고리", "뷰모델 진입")
+        Log.d("TEST-카테고리", "뷰모델 진입")
         /** 임시 **/
         _cateIdx.value = 1
 
@@ -61,11 +61,11 @@ class HomeViewModel: ViewModel() {
             try {
                 val response = HomeInterestedCateApi.retrofitService.getBoard(categoryIdx = categoryIdx)
                 _quizBoard.value = response.result
-                Log.d("카테고리-보드", _quizCate.value.toString())
+                Log.d("TEST-카테고리-보드", _quizCate.value.toString())
 
                 _apiStatus.value = HomeApiStatus.DONE
             } catch (e: Exception) {
-                Log.d("카테고리-보드", e.toString())
+                Log.d("TEST-카테고리-보드", e.toString())
                 _apiStatus.value = HomeApiStatus.ERROR
             }
         }

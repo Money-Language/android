@@ -10,3 +10,8 @@ data class QuizComment(
     val commentCount: Int,      // 댓글수
     val commentLike: Int        // 댓글 좋아요 수
 )
+data class QuizCommentPost(
+    val groupIdx: Int,          // 그룹 식별자
+    val content: String,        // 댓글 내용
+    val parentIdx: Int,         // 부모 식별자 -> 부모 : 0, 자녀(대댓글) 1
+)

@@ -10,14 +10,16 @@
             type="com.cmccx.moge.presentation.viewmodel.QuizViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <View
             android:id="@+id/comment_top_tab_icon_v"
             android:layout_width="28dp"
             android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="22.73dp"
             android:background="@color/divider_transfer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,31 +27,38 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 댓글 총합 -->
-        <TextView
-            android:id="@+id/comment_total_pcs_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20.34dp"
-            android:layout_marginTop="20dp"
-            android:text="댓글"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/comment_top_tab_icon_v" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/comment_total_pcs_cl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/comment_total_pcs_content_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:textColor="@color/primary_deep_dark"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/comment_total_pcs_title_tv"
-            app:layout_constraintStart_toEndOf="@id/comment_total_pcs_title_tv"
-            app:layout_constraintTop_toTopOf="@id/comment_total_pcs_title_tv"
-            app:setQuizCommentCount="@{viewModel.comment.size()}"
-            tools:text="댓글수" />
+            <TextView
+                android:id="@+id/comment_total_pcs_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20.34dp"
+                android:layout_marginTop="20dp"
+                android:text="댓글"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/comment_total_pcs_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/primary_deep_dark"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/comment_total_pcs_title_tv"
+                app:layout_constraintStart_toEndOf="@id/comment_total_pcs_title_tv"
+                app:layout_constraintTop_toTopOf="@id/comment_total_pcs_title_tv"
+                tools:text="댓글수" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- 댓글 뷰 -->
         <View
@@ -65,10 +74,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comment_contents_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@id/comment_divider_v"
             android:layout_marginHorizontal="20dp"
+            android:layout_weight="15"
             android:background="@color/primary_main"
-            android:paddingBottom="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/comment_divider_v"
@@ -80,6 +90,7 @@
             android:layout_height="48dp"
             android:background="@color/primary_main"
             android:hint="댓글 입력하기"
+            android:inputType="text"
             android:paddingStart="21.36dp"
             android:textColorHint="@color/primary_deep_dark"
             android:textSize="13dp"
@@ -87,5 +98,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/temp_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="댓글 등록 임시"
+            app:layout_constraintBottom_toTopOf="@id/comment_input_et"
+            app:layout_constraintEnd_toEndOf="@id/comment_input_et" />
+
+    </LinearLayout>
 </layout>

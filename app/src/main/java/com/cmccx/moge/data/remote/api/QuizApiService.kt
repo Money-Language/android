@@ -1,12 +1,8 @@
 package com.cmccx.moge.data.remote.api
 
-import com.cmccx.moge.data.remote.model.QuizAnswerResponse
-import com.cmccx.moge.data.remote.model.QuizChoiceResponse
-import com.cmccx.moge.data.remote.model.QuizQuestionResponse
-import com.cmccx.moge.data.remote.model.QuizQuizResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.cmccx.moge.base.BaseResponse
+import com.cmccx.moge.data.remote.model.*
+import retrofit2.http.*
 
 interface QuizApiService {
     // 퀴즈 문제 조회
@@ -32,7 +28,15 @@ interface QuizApiService {
 
     // 퀴즈 댓글 조회
     @GET("/app/boards/{boardIdx}/comments")
-    suspend fun getQuizComment(
+    suspend fun getQuizComments(
         @Path("boardIdx") boardIdx: Int,
     ): QuizQuizResponse
+
+    // 퀴즈 댓글 등록
+    @POST("/app/boards/{boardIdx}/comments")
+    suspend fun postQuizComment(
+        @Header("X-ACCESS-TOKEN") jwt : String,
+        @Path("boardIdx") boardIdx: Int,
+        @Body params: QuizCommentPost
+    ): BaseResponse
 }
