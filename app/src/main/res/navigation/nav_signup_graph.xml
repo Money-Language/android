@@ -177,8 +177,7 @@
             app:argType="string" />
         <argument
             android:name="jwt"
-            app:argType="string"
-            app:nullable="true"/>
+            app:argType="string"/>
         <argument
             android:name="userIdx"
             app:argType="integer"/>
@@ -193,9 +192,10 @@
         android:label="FinishSignupFragment"
         tools:layout="@layout/fragment_finish_signup">
         <action
-            android:id="@+id/action_finishSignupFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/loginFragment"/>
+            android:id="@+id/action_finishSignupFragment_to_mainActivity"
+            app:destination="@id/mainActivity"
+            app:popUpTo="@id/mainActivity"
+            app:popUpToInclusive="false"/>
         <argument
             android:name="nickname"
             app:argType="string" />

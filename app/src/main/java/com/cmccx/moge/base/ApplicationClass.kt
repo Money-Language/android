@@ -5,6 +5,7 @@ import android.view.View
 import com.cmccx.moge.BuildConfig
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.common.KakaoSdk
+import com.navercorp.nid.NaverIdLoginSDK
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -43,7 +44,7 @@ class ApplicationClass : Application() {
         KakaoSdk.init(this, BuildConfig.kakao_app_key)
 
         // Naver SDK
-        //
+        NaverIdLoginSDK.initialize(this, BuildConfig.naver_client_id, BuildConfig.naver_client_secret, "MOGE")
     }
 
     // 와니 서버 인스턴스 생성 메서드

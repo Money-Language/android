@@ -25,7 +25,8 @@ android {
 
         buildConfigField "String", "kakao_app_key", properties["kakao_app_key"]
         resValue "string", "kakao_oauth_key", properties["kakao_oauth_key"]
-        //buildConfigField "String", "NAVER_API_KEY", properties["naver_api_key"]
+        buildConfigField "String", "naver_client_id", properties["naver_client_id"]
+        buildConfigField "String", "naver_client_secret", properties["naver_client_secret"]
     }
 
     buildTypes {
@@ -97,4 +98,7 @@ dependencies {
 
     // Kakao Login
     implementation "com.kakao.sdk:v2-user:2.8.5"
+
+    // Naver Login
+    implementation 'com.navercorp.nid:oauth:5.1.1'
 }

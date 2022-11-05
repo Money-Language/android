@@ -20,7 +20,7 @@ import com.cmccx.moge.data.remote.model.UserResult
 import com.cmccx.moge.databinding.FragmentNicknameBinding
 import java.util.regex.Pattern
 
-// TODO flag 값에 따라서 넘겨줘야 하는 인자 값 다르게 설정하기 (1: 일반 로그인 / 2: 카카오 로그인 / 3: 네이버 로그인)
+// flag 값에 따른 로그인 (1: 일반 로그인 / 2: 카카오 로그인 / 3: 네이버 로그인)
 class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameBinding::bind, R.layout.fragment_nickname), SignupView, KakaoLoginView, NaverLoginView {
 
     private var nickname: String = ""
@@ -183,8 +183,8 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
         saveJwt(requireContext(), jwt)
         saveUserIdx(requireContext(), userIdx)
 
-        Log.d(TAG, "회원가입 jwt = $jwt")
-        Log.d(TAG, "회원가입 userIdx = $userIdx")
+        Log.d(TAG, "회원가입 jwt - $jwt")
+        Log.d(TAG, "회원가입 userIdx - $userIdx")
     }
 
     // 관심 키워드 프래그먼트로 넘어가는 메소드

@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
+import com.cmccx.moge.base.saveJwt
+import com.cmccx.moge.base.saveUserIdx
 import com.cmccx.moge.data.remote.api.KakaoLoginView
 import com.cmccx.moge.data.remote.api.LoginService
 import com.cmccx.moge.data.remote.api.LoginView
@@ -24,6 +26,8 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.OAuthLoginCallback
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView {
 
@@ -64,10 +68,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         }
 
         // 네이버 버튼 클릭 시 네이버 로그인
-        // TODO 네이버 로그인
         binding.loginNaverIv.setOnClickListener {
-            getNaverUserInfo()
-            moveNicknameFragment("3", naverToken)
+            naverLogin()
         }
     }
 
@@ -107,6 +109,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
     // 일반(이메일) 로그인 API 연결 성공 -> 메인 액티비티로 넘어감
     // TODO 메인 액티비티에서 뒤로 가기 누르면 다시 로그인 화면으로 넘어감!!!!!!!!!! popUpToInclusive 써봤지만 안됌..
     override fun onGetLoginResultSuccess(result: UserResult) {
+        saveUserInfo(result.jwt, result.userIdx)
         startActivity(Intent(requireContext(), MainActivity::class.java))
         //moveFragment(R.id.action_loginFragment_to_mainActivity)
     }
@@ -130,6 +133,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
                 Log.d(TAG, "카카오계정으로 로그인 실패 : ${error}")
             } else if (token != null) {
                 kakaoToken = token.accessToken
+                moveNicknameFragment("2",kakaoToken)
             }
         }
 
@@ -150,7 +154,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
                 } else if (token != null) {
                     Log.d(TAG, "카카오톡으로 로그인 성공")
                     kakaoToken = token.accessToken
-                    getKakaoUserInfo()
+                    moveNicknameFragment("2",kakaoToken)
                 }
             }
         } else {
@@ -158,30 +162,40 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         }
     }
 
-    // 카카오 사용자 정보 요청 (카카오 이메일)
-    private fun getKakaoUserInfo() {
-        UserApiClient.instance.me { kakaoUser, error ->
-            if (error != null) {
-                Log.e(TAG, "사용자 정보 요청 실패", error)
-            } else if (kakaoUser != null) {
-                moveNicknameFragment("2",kakaoToken)
+
+
+
+
+    // 네이버 로그인
+    private fun naverLogin(){
+        val oauthLoginCallback = object : OAuthLoginCallback {
+            override fun onSuccess() {
+                naverToken = NaverIdLoginSDK.getAccessToken().toString()
+                Log.d(TAG, "네이버 로그인 성공 : $naverToken")
+                moveNicknameFragment("3", naverToken)
+            }
+            override fun onFailure(httpStatus: Int, message: String) {
+                Log.d(TAG, "네이버 로그인 실패 : $message")
+            }
+            override fun onError(errorCode: Int, message: String) {
+                onFailure(errorCode, message)
             }
         }
+        NaverIdLoginSDK.authenticate(requireContext(), oauthLoginCallback)
     }
 
 
 
 
+    // jwt, userIdx 저장 메소드
+    private fun saveUserInfo(jwt: String, userIdx: Int) {
+        // SP에 저장
+        saveJwt(requireContext(), jwt)
+        saveUserIdx(requireContext(), userIdx)
 
-    // 네이버 사용자 정보 요청 (네이버 이메일)
-    private fun getNaverUserInfo() {
-
+        Log.d(TAG, "회원가입 jwt = $jwt")
+        Log.d(TAG, "회원가입 userIdx = $userIdx")
     }
-
-
-
-
-
 
     // 카카오 or 네이버 로그인을 구분하는 인자 - flag (1 = 카카오, 2 = 네이버)
     private fun moveNicknameFragment(flag: String, accessToken: String) {

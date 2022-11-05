@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/shopFragment"
-        android:name="com.cmccx.moge.presentation.view.ShopFragment"
+        android:name="com.cmccx.moge.presentation.view.shop.ShopFragment"
         android:label="fragment_shop"
         tools:layout="@layout/fragment_shop" />
     <fragment

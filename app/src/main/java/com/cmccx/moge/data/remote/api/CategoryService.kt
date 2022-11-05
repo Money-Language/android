@@ -16,7 +16,7 @@ class CategoryService(val categoryView: CategoryView) {
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 val resp = response.body()!!
                 when(resp.code){
-                    1000-> categoryView.onGetCategoryResultSuccess()
+                    1005-> categoryView.onGetCategoryResultSuccess()
                     else-> categoryView.onGetCategoryResultFailure(resp.message)
                 }
             }
