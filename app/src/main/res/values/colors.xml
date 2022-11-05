@@ -46,4 +46,6 @@
     <color name="blue_transfer">#667BBEF5</color>
     <color name="green">#A0DE70</color>
     <color name="green_transfer">#66A0DE70</color>
+
+    <color name="goods_name">#222222</color>
 </resources>
