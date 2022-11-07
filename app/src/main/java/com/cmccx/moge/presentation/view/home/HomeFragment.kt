@@ -15,8 +15,9 @@ import com.cmccx.moge.data.remote.api.CategoryView
 import com.cmccx.moge.data.remote.api.HomeInterestedBoardView
 import com.cmccx.moge.databinding.FragmentHomeBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.view.quiz.QuizCommentAdapter
 import com.cmccx.moge.presentation.viewmodel.HomeViewModel
-import com.cmccx.moge.presentation.viewmodel.QuizViewModel
+import com.cmccx.moge.presentation.viewmodel.PointViewModel
 
 
 class HomeFragment :
@@ -24,6 +25,7 @@ class HomeFragment :
 
     private lateinit var owner: MainOwner
     private val viewModel: HomeViewModel by activityViewModels()
+    private val pointViewModel: PointViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,6 +38,9 @@ class HomeFragment :
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.point = pointViewModel
+
+        pointViewModel.getPoint(getJwt(this.requireContext()), getUserIdx(this.requireContext()))
 
         binding.homeTodayQuizBtnCl.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_quizFragment)

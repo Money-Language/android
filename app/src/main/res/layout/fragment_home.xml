@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.cmccx.moge.presentation.viewmodel.HomeViewModel" />
+
+        <variable
+            name="point"
+            type="com.cmccx.moge.presentation.viewmodel.PointViewModel" />
     </data>
 
 
@@ -45,9 +49,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="3,050"
+                    app:setQuizCommentCount="@{point.point}"
                     android:textColor="@color/gray"
                     android:textSize="18dp"
+                    tools:text="포인트"
                     app:layout_constraintBottom_toBottomOf="@id/home_header_point_iv"
                     app:layout_constraintStart_toEndOf="@id/home_header_point_iv"
                     app:layout_constraintTop_toTopOf="@id/home_header_point_iv" />
