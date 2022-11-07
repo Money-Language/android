@@ -33,5 +33,9 @@
         android:id="@+id/quizFragment"
         android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
         android:label="fragment_quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <argument
+            android:name="boardData"
+            app:argType="com.cmccx.moge.data.remote.model.QuizBoard" />
+    </fragment>
 </navigation>

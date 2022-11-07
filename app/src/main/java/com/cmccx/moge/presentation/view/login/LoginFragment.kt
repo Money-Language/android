@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.base.saveJwt
+import com.cmccx.moge.base.saveUserIdx
 import com.cmccx.moge.data.remote.api.LoginService
 import com.cmccx.moge.data.remote.api.LoginView
 import com.cmccx.moge.data.remote.model.Login
@@ -93,6 +94,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
     override fun onGetLoginResultSuccess(result: UserResult) {
         saveJwt(this.requireContext(), result.jwt)
+        saveUserIdx(this.requireContext(), result.userIdx)
         startActivity(Intent(requireContext(), MainActivity::class.java))
         //moveFragment(R.id.action_loginFragment_to_mainActivity)
     }

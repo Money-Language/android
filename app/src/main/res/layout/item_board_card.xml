@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="category"
-            type="com.cmccx.moge.data.remote.model.QuizCategory" />
-
-        <variable
             name="viewModel"
             type="com.cmccx.moge.presentation.viewmodel.HomeViewModel" />
     </data>
@@ -54,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{category.categoryName}"
                 android:textColor="@color/gray_dark"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -68,7 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4.97dp"
-                android:text="@{category.categorySubName}"
                 android:textColor="@color/gray"
                 android:textSize="14dp"
                 android:textStyle="bold"

@@ -68,14 +68,14 @@ class QuizViewModel : ViewModel() {
         Log.d("TEST", "QUIZVIEWMODEL 시작")
         /** !!! 보드 id 파셀라이즈 처리 해야함 !!! **/
         _userBoard.value = 1
-        getQuizComments(_userBoard.value!!)
+        //getQuizComments(_userBoard.value!!)
         /** 임시!!!!! **/
 
         _tryStatus.value = QuizTry.YET
 
         getQuizQuestion(_userBoard.value!!)
 
-        makeQuiz(_curPosition)
+        //makeQuiz(_curPosition)
 
     }
 
@@ -123,8 +123,26 @@ class QuizViewModel : ViewModel() {
         }
     }
 
+    // API 통신 -> 퀴즈 조회수 상승
+    fun postQuizViews(jwt: String, boardIdx: Int) {
+        viewModelScope.launch {
+            _apiStatus.value = QuizApiStatus.LOADING
+            try {
+                QuizApiWanny.retrofitService.postQuizView(
+                    jwt = jwt,
+                    boardIdx = boardIdx
+                )
+                Log.d("TEST-조회수 증가", "성공")
+                _apiStatus.value = QuizApiStatus.DONE
+            } catch (e: Exception) {
+                Log.d("TEST-조회수 증가", e.toString())
+                _apiStatus.value = QuizApiStatus.ERROR
+            }
+        }
+    }
+
     // API 통신 -> 퀴즈 문제 가져오기
-    private fun getQuizQuestion(boardIdx: Int) {
+    fun getQuizQuestion(boardIdx: Int) {
         viewModelScope.launch {
             _apiStatus.value = QuizApiStatus.LOADING
             try {
@@ -252,13 +270,13 @@ class QuizViewModel : ViewModel() {
                     parentIdx = parentIdx        // 부모 식별자 -> 부모 : 0, 자녀(대댓글) 1
                 )
 
-                val response = QuizApiJinny.retrofitService.postQuizComment(
+                val request = QuizApiJinny.retrofitService.postQuizComment(
                     jwt = jwt,
                     boardIdx = boardIdx,
                     params = params
                 )
 
-                Log.d("TEST-댓글 등록", response.message)
+                Log.d("TEST-댓글 등록", request.message)
                 _apiStatus.value = QuizApiStatus.DONE
             } catch (e: Exception) {
                 Log.d("TEST-댓글 등록", e.toString())
