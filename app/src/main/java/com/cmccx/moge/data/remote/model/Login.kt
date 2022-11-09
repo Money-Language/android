@@ -11,5 +11,4 @@ data class Login(
 // 소셜 로그인 (카카오, 네이버)
 data class SnsLogin(
     @SerializedName("accessToken") val accessToken: String,
-    @SerializedName("nickname") val nickname: String,
 )

@@ -20,11 +20,16 @@
 
     <string name="email_explanation">아이디로 사용할\n이메일을 입력해 주세요.</string>
     <string name="email_validation">이메일 인증하기</string>
+    <string name="email_error">* 이메일 형식을 확인해주세요.</string>
     <string name="email_valid_explanation">이메일로 발송된\n코드를 입력해 주세요.</string>
     <string name="authentication_code">인증코드</string>
-    <string name="password_explanation">비밀번호를\n입력해 주세요.</string>
+    <string name="password_explanation">비밀번호를 입력해 주세요.</string>
+    <string name="password_formatting">영문, 숫자를 포함한 5자 이상의 비밀번호를 입력해주세요.</string>
     <string name="password_validation">비밀번호 확인</string>
-    <string name="nickname_explanation">머지(MOGE)에서 활동하실\n별명을 입력해 주세요.</string>
+    <string name="password_error">* 비밀번호는 5자 이상이어야 합니다.</string>
+    <string name="password_re_error">* 비밀번호가 일치하지 않습니다.</string>
+    <string name="nickname_explanation">활동하실 별명을 입력해 주세요.</string>
+    <string name="nickname_formatting">1자 이상 - 8자 이하의 별명을 입력해주세요.</string>
     <string name="nickname_validation">별명 (중복불가)</string>
     
     <string name="category_explanation">관심있는 키워드를\n3개 선택해주세요.</string>
@@ -37,4 +42,11 @@
     <string name="sir">님!</string>
     <string name="finish_signup_explanation">회원가입이 완료되었어요.</string>
     <string name="start_moge">머지 시작하기</string>
+
+    <string name="my_quiz_nothing">제작하신 퀴즈가 없습니다.\n퀴즈를 만들어 볼까요?</string>
+    <string name="my_quiz_create">퀴즈 제작하러 가기</string>
+    <string name="my_feed_nothing">제작하신 피드가 없습니다.\n피드를 등록해보세요.</string>
+    <string name="my_feed_create">피드 등록하러 가기</string>
+    <string name="my_fav_nothing">\‘좋아요\'한 퀴즈가 없습니다.\n마음에 드는 퀴즈에 \‘좋아요\' 표시를 해보세요.</string>
+    <string name="my_fav_create">퀴즈 둘러보러 가기</string>
 </resources>

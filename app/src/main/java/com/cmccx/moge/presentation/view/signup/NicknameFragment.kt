@@ -14,17 +14,21 @@ import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.base.saveJwt
 import com.cmccx.moge.base.saveUserIdx
 import com.cmccx.moge.data.remote.api.*
-import com.cmccx.moge.data.remote.model.Signup
-import com.cmccx.moge.data.remote.model.SnsLogin
-import com.cmccx.moge.data.remote.model.UserResult
+import com.cmccx.moge.data.remote.model.*
 import com.cmccx.moge.databinding.FragmentNicknameBinding
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.OAuthLoginCallback
 import java.util.regex.Pattern
 
 // flag 값에 따른 로그인 (1: 일반 로그인 / 2: 카카오 로그인 / 3: 네이버 로그인)
-class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameBinding::bind, R.layout.fragment_nickname), SignupView, KakaoLoginView, NaverLoginView {
+class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameBinding::bind, R.layout.fragment_nickname), NicknameValidationView, SignupView, KakaoSignupView, NaverSignupView, KakaoLoginView, NaverLoginView {
 
     private var nickname: String = ""
-    private val nicknameValidation = "^[가-힣a-zA-Z0-9]{1,20}$"
+    private val nicknameValidation = "^[가-힣a-zA-Z0-9]{1,8}$"
     private var isValidNickname: Boolean = false
 
     // 이전 Fragment에서 넘겨받은 인자들
@@ -56,6 +60,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
         // 다음 버튼 클릭 시 validation 검증 후 키워드 선택으로 넘어감
         binding.nicknameNextSelectBtn.setOnClickListener {
             checkValidNickname()
+            NicknameValidationService(this).getNicknameValidation(nickname)
 
             // TODO 닉네임 중복 여부 체크 API 추가
 
@@ -101,13 +106,20 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
         val n = nickname.trim() // 공백제거
         isValidNickname = Pattern.matches(nicknameValidation, n)
 
-        if(isValidNickname) {
-            binding.nicknameErrorTv.visibility = View.GONE
-        }
-        else {
-            binding.nicknameErrorTv.visibility = View.VISIBLE
-            // TODO 닉네임 validation 에러 메세지 출력하기
-        }
+        if(isValidNickname) binding.nicknameErrorTv.visibility = View.GONE
+        else binding.nicknameErrorTv.visibility = View.VISIBLE
+    }
+
+    // 닉네임 검증 API 성공
+    override fun onGetNicknameValidationResultSuccess() {
+        binding.nicknameErrorTv.visibility = View.GONE
+    }
+
+    // 닉네임 검증 API 실패
+    override fun onGetNicknameValidationResultFailure(message: String) {
+        val errorMsg = "* $message"
+        binding.nicknameErrorTv.text = errorMsg
+        binding.nicknameErrorTv.visibility = View.VISIBLE
     }
 
 
@@ -134,22 +146,39 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
 
 
-    // 카카오 회원가입 및 로그인 API 연결
+    // 카카오 회원가입 API 연결
     private fun kakaoSignUp() {
-        val kakaoLoginService = KakaoLoginService(this)
-        kakaoLoginService.kakaoLogin(SnsLogin(args.accessToken!!, nickname))
+        val kakaoSignupService = KakaoSignupService(this)
+        kakaoSignupService.kakaoSignUp(SnsSignup(args.accessToken!!, nickname))
     }
 
-    // 카카오 회원가입 및 로그인 API 연결 성공
+    // 카카오 회원가입 API 연결 성공
+    override fun onGetKakaoSignUpResultSuccess(result: SnsSignupResult) {
+        kakaoLogin()
+    }
+
+    // 카카오 회원가입 API 연결 실패
+    override fun onGetKakaoSignUpResultFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "카카오 회원가입/API 실패 - $message")
+    }
+
+    // 카카오 로그인 API 연결
+    private fun kakaoLogin() {
+        val kakaoLoginService = KakaoLoginService(this)
+        kakaoLoginService.kakaoLogin(SnsLogin(args.accessToken!!))
+    }
+
+    // 카카오 로그인 API 연결 성공
     override fun onGetKakaoLoginResultSuccess(result: UserResult) {
         saveUserInfo(result.jwt, result.userIdx)
         moveCategory(result.jwt, result.userIdx)
     }
 
-    // 카카오 회원가입 및 로그인 API 연결 실패
+    // 카카오 로그인 API 연결 실패
     override fun onGetKakaoLoginResultFailure(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-        Log.d(TAG, "카카오 회원가입/API 실패 - $message")
+        Log.d(TAG, "카카오 로그인/API 실패 - $message")
     }
 
 
@@ -158,20 +187,37 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 네이버 회원가입 및 로그인 API 연결
     private fun naverSignUp() {
-        val naverLoginService = NaverLoginService(this)
-        naverLoginService.naverLogin(SnsLogin(args.accessToken!!, nickname))
+        val naverSignupService = NaverSignupService(this)
+        naverSignupService.naverSignUp(SnsSignup(args.accessToken!!, nickname))
     }
 
     // 네이버 회원가입 및 로그인 API 연결 성공
+    override fun onGetNaverSignUpResultSuccess(result: SnsSignupResult) {
+        naverLogin()
+    }
+
+    // 네이버 회원가입 및 로그인 API 연결 실패
+    override fun onGetNaverSignUpResultFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "네이버 회원가입/API 실패 - $message")
+    }
+
+    // 네이버 로그인
+    private fun naverLogin(){
+        val naverLoginService = NaverLoginService(this)
+        naverLoginService.naverLogin(SnsLogin(args.accessToken!!))
+    }
+
+    // 네이버 로그인 API 연결 성공
     override fun onGetNaverLoginResultSuccess(result: UserResult) {
         saveUserInfo(result.jwt, result.userIdx)
         moveCategory(result.jwt, result.userIdx)
     }
 
-    // 네이버 회원가입 및 로그인 API 연결 실패
+    // 네이버 로그인 API 연결 실패
     override fun onGetNaverLoginResultFailure(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-        Log.d(TAG, "네이버 회원가입/API 실패 - $message")
+        Log.d(TAG, "네이버 로그인/API 실패 - $message")
     }
 
 
