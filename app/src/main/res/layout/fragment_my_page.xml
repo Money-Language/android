@@ -234,6 +234,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+
         <!-- 유동적으로 스크롤되는 부분 -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/mypage_ncv"
