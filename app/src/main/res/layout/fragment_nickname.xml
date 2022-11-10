@@ -37,16 +37,48 @@
         app:layout_constraintTop_toBottomOf="@id/nickname_back_cl">
 
         <TextView
-            android:id="@+id/nickname_explanation_tv"
+            android:id="@+id/nickname_paging_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
+            android:text="4"
+            android:textSize="20dp"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/nickname_paging_total_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/5"
+            android:textSize="20dp"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toTopOf="@id/nickname_paging_tv"
+            app:layout_constraintStart_toEndOf="@id/nickname_paging_tv"/>
+
+        <TextView
+            android:id="@+id/nickname_explanation_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
             android:text="@string/nickname_explanation"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/nickname_formatting_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            tools:text="@string/nickname_formatting"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/nickname_explanation_tv"
+            app:layout_constraintStart_toStartOf="@id/nickname_explanation_tv" />
 
         <EditText
             android:id="@+id/nickname_et"
@@ -60,7 +92,7 @@
             android:inputType="textEmailAddress"
             android:background="@drawable/bg_login_edittext"
             android:textCursorDrawable="@drawable/login_edittext_cursor"
-            app:layout_constraintTop_toBottomOf="@id/nickname_explanation_tv"
+            app:layout_constraintTop_toBottomOf="@id/nickname_formatting_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -70,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            tools:text="사용 중인 별명입니다."
+            android:text="닉네임 형식을 확인해주세요."
             android:textSize="14dp"
             android:textColor="@color/alert_color"
             app:layout_constraintTop_toBottomOf="@id/nickname_et"

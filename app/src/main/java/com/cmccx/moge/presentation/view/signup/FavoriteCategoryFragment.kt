@@ -1,18 +1,29 @@
 package com.cmccx.moge.presentation.view.signup
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
+import com.cmccx.moge.data.remote.api.CategoryService
+import com.cmccx.moge.data.remote.api.CategoryView
+import com.cmccx.moge.data.remote.model.Category
 import com.cmccx.moge.databinding.FragmentFavoriteCategoryBinding
 
-class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(FragmentFavoriteCategoryBinding::bind, R.layout.fragment_favorite_category), View.OnClickListener {
+class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(FragmentFavoriteCategoryBinding::bind, R.layout.fragment_favorite_category), View.OnClickListener, CategoryView {
+    private var favoriteCategory: MutableList<String> = mutableListOf()   // defalut값은 null, 건너뛰기 가능
 
-    private var favoriteCategory: MutableList<Int> = mutableListOf()   // defalut값은 null, 건너뛰기 가능
+    // 이전 Fragment에서 넘겨받은 인자들
+    private val args: FavoriteCategoryFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "관심 키워드 입력 jwt - ${args.jwt}, userIdx - ${args.userIdx}")
 
         setClickEvent()
 
@@ -21,7 +32,7 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
         }
 
         binding.favoriteCategoryNextSelectBtn.setOnClickListener {
-            moveFragment(R.id.action_favoriteCategoryFragment_to_finishSignupFragment)
+            CategoryService(this).getCategory(args.jwt, args.userIdx, Category(favoriteCategory))
         }
     }
 
@@ -35,15 +46,15 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.favorite_category_new_btn -> saveCategory(view, 1)
-            R.id.favorite_category_spelling_btn -> saveCategory(view, 2)
-            R.id.favorite_category_nonsense_btn -> saveCategory(view, 3)
-            R.id.favorite_category_idiom_btn -> saveCategory(view, 4)
-            R.id.favorite_category_word_btn -> saveCategory(view, 5)
+            R.id.favorite_category_new_btn -> saveCategory(view, "1")
+            R.id.favorite_category_spelling_btn -> saveCategory(view, "2")
+            R.id.favorite_category_nonsense_btn -> saveCategory(view, "3")
+            R.id.favorite_category_idiom_btn -> saveCategory(view, "4")
+            R.id.favorite_category_word_btn -> saveCategory(view, "5")
         }
     }
 
-    private fun saveCategory(view: View, category: Int) {
+    private fun saveCategory(view: View, category: String) {
         if(favoriteCategory.size < 3) {
             view.isSelected = !view.isSelected
 
@@ -57,56 +68,54 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
             view.isSelected = false
 
             setCheckButton(view.isSelected, category)
-        } else {
-            // TODO 에러 메세지 출력 (카테고리 선택 3개 다 함 or 다 안함)
         }
-
+        Log.d("category", favoriteCategory.toString())
         checkValidCategory()
     }
 
-    private fun setCheckButton(isSelected: Boolean, category: Int) {
+    private fun setCheckButton(isSelected: Boolean, category: String) {
         if (isSelected) {
             when (category) {
-                1 -> {
+                "1" -> {
                     binding.favoriteCategoryNewIv.visibility = View.VISIBLE
                     binding.favoriteCategoryNewTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
-                2 -> {
+                "2" -> {
                     binding.favoriteCategorySpellingIv.visibility = View.VISIBLE
                     binding.favoriteCategorySpellingTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
-                3 -> {
+                "3" -> {
                     binding.favoriteCategoryNonsenseIv.visibility = View.VISIBLE
                     binding.favoriteCategoryNonsenseTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
-                4 -> {
+                "4" -> {
                     binding.favoriteCategoryIdiomIv.visibility = View.VISIBLE
                     binding.favoriteCategoryIdiomTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
-                5 -> {
+                "5" -> {
                     binding.favoriteCategoryWordIv.visibility = View.VISIBLE
                     binding.favoriteCategoryWordTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
             }
         } else {
             when (category) {
-                1 -> {
+                "1" -> {
                     binding.favoriteCategoryNewIv.visibility = View.GONE
                     binding.favoriteCategoryNewTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
                 }
-                2 -> {
+                "2" -> {
                     binding.favoriteCategorySpellingIv.visibility = View.GONE
                     binding.favoriteCategorySpellingTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
                 }
-                3 -> {
+                "3" -> {
                     binding.favoriteCategoryNonsenseIv.visibility = View.GONE
                     binding.favoriteCategoryNonsenseTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
                 }
-                4 -> {
+                "4" -> {
                     binding.favoriteCategoryIdiomIv.visibility = View.GONE
                     binding.favoriteCategoryIdiomTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
                 }
-                5 -> {
+                "5" -> {
                     binding.favoriteCategoryWordIv.visibility = View.GONE
                     binding.favoriteCategoryWordTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
                 }
@@ -124,51 +133,16 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
         }
     }
 
-
-    /*private var categoryList = arrayListOf<String>()
-    private var favoriteCategoryList = arrayListOf<Int>()
-    private var adapter = FavoriteCategorySelectAdapter(categoryList)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initList()
-        initAdapter()
+    override fun onGetCategoryResultSuccess() {
+        moveFinishFragment()
     }
 
-    private fun initList() {
-        categoryList.add(getString(R.string.category_new))
-        categoryList.add(getString(R.string.category_spelling))
-        categoryList.add(getString(R.string.category_nonsense))
-        categoryList.add(getString(R.string.category_idiom))
-        categoryList.add(getString(R.string.category_word))
+    override fun onGetCategoryResultFailure(message: String) {
+        Log.d(TAG, "카테고리 설정 실패 - $message")
     }
 
-    private fun initAdapter() {
-        // 관심있는 키워드
-        adapter.setCategoryClickListener(object: FavoriteCategorySelectAdapter.CategoryClickListener {
-            override fun onItemClick(categoryList: String, isClicked: Boolean) {
-                Log.d("click", isClicked.toString())
-                if (isClicked) {
-                    when(categoryList) {
-                        "신조어" -> favoriteCategoryList.add(1)
-                        "맞춤법" -> favoriteCategoryList.add(2)
-                        "넌센스" -> favoriteCategoryList.add(3)
-                        "사자성어" -> favoriteCategoryList.add(4)
-                        "단어 의미" -> favoriteCategoryList.add(5)
-                    }
-                } else {
-                    when(categoryList) {
-                        "신조어" -> favoriteCategoryList.remove(1)
-                        "맞춤법" -> favoriteCategoryList.remove(2)
-                        "넌센스" -> favoriteCategoryList.remove(3)
-                        "사자성어" -> favoriteCategoryList.remove(4)
-                        "단어 의미" -> favoriteCategoryList.remove(5)
-                    }
-                }
-            }
-        })
-
-        binding.favoriteCategoryRv.adapter = adapter
-        binding.favoriteCategoryRv.layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-    }*/
+    private fun moveFinishFragment() {
+        val action = FavoriteCategoryFragmentDirections.actionFavoriteCategoryFragmentToFinishSignupFragment(args.nickname)
+        findNavController().navigate(action)
+    }
 }

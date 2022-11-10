@@ -11,27 +11,31 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_chattingFragment"
-            app:destination="@id/chattingFragment" />
+            android:id="@+id/action_homeFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.cmccx.moge.presentation.view.SearchFragment"
+        android:name="com.cmccx.moge.presentation.view.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/shopFragment"
-        android:name="com.cmccx.moge.presentation.view.ShopFragment"
+        android:name="com.cmccx.moge.presentation.view.shop.ShopFragment"
         android:label="fragment_shop"
         tools:layout="@layout/fragment_shop" />
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.cmccx.moge.presentation.view.MyPageFragment"
+        android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
         android:label="@layout/fragment_my_page" />
     <fragment
-        android:id="@+id/chattingFragment"
-        android:name="com.cmccx.moge.presentation.view.chatting.ChattingFragment"
-        android:label="fragment_chatting"
-        tools:layout="@layout/fragment_chatting" />
+        android:id="@+id/quizFragment"
+        android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <argument
+            android:name="boardData"
+            app:argType="com.cmccx.moge.data.remote.model.QuizBoard" />
+    </fragment>
 </navigation>

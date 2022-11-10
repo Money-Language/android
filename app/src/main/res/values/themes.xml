@@ -15,6 +15,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:editTextColor">@color/black</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
     
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -26,5 +27,20 @@
     <style name="ActionBarTheme" parent="Theme.AppCompat.Light">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetEnd">0dp</item>
+    </style>
+
+    <style name="BottomNavTheme">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/gray</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_comment</item>
     </style>
 </resources>

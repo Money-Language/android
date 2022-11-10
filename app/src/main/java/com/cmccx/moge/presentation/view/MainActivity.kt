@@ -1,6 +1,8 @@
 package com.cmccx.moge.presentation.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +14,7 @@ import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseActivity
 import com.cmccx.moge.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.kakao.sdk.common.util.Utility
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainOwner {
 
@@ -28,11 +31,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         setupBottomNav()
         setupActionBar()
+
+        // 카카오 key hash
+        // val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
+        // Log.d("Kakao Hash", keyHash)
     }
 
+    @SuppressLint("ResourceType", "UseCompatLoadingForColorStateLists")
     private fun setupBottomNav() {
         val bottomNavigationView = binding.mainNavBnv
         bottomNavigationView.setupWithNavController(navController)
+
+        bottomNavigationView.itemTextColor = resources.getColorStateList(R.drawable.selector_bottom_nav_color)
     }
 
     // 액션 바 세팅
