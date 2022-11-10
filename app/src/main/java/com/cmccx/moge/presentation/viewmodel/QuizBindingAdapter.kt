@@ -1,5 +1,6 @@
 package com.cmccx.moge.presentation.viewmodel
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -50,4 +51,10 @@ fun bindSetEndQuizBtn(view: ConstraintLayout, tryStatus: QuizViewModel.QuizTry?)
 @BindingAdapter("setQuizChoice")
 fun bindSetQuizChoice(view: TextView, choice: String) {
     view.text = choice
+}
+
+@BindingAdapter("setQuizCommentCount")
+fun bindSetQuizCommentCount(view: TextView, count: Int) {
+    Log.d("TEST", count.toString())
+    view.text = count.toString()
 }
