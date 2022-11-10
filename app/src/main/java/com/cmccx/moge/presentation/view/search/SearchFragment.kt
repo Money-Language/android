@@ -1,44 +1,30 @@
 package com.cmccx.moge.presentation.view.search
 
+import android.content.ContentValues.TAG
+import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
+import com.cmccx.moge.data.remote.api.TopLikeService
 import com.cmccx.moge.data.remote.api.TopLikeView
+import com.cmccx.moge.data.remote.api.TopViewService
 import com.cmccx.moge.data.remote.api.TopViewView
+import com.cmccx.moge.data.remote.model.TopTen
 import com.cmccx.moge.databinding.FragmentSearchBinding
 import com.cmccx.moge.presentation.view.myPage.myQuiz.QuizBoardAdapter
 import com.cmccx.moge.presentation.view.myPage.myQuiz.QuizCateAdapter
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search), TopViewView, TopLikeView{
-    private val viewTopTenList = arrayListOf<String>()
-    private val likeTopTenList = arrayListOf<String>()
     private val cateList = arrayListOf<String>()
     private val quizBoardList = arrayListOf<String>()
 
+    private lateinit var viewTopTenAdapter: ViewTopTenAdapter
+    private lateinit var likeTopTenAdapter: LikeTopTenAdapter
+
     init {
-        viewTopTenList.add("1")
-        viewTopTenList.add("2")
-        viewTopTenList.add("3")
-        viewTopTenList.add("4")
-        viewTopTenList.add("5")
-        viewTopTenList.add("6")
-        viewTopTenList.add("7")
-        viewTopTenList.add("8")
-        viewTopTenList.add("9")
-        viewTopTenList.add("10")
-
-        likeTopTenList.add("1")
-        likeTopTenList.add("2")
-        likeTopTenList.add("3")
-        likeTopTenList.add("4")
-        likeTopTenList.add("5")
-        likeTopTenList.add("6")
-        likeTopTenList.add("7")
-        likeTopTenList.add("8")
-        likeTopTenList.add("9")
-        likeTopTenList.add("10")
-
         cateList.add("dummy1")
         cateList.add("dummy2")
         cateList.add("dummy3")
@@ -59,20 +45,33 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         quizBoardList.add("dummy1")
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecyclerView()
+    }
+
     override fun onStart() {
         super.onStart()
         setAdapter()
     }
 
-    private fun setAdapter() {
+    private fun initRecyclerView() {
         // 조회순 top 10
-        binding.searchViewToptenRv.adapter = ViewTopTenAdapter(viewTopTenList)
+        getTopView()
+        viewTopTenAdapter = ViewTopTenAdapter(requireContext())
+        binding.searchViewToptenRv.adapter = viewTopTenAdapter
         binding.searchViewToptenRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // 좋아요 top 10
-        binding.searchLikeToptenRv.adapter = LikeTopTenAdapter(likeTopTenList)
+        getTopLike()
+        likeTopTenAdapter = LikeTopTenAdapter(requireContext())
+        binding.searchLikeToptenRv.adapter = likeTopTenAdapter
         binding.searchLikeToptenRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
+    }
+
+    private fun setAdapter() {
         // 카테
         binding.searchQuizCateHeaderRv.adapter = QuizCateAdapter(requireContext(), cateList)
         binding.searchQuizCateHeaderRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -83,19 +82,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     }
 
-    override fun onGetTopViewResultSuccess() {
-        TODO("Not yet implemented")
+    private fun getTopView() {
+        val topViewService = TopViewService(this)
+        topViewService.getTopViewResult()
+    }
+
+    override fun onGetTopViewResultSuccess(result: ArrayList<TopTen>) {
+        viewTopTenAdapter.addTopTen(result)
     }
 
     override fun onGetTopViewResultFailure(message: String) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "조회순 top 10 실패 - $message")
     }
 
-    override fun onGetTopLikeResultSuccess() {
-        TODO("Not yet implemented")
+    private fun getTopLike() {
+        val topLikeService = TopLikeService(this)
+        topLikeService.getTopLikeResult()
+    }
+
+    override fun onGetTopLikeResultSuccess(result: ArrayList<TopTen>) {
+        likeTopTenAdapter.addTopTen(result)
     }
 
     override fun onGetTopLikeResultFailure(message: String) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "좋아요 top 10 실패 - $message")
     }
 }

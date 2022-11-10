@@ -115,7 +115,7 @@
                         android:id="@+id/search_view_topten_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="21dp"
                         android:text="@string/search_view_topten"
                         android:textSize="18dp"
                         android:textStyle="bold"
@@ -131,7 +131,7 @@
                         android:paddingHorizontal="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/search_view_topten_tv"
-                        tools:listitem="@layout/item_search_topten"
+                        tools:listitem="@layout/item_view_topten"
                         tools:itemCount="1"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -172,7 +172,7 @@
                         android:paddingHorizontal="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/search_like_topten_tv"
-                        tools:listitem="@layout/item_search_topten"
+                        tools:listitem="@layout/item_view_topten"
                         tools:itemCount="1"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

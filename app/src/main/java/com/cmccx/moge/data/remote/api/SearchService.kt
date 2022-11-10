@@ -37,7 +37,7 @@ class TopViewService(val topTenView: TopViewView) {
             override fun onResponse(call: Call<TopTenResponse>, response: Response<TopTenResponse>) {
                 val resp = response.body()!!
                 when(resp.code){
-                    1000-> topTenView.onGetTopViewResultSuccess()
+                    1000-> topTenView.onGetTopViewResultSuccess(resp.result)
                     else-> topTenView.onGetTopViewResultFailure(resp.message)
                 }
             }
@@ -58,7 +58,7 @@ class TopLikeService(val topLikeView: TopLikeView) {
             override fun onResponse(call: Call<TopTenResponse>, response: Response<TopTenResponse>) {
                 val resp = response.body()!!
                 when(resp.code){
-                    1000-> topLikeView.onGetTopLikeResultSuccess()
+                    1000-> topLikeView.onGetTopLikeResultSuccess(resp.result)
                     else-> topLikeView.onGetTopLikeResultFailure(resp.message)
                 }
             }
