@@ -15,7 +15,6 @@ import com.cmccx.moge.data.remote.model.Password
 import com.cmccx.moge.databinding.FragmentPwdBinding
 import java.util.regex.Pattern
 
-// TODO 패스워드 validation API 추가
 class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R.layout.fragment_pwd), PasswordValidationView {
 
     private var pwd: String = ""
@@ -107,9 +106,6 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
         if(isValidPwd && isValidCheckPwd && isSame) {
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.GONE
-
-            val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd, "")
-            findNavController().navigate(action)
         }
         else {
             if(isValidPwd) {
@@ -138,6 +134,9 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
     override fun onGetPasswordValidationResultSuccess() {
         binding.pwdErrorTv.visibility = View.GONE
         binding.pwdValidErrorTv.visibility = View.GONE
+
+        val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd, "")
+        findNavController().navigate(action)
     }
 
     override fun onGetPasswordValidationResultFailure(code: Int) {

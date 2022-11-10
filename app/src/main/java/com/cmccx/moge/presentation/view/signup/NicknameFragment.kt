@@ -62,8 +62,6 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
             checkValidNickname()
             NicknameValidationService(this).getNicknameValidation(nickname)
 
-            // TODO 닉네임 중복 여부 체크 API 추가
-
             when(args.flag) {
                 "1" -> signUp()
                 "2" -> kakaoSignUp()
@@ -138,7 +136,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 일반(이메일) 회원가입 API 연결 실패
     override fun onGetSignUpResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "일반 회원가입/API 실패 - $message")
     }
 
@@ -159,7 +157,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 카카오 회원가입 API 연결 실패
     override fun onGetKakaoSignUpResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "카카오 회원가입/API 실패 - $message")
     }
 
@@ -177,7 +175,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 카카오 로그인 API 연결 실패
     override fun onGetKakaoLoginResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "카카오 로그인/API 실패 - $message")
     }
 
@@ -198,7 +196,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 네이버 회원가입 및 로그인 API 연결 실패
     override fun onGetNaverSignUpResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "네이버 회원가입/API 실패 - $message")
     }
 
@@ -216,7 +214,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
 
     // 네이버 로그인 API 연결 실패
     override fun onGetNaverLoginResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "네이버 로그인/API 실패 - $message")
     }
 
