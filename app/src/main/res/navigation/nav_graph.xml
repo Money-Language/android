@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.cmccx.moge.presentation.view.SearchFragment"
+        android:name="com.cmccx.moge.presentation.view.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment

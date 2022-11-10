@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:text="롯데 ) 아몬드 빼빼로"
                 android:textSize="14dp"
-                android:textColor="@color/goods_name"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

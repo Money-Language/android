@@ -47,5 +47,5 @@
     <color name="green">#A0DE70</color>
     <color name="green_transfer">#66A0DE70</color>
 
-    <color name="goods_name">#222222</color>
+    <color name="search_divider">#F5F5F5</color>
 </resources>

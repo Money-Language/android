@@ -49,4 +49,8 @@
     <string name="my_feed_create">피드 등록하러 가기</string>
     <string name="my_fav_nothing">\‘좋아요\'한 퀴즈가 없습니다.\n마음에 드는 퀴즈에 \‘좋아요\' 표시를 해보세요.</string>
     <string name="my_fav_create">퀴즈 둘러보러 가기</string>
+
+    <string name="search_hint">원하는 키워드를 검색해 보세요.</string>
+    <string name="search_view_topten">조회수 TOP 10</string>
+    <string name="search_like_topten">좋아요 TOP 10</string>
 </resources>
