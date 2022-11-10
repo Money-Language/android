@@ -89,14 +89,14 @@
             android:id="@+id/email_error_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:text="이메일 형식이 올바르지 않습니다."
+            android:text="@string/email_error"
             android:textSize="14dp"
             android:textColor="@color/alert_color"
             app:layout_constraintTop_toBottomOf="@id/email_et"
             app:layout_constraintStart_toStartOf="@id/email_et"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
