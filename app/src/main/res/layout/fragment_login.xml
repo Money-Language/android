@@ -29,7 +29,7 @@
         android:paddingHorizontal="14dp"
         android:textSize="14dp"
         android:hint="@string/email"
-        android:textColorHint="@color/light_brown"
+        android:textColorHint="@color/brown_light"
         android:inputType="textEmailAddress"
         android:background="@drawable/bg_login_edittext"
         android:textCursorDrawable="@drawable/login_edittext_cursor"
@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:textSize="14dp"
         android:hint="@string/password"
-        android:textColorHint="@color/light_brown"
+        android:textColorHint="@color/brown_light"
         android:inputType="textPassword"
         android:background="@drawable/bg_login_edittext"
         android:textCursorDrawable="@drawable/login_edittext_cursor"
@@ -93,7 +93,7 @@
             android:text="@string/or"
             android:textSize="14dp"
             android:textStyle="bold"
-            android:textColor="@color/light_brown" />
+            android:textColor="@color/brown_light" />
 
         <View
             android:id="@+id/login_or_right_divider"
@@ -116,7 +116,7 @@
             android:id="@+id/login_kakao_iv"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_login_kakao"
+            android:src="@drawable/icon_login_kakao"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -125,7 +125,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ic_login_naver"
+            android:src="@drawable/icon_login_naver"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/login_kakao_iv"/>
 
@@ -153,7 +153,7 @@
                 android:id="@+id/login_signup_email_iv"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_email"
+                android:src="@drawable/icon_email"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

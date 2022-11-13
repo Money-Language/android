@@ -20,7 +20,7 @@
             android:id="@+id/item_my_fav_nothing_iv"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_my_fav"
+            android:src="@drawable/icon_my_fav"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

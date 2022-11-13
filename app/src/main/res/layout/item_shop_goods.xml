@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="CU"
                 android:textSize="14dp"
-                android:textColor="@color/light_gray"
+                android:textColor="@color/gray_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

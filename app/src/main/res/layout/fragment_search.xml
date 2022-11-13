@@ -1,229 +1,395 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".presentation.view.search.SearchFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:id="@+id/search_main_sv"
+    <data>
+        <variable
+            name="point"
+            type="com.cmccx.moge.presentation.viewmodel.PointViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".presentation.view.search.SearchFragment">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_main_cl"
+        <ScrollView
+            android:id="@+id/search_main_sv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
 
-            <!-- 최상단 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/search_header_cl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="28dp"
-                android:background="@color/primary_main"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/search_header_point_iv"
-                    android:layout_width="23dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="21dp"
-                    android:src="@drawable/icon_point"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/search_header_point_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="3,050"
-                    android:textColor="@color/gray"
-                    android:textSize="18dp"
-                    app:layout_constraintBottom_toBottomOf="@id/search_header_point_iv"
-                    app:layout_constraintStart_toEndOf="@id/search_header_point_iv"
-                    app:layout_constraintTop_toTopOf="@id/search_header_point_iv" />
-
-                <ImageView
-                    android:id="@+id/search_header_notification_iv"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginEnd="15.41dp"
-                    android:src="@drawable/icon_notification"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/search_header_point_iv"  />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/search_view_cl"
+                android:id="@+id/search_main_cl"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/primary_main"
-                android:paddingBottom="24dp"
-                app:layout_constraintTop_toBottomOf="@id/search_header_cl"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_height="wrap_content">
 
+                <!-- 최상단 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/search_header_cl"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingTop="28dp"
+                    android:background="@color/primary_main"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_srv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_search"
-                        app:queryBackground="@android:color/transparent"
-                        app:iconifiedByDefault="false"
-                        app:queryHint="@string/search_hint"
-                        app:searchIcon="@drawable/ic_search"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/search_item_cl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/search_view_cl"
-                app:layout_constraintStart_toStartOf="parent" >
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/search_view_topten_cl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="30dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" >
-
-                    <TextView
-                        android:id="@+id/search_view_topten_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/search_header_point_iv"
+                        android:layout_width="23dp"
+                        android:layout_height="24dp"
                         android:layout_marginStart="21dp"
-                        android:text="@string/search_view_topten"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_view_topten_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:paddingHorizontal="8dp"
+                        android:src="@drawable/icon_point"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/search_view_topten_tv"
-                        tools:listitem="@layout/item_view_topten"
-                        tools:itemCount="1"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View
-                    android:id="@+id/search_view_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="@color/search_divider"
-                    app:layout_constraintTop_toBottomOf="@id/search_view_topten_cl"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/search_like_topten_cl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="30dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/search_view_divider">
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/search_like_topten_tv"
+                        android:id="@+id/home_header_point_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/search_like_topten"
+                        android:layout_marginStart="4dp"
+                        app:setQuizCommentCount="@{point.point}"
+                        android:textColor="@color/gray"
                         android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        tools:text="포인트"
+                        app:layout_constraintBottom_toBottomOf="@id/search_header_point_iv"
+                        app:layout_constraintStart_toEndOf="@id/search_header_point_iv"
+                        app:layout_constraintTop_toTopOf="@id/search_header_point_iv" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_like_topten_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:paddingHorizontal="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/search_like_topten_tv"
-                        tools:listitem="@layout/item_view_topten"
-                        tools:itemCount="1"/>
+                    <ImageView
+                        android:id="@+id/search_header_notification_iv"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="15.41dp"
+                        android:src="@drawable/icon_notification"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/search_header_point_iv"  />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <View
-                    android:id="@+id/search_like_divider"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/search_view_cl"
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="@color/search_divider"
-                    app:layout_constraintTop_toBottomOf="@id/search_like_topten_cl"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_height="match_parent"
+                    android:background="@color/primary_main"
+                    android:paddingVertical="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/search_header_cl"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/search_srv"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_search"
+                            app:queryBackground="@null"
+                            app:iconifiedByDefault="false"
+                            app:queryHint="@string/search_hint"
+                            app:searchIcon="@drawable/icon_search"
+                            app:closeIcon="@null"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/search_quiz_cl"
+                    android:id="@+id/search_item_cl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/search_like_divider">
+                    app:layout_constraintTop_toBottomOf="@id/search_view_cl"
+                    app:layout_constraintStart_toStartOf="parent" >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_quiz_cate_header_rv"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/search_view_topten_cl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:paddingHorizontal="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:paddingVertical="30dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="1"
-                        tools:listitem="@layout/item_my_quiz_cate_header" />
+                        app:layout_constraintTop_toTopOf="parent" >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_quiz_boards_rv"
+                        <TextView
+                            android:id="@+id/search_view_topten_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="21dp"
+                            android:text="@string/search_view_topten"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/search_view_topten_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:paddingHorizontal="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/search_view_topten_tv"
+                            tools:listitem="@layout/item_view_topten"
+                            tools:itemCount="1"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:id="@+id/search_view_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/search_divider"
+                        app:layout_constraintTop_toBottomOf="@id/search_view_topten_cl"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/search_like_topten_cl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
-                        android:layout_marginTop="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:paddingVertical="30dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/search_quiz_cate_header_rv"
-                        tools:itemCount="1"
-                        tools:listitem="@layout/item_my_quiz_boards" />
+                        app:layout_constraintTop_toBottomOf="@id/search_view_divider">
+
+                        <TextView
+                            android:id="@+id/search_like_topten_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/search_like_topten"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/search_like_topten_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:paddingHorizontal="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/search_like_topten_tv"
+                            tools:listitem="@layout/item_view_topten"
+                            tools:itemCount="1"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:id="@+id/search_like_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/search_divider"
+                        app:layout_constraintTop_toBottomOf="@id/search_like_topten_cl"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/search_quiz_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/search_like_divider">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/search_quiz_cate_header_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:paddingHorizontal="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:overScrollMode="never"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/item_my_quiz_cate_header" />
+                        
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/search_quiz_cate_header_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            app:layout_constraintTop_toBottomOf="@id/search_quiz_cate_header_rv"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+                            
+                            <View
+                                android:id="@+id/search_quiz_cate_front_divider"
+                                android:layout_width="125dp"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="16dp"
+                                android:background="@color/cate_divider"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                            <TextView
+                                android:id="@+id/search_quiz_cate_header_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="신조어"
+                                android:textSize="18dp"
+                                android:textColor="@color/gray_light"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/search_quiz_cate_front_divider"
+                                app:layout_constraintEnd_toStartOf="@id/search_quiz_cate_back_divider"/>
+
+                            <View
+                                android:id="@+id/search_quiz_cate_back_divider"
+                                android:layout_width="125dp"
+                                android:layout_height="1dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@color/cate_divider"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/search_quiz_boards_sorting_cl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintTop_toBottomOf="@id/search_quiz_cate_header_cl"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/search_quiz_boards_latest_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="@string/search_latest"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="14dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <View
+                                android:id="@+id/search_quiz_boards_first_divider"
+                                android:layout_width="1dp"
+                                android:layout_height="12dp"
+                                android:background="@color/cate_divider"
+                                app:layout_constraintStart_toEndOf="@id/search_quiz_boards_latest_tv"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                            <TextView
+                                android:id="@+id/search_quiz_boards_views_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="@string/search_views"
+                                android:textColor="@color/gray_light"
+                                android:textSize="14dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/search_quiz_boards_first_divider"/>
+
+                            <View
+                                android:id="@+id/search_quiz_boards_second_divider"
+                                android:layout_width="1dp"
+                                android:layout_height="12dp"
+                                android:background="@color/cate_divider"
+                                app:layout_constraintStart_toEndOf="@id/search_quiz_boards_views_tv"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                            <TextView
+                                android:id="@+id/search_quiz_boards_likes_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="@string/search_likes"
+                                android:textColor="@color/gray_light"
+                                android:textSize="14dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/search_quiz_boards_second_divider"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/search_quiz_boards_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/search_quiz_boards_sorting_cl"
+                            android:overScrollMode="never"
+                            tools:itemCount="1"
+                            tools:listitem="@layout/item_my_quiz_boards" />
+
+                        <Button
+                            android:id="@+id/search_all_view_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_search_all_view_btn"
+                            app:layout_constraintTop_toBottomOf="@id/search_quiz_boards_rv"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/search_all_view_content_cl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="@id/search_all_view_btn"
+                            app:layout_constraintEnd_toEndOf="@id/search_all_view_btn"
+                            app:layout_constraintTop_toTopOf="@id/search_all_view_btn"
+                            app:layout_constraintBottom_toBottomOf="@id/search_all_view_btn">
+
+                            <TextView
+                                android:id="@+id/search_all_view_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/search_all_view"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="14dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/search_all_view_iv"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/icon_right"
+                                app:layout_constraintStart_toEndOf="@id/search_all_view_tv"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

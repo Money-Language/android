@@ -20,7 +20,7 @@
             android:id="@+id/item_my_feed_nothing_iv"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_my_feed"
+            android:src="@drawable/icon_my_feed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

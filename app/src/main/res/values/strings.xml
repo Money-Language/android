@@ -53,4 +53,9 @@
     <string name="search_hint">원하는 키워드를 검색해 보세요.</string>
     <string name="search_view_topten">조회수 TOP 10</string>
     <string name="search_like_topten">좋아요 TOP 10</string>
+    <string name="search_latest">최신순</string>
+    <string name="search_views">조회순</string>
+    <string name="search_likes">인기순</string>
+    <string name="search_all_view">모두보기</string>
+    <string name="view_all_header">퀴즈 모음</string>
 </resources>
