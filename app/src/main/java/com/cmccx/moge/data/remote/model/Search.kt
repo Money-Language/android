@@ -9,5 +9,5 @@ data class TopTen(
         @SerializedName("likeCount") val likeCount: Int,
         @SerializedName("quizCount") val quizCount: Int,
         @SerializedName("nickname") val nickname: String,
-        @SerializedName("profileImage") val profileImage: String,
+        @SerializedName("profileImage") val profileImage: String?,
 )

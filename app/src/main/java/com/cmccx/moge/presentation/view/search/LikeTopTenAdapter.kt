@@ -10,7 +10,7 @@ import com.cmccx.moge.R
 import com.cmccx.moge.data.remote.model.TopTen
 import com.cmccx.moge.databinding.ItemFavToptenBinding
 
-class LikeTopTenAdapter(val context: Context) : RecyclerView.Adapter<LikeTopTenAdapter.ViewHolder>() {
+class LikeTopTenAdapter(private val context: Context) : RecyclerView.Adapter<LikeTopTenAdapter.ViewHolder>() {
 
     private val likeTopTenList = ArrayList<TopTen>()
 
@@ -40,11 +40,10 @@ class LikeTopTenAdapter(val context: Context) : RecyclerView.Adapter<LikeTopTenA
         return likeTopTenList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addTopTen(topTen: ArrayList<TopTen>) {
+    fun addLikeTopTen(topTen: ArrayList<TopTen>) {
         this.likeTopTenList.clear()
         this.likeTopTenList.addAll(topTen)
-        notifyDataSetChanged()
+        notifyItemChanged(likeTopTenList.size)
     }
 
     inner class ViewHolder(val binding: ItemFavToptenBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -53,10 +52,16 @@ class LikeTopTenAdapter(val context: Context) : RecyclerView.Adapter<LikeTopTenA
             binding.itemFavTopTitleTv.text = topTen.title
             binding.itemFavTopInfoViewsCountTv.text = topTen.viewCount.toString()
             binding.itemFavTopInfoFavCountTv.text = topTen.likeCount.toString()
-            Glide.with(context).load(topTen.profileImage).into(binding.itemFavTopProfileRiv)
             binding.itemFavTopProfileTv.text = topTen.nickname
             binding.itemFavTopCateTv.text = "#" + topTen.categoryName
             binding.itemFavTopQuizSizeTv.text = topTen.quizCount.toString() + "문제"
+
+            // 프로필 사진 여부에 따른 이미지 변경
+            if (topTen.profileImage.isNullOrEmpty()) {
+                binding.itemFavTopProfileRiv.setImageResource(R.drawable.icon_profile)
+            } else {
+                Glide.with(context).load(topTen.profileImage).into(binding.itemFavTopProfileRiv)
+            }
 
             // 카테고리에 따른 색상 변경
             when (topTen.categoryName) {
