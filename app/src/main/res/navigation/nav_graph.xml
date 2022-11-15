@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_searchFragment_to_viewAllFragment"
             app:destination="@id/viewAllFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
@@ -32,7 +35,8 @@
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
-        android:label="@layout/fragment_my_page" />
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" />
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
@@ -46,7 +50,8 @@
     <fragment
         android:id="@+id/viewAllFragment"
         android:name="com.cmccx.moge.presentation.view.search.viewAll.ViewAllFragment"
-        android:label="@layout/fragment_view_all" >
+        android:label="fragment_view_all"
+        tools:layout="@layout/fragment_view_all" >
         <argument
             android:name="jwt"
             app:argType="string" />
@@ -57,4 +62,10 @@
             android:name="category"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.cmccx.moge.presentation.view.search.result.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" />
 </navigation>

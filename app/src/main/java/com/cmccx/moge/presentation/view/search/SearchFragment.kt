@@ -42,6 +42,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         jwt = getJwt(requireContext())
 
         initView()
+
+        binding.searchViewMainCl.setOnClickListener {
+            moveFragment(R.id.action_searchFragment_to_searchResultFragment)
+        }
     }
 
     private fun initView() {

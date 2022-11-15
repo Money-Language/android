@@ -58,4 +58,5 @@
     <string name="search_likes">인기순</string>
     <string name="search_all_view">모두보기</string>
     <string name="view_all_header">퀴즈 모음</string>
+    <string name="search_keyword">추천 키워드</string>
 </resources>
