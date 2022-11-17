@@ -13,7 +13,7 @@ class ApplicationClass : Application() {
     // 와니 테스트 서버 주소
     val W_API_URL = "https://dev.wani-softsquared.shop"
     // 지니 테스트 서버 주소
-    val J_API_URL = "https://dev.ssacyj.shop"
+    val J_API_URL = "https://zini.wani-softsquared.shop"
 
     // 실 서버 주소
     // val API_URL = ""

@@ -1,6 +1,6 @@
 package com.cmccx.moge.data.remote.api
 
-interface HomeInterestedBoardView {
+interface HomeView {
     fun onGetBoardSuccess()
     fun onGetBoardFailure(message: String)
 }
