@@ -9,15 +9,21 @@ import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.cmccx.moge.base.getJwt
+import com.cmccx.moge.databinding.ActivitySplashBinding
 import com.cmccx.moge.presentation.view.MainActivity
 import com.cmccx.moge.presentation.view.login.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
+    lateinit var binding : ActivitySplashBinding
     private var jwt: String? = ""    // jwt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
         jwt = getJwt(this)
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -30,7 +36,6 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish()
             }
-
-        }, 300)
+        }, 5500)
     }
 }
