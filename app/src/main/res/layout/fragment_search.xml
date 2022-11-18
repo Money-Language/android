@@ -50,7 +50,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/home_header_point_tv"
+                        android:id="@+id/search_header_point_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
@@ -109,7 +109,7 @@
                             android:layout_marginStart="10dp"
                             android:text="@string/search_hint"
                             android:textColor="@color/gray"
-                            android:textSize="16dp"
+                            android:textSize="15dp"
                             app:layout_constraintStart_toEndOf="@id/search_view_iv"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent" />
@@ -144,6 +144,14 @@
                             android:textColor="@color/black"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"/>
+                        
+                        <ImageView
+                            android:id="@+id/search_view_topten_line_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_search_text_underline"
+                            app:layout_constraintStart_toStartOf="@id/search_view_topten_tv"
+                            app:layout_constraintBottom_toBottomOf="@id/search_view_topten_tv" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/search_view_topten_rv"
@@ -186,6 +194,14 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"/>
 
+                        <ImageView
+                            android:id="@+id/search_like_topten_line_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_search_text_underline"
+                            app:layout_constraintStart_toStartOf="@id/search_like_topten_tv"
+                            app:layout_constraintBottom_toBottomOf="@id/search_like_topten_tv" />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/search_like_topten_rv"
                             android:layout_width="match_parent"
@@ -194,8 +210,8 @@
                             android:paddingHorizontal="10dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/search_like_topten_tv"
-                            tools:listitem="@layout/item_view_topten"
-                            tools:itemCount="1"/>
+                            tools:itemCount="1"
+                            tools:listitem="@layout/item_view_topten" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

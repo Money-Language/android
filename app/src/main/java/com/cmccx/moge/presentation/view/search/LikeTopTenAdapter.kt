@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cmccx.moge.R
-import com.cmccx.moge.data.remote.model.TopTen
+import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.ItemFavToptenBinding
 
 class LikeTopTenAdapter(private val context: Context) : RecyclerView.Adapter<LikeTopTenAdapter.ViewHolder>() {
 
-    private val likeTopTenList = ArrayList<TopTen>()
+    private val likeTopTenList = ArrayList<Search>()
 
     // 클릭 인터페이스
     interface LikeTopTenClickListener {
-        fun onItemClick(topTen: TopTen)
+        fun onItemClick(topTen: Search)
     }
 
     private lateinit var likeTopTenClickListener: LikeTopTenClickListener
@@ -40,7 +40,7 @@ class LikeTopTenAdapter(private val context: Context) : RecyclerView.Adapter<Lik
         return likeTopTenList.size
     }
 
-    fun addLikeTopTen(topTen: ArrayList<TopTen>) {
+    fun addLikeTopTen(topTen: ArrayList<Search>) {
         this.likeTopTenList.clear()
         this.likeTopTenList.addAll(topTen)
         notifyItemChanged(likeTopTenList.size)
@@ -48,7 +48,7 @@ class LikeTopTenAdapter(private val context: Context) : RecyclerView.Adapter<Lik
 
     inner class ViewHolder(val binding: ItemFavToptenBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(topTen : TopTen) {
+        fun bind(topTen : Search) {
             binding.itemFavTopTitleTv.text = topTen.title
             binding.itemFavTopInfoViewsCountTv.text = topTen.viewCount.toString()
             binding.itemFavTopInfoFavCountTv.text = topTen.likeCount.toString()

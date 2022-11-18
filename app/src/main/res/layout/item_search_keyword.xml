@@ -8,7 +8,7 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/item_myquiz_cate_header_title_tv"
+        android:id="@+id/item_search_keyword_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_search_keyword"

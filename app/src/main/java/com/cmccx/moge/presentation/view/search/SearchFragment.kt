@@ -15,10 +15,9 @@ import com.cmccx.moge.base.getJwt
 import com.cmccx.moge.base.getUserIdx
 import com.cmccx.moge.data.remote.api.*
 import com.cmccx.moge.data.remote.model.Board
-import com.cmccx.moge.data.remote.model.TopTen
+import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.FragmentSearchBinding
 import com.cmccx.moge.presentation.viewmodel.PointViewModel
-import kotlin.properties.Delegates
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search), TopView, TopLike, QuizOrderView {
     private lateinit var viewTopTenAdapter: ViewTopTenAdapter
@@ -86,7 +85,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         clickTopLike()
     }
 
-    override fun onGetTopViewResultSuccess(result: ArrayList<TopTen>) {
+    override fun onGetTopViewResultSuccess(result: ArrayList<Search>) {
         viewTopTenAdapter.addViewTopTen(result)
     }
 
@@ -96,13 +95,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private fun clickTopView() {
         viewTopTenAdapter.setViewTopTenClickListener(object: ViewTopTenAdapter.ViewTopTenClickListener{
-            override fun onItemClick(topTen: TopTen) {
+            override fun onItemClick(topTen: Search) {
                 // TODO 퀴즈 상세보기로 넘어가기
             }
         })
     }
 
-    override fun onGetTopLikeResultSuccess(result: ArrayList<TopTen>) {
+    override fun onGetTopLikeResultSuccess(result: ArrayList<Search>) {
         likeTopTenAdapter.addLikeTopTen(result)
     }
 
@@ -112,7 +111,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private fun clickTopLike() {
         likeTopTenAdapter.setLikeTopTenClickListener(object: LikeTopTenAdapter.LikeTopTenClickListener{
-            override fun onItemClick(topTen: TopTen) {
+            override fun onItemClick(topTen: Search) {
                 // TODO 퀴즈 상세보기로 넘어가기
             }
         })

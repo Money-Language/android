@@ -2,27 +2,28 @@ package com.cmccx.moge.data.remote.api
 
 import android.util.Log
 import com.cmccx.moge.base.ApplicationClass
-import com.cmccx.moge.base.BaseResponse
 import com.cmccx.moge.data.remote.model.BoardResponse
+import com.cmccx.moge.data.remote.model.KeywordResponse
+import com.cmccx.moge.data.remote.model.SearchResponse
 import com.cmccx.moge.data.remote.model.TopTenResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchService(val searchView: SearchView) {
-    fun getSearchResult(){
+class SearchService(val queryView: QueryView) {
+    fun getSearchResult(title: String?){
         val searchService = ApplicationClass.retrofitJ.create(SearchRetrofitInterface::class.java)
 
-        searchService.getSearch().enqueue(object : Callback<BaseResponse> {
-            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+        searchService.getSearch(title).enqueue(object : Callback<SearchResponse> {
+            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 val resp = response.body()!!
                 when(resp.code){
-                    1000-> searchView.onGetSearchResultSuccess()
-                    else-> searchView.onGetSearchResultFailure(resp.message)
+                    1000-> queryView.onGetSearchResultSuccess(resp.result)
+                    else-> queryView.onGetSearchResultFailure(resp.code, resp.message)
                 }
             }
 
-            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                 Log.d("검색 API", t.message ?: "통신 오류")
             }
         })
@@ -122,6 +123,26 @@ class QuizOrderService(val quizOrderView: QuizOrderView) {
 
             override fun onFailure(call: Call<BoardResponse>, t: Throwable) {
                 Log.d("퀴즈 최신순 API", t.message ?: "통신 오류")
+            }
+        })
+    }
+}
+
+class SearchKeywordService(val keywordView: KeywordView) {
+    fun getKeywordResult(){
+        val keywordService = ApplicationClass.retrofitJ.create(KeywordRetrofitInterface::class.java)
+
+        keywordService.getKeyword().enqueue(object : Callback<KeywordResponse> {
+            override fun onResponse(call: Call<KeywordResponse>, response: Response<KeywordResponse>) {
+                val resp = response.body()!!
+                when(resp.code){
+                    1000-> keywordView.onGetKeywordResultSuccess(resp.result)
+                    else-> keywordView.onGetKeywordResultFailure(resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<KeywordResponse>, t: Throwable) {
+                Log.d("추천 키워드 API", t.message ?: "통신 오류")
             }
         })
     }

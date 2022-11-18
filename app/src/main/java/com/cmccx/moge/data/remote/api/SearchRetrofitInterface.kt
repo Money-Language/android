@@ -1,7 +1,8 @@
 package com.cmccx.moge.data.remote.api
 
-import com.cmccx.moge.base.BaseResponse
 import com.cmccx.moge.data.remote.model.BoardResponse
+import com.cmccx.moge.data.remote.model.KeywordResponse
+import com.cmccx.moge.data.remote.model.SearchResponse
 import com.cmccx.moge.data.remote.model.TopTenResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -10,9 +11,11 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SearchRetrofitInterface {
-    // TODO 검색 조회 API
-    @GET("검색 조회 URL 입력")
-    fun getSearch(): Call<BaseResponse>
+    // 검색 결과
+    @GET("/app/boards/search")
+    fun getSearch(
+        @Query("title") type: String?
+    ): Call<SearchResponse>
 }
 
 interface TopTenRetrofitInterface {
@@ -40,5 +43,10 @@ interface QuizTenRetrofitInterface {
         @Path("categoryIdx") categoryIdx: Int,
         @Query("order") type: String
     ): Call<BoardResponse>
+}
 
+interface KeywordRetrofitInterface {
+    // 추천 키워드
+    @GET("app/boards/search-keyword")
+    fun getKeyword(): Call<KeywordResponse>
 }
