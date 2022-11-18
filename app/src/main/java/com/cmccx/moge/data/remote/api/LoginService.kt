@@ -1,5 +1,6 @@
 package com.cmccx.moge.data.remote.api
 
+import android.util.Log
 import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.data.remote.model.Login
 import com.cmccx.moge.data.remote.model.SnsLogin
@@ -16,13 +17,13 @@ class LoginService(val loginView: LoginView) {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val resp = response.body()!!
                 when(resp.code){
-                    1000-> resp.result?.let { loginView.onGetLoginResultSuccess(resp.result) }
-                    else-> resp.message.let { loginView.onGetLoginResultFailure(it) }
+                    1000-> loginView.onGetLoginResultSuccess(resp.result)
+                    else-> loginView.onGetLoginResultFailure(resp.code, resp.message)
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                loginView.onGetLoginResultFailure(t.message ?: "통신 오류")
+                Log.d("로그인 실패", t.message ?: "통신 오류")
             }
 
         })

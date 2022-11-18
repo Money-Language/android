@@ -1,7 +1,9 @@
 package com.cmccx.moge.presentation.view.shop
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels

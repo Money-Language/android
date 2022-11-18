@@ -2,6 +2,7 @@ package com.cmccx.moge.presentation.view.search.result
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,10 +19,18 @@ import com.cmccx.moge.data.remote.api.SearchService
 import com.cmccx.moge.data.remote.model.Keyword
 import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.FragmentSearchResultBinding
+import com.cmccx.moge.presentation.view.MainOwner
 
 class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentSearchResultBinding::bind, R.layout.fragment_search_result), KeywordView, QueryView {
     private lateinit var keywordAdapter: SearchKeywordAdapter
     private lateinit var searchResultAdapter: SearchResultAdapter
+
+    private lateinit var owner: MainOwner
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        owner = context as MainOwner
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,6 +44,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentS
         binding.resultSearchViewSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener  {
             override fun onQueryTextSubmit(query: String?): Boolean {   // 검색 버튼 클릭했을 때
                 getSearchResult(query)
+                hideKeyboard()
                 return true
             }
 
@@ -45,6 +55,9 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentS
     }
 
     private fun initView() {
+        // 플로팅 버튼 사라지기
+        owner.setFloatingBtnVisible(false)
+
         // 추천 키워드 view 보여주기
         binding.resultSearchKeywordCl.visibility = View.VISIBLE
         binding.resultSearchNothingTv.visibility = View.GONE

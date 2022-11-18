@@ -41,7 +41,7 @@ class QuizTenAdapter(private val context: Context, private val category: String)
 
     override fun getItemCount(): Int {
         return if(quizTenList.size > limit) limit
-        else quizTenList.size;
+        else quizTenList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")

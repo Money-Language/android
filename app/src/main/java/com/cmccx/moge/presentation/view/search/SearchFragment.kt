@@ -2,6 +2,7 @@ package com.cmccx.moge.presentation.view.search
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,9 +18,11 @@ import com.cmccx.moge.data.remote.api.*
 import com.cmccx.moge.data.remote.model.Board
 import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.FragmentSearchBinding
+import com.cmccx.moge.presentation.view.MainOwner
 import com.cmccx.moge.presentation.viewmodel.PointViewModel
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search), TopView, TopLike, QuizOrderView {
+    private lateinit var owner: MainOwner
     private lateinit var viewTopTenAdapter: ViewTopTenAdapter
     private lateinit var likeTopTenAdapter: LikeTopTenAdapter
     private lateinit var categoryAdapter: CategoryAdapter
@@ -35,6 +38,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private val pointViewModel: PointViewModel by activityViewModels()
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        owner = context as MainOwner
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,6 +56,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initView() {
+        // 플로팅 버튼 보이기
+        owner.setFloatingBtnVisible(true)
+
         // 상단 포인트
         binding.point = pointViewModel
         pointViewModel.getPoint(getJwt(this.requireContext()), getUserIdx(this.requireContext()))

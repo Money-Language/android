@@ -51,8 +51,8 @@
 
             <ImageView
                 android:id="@+id/shop_header_notification_iv"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="15.41dp"
                 android:src="@drawable/icon_notification"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -36,7 +36,11 @@
         android:id="@+id/myPageFragment"
         android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
         android:label="fragment_my_page"
-        tools:layout="@layout/fragment_my_page" />
+        tools:layout="@layout/fragment_my_page" >
+        <action
+            android:id="@+id/action_myPageFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
@@ -68,4 +72,10 @@
         android:name="com.cmccx.moge.presentation.view.search.result.SearchResultFragment"
         android:label="fragment_search_result"
         tools:layout="@layout/fragment_search_result" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.cmccx.moge.presentation.view.myPage.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

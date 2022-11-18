@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -75,6 +76,12 @@ abstract class BaseFragment<B : ViewBinding>(
             inputManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.showSoftInput(view.findFocus(), InputMethodManager.SHOW_IMPLICIT)
         }
+    }
+
+    // 모든 프래그먼트 스택에서 제거
+    fun clearBackStack() {
+        val fragmentManager : FragmentManager = parentFragmentManager
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
 }

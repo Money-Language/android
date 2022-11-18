@@ -2,6 +2,7 @@ package com.cmccx.moge.presentation.view.search.viewAll
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,12 +15,17 @@ import com.cmccx.moge.data.remote.api.QuizOrderService
 import com.cmccx.moge.data.remote.api.QuizOrderView
 import com.cmccx.moge.data.remote.model.Board
 import com.cmccx.moge.databinding.FragmentViewAllBinding
+import com.cmccx.moge.presentation.view.MainOwner
 
-class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBinding::bind, R.layout.fragment_view_all),
-    QuizOrderView {
-
+class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBinding::bind, R.layout.fragment_view_all), QuizOrderView {
     private lateinit var viewAllAdapter: ViewAllAdapter
     private val args: ViewAllFragmentArgs by navArgs()
+    private lateinit var owner: MainOwner
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        owner = context as MainOwner
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,6 +38,9 @@ class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBind
     }
 
     private fun initView() {
+        // 플로팅 버튼 사라지기
+        owner.setFloatingBtnVisible(false)
+
         binding.viewAllHeaderCateTv.text = args.category
 
         // 퀴즈 보드

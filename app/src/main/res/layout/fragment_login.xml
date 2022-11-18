@@ -37,6 +37,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/login_email_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        tools:text="@string/password_error"
+        android:textSize="14dp"
+        android:textColor="@color/alert_color"
+        app:layout_constraintTop_toBottomOf="@id/login_email_et"
+        app:layout_constraintStart_toStartOf="@id/login_email_et"
+        android:visibility="gone" />
+
     <EditText
         android:id="@+id/login_password_et"
         android:layout_width="match_parent"
@@ -49,9 +62,22 @@
         android:inputType="textPassword"
         android:background="@drawable/bg_login_edittext"
         android:textCursorDrawable="@drawable/login_edittext_cursor"
-        app:layout_constraintTop_toBottomOf="@id/login_email_et"
+        app:layout_constraintTop_toBottomOf="@id/login_email_error_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/login_pwd_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        tools:text="@string/password_error"
+        android:textSize="14dp"
+        android:textColor="@color/alert_color"
+        app:layout_constraintTop_toBottomOf="@id/login_password_et"
+        app:layout_constraintStart_toStartOf="@id/login_password_et"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/login_btn"
@@ -64,7 +90,7 @@
         android:textColor="@color/white"
         android:background="@drawable/bg_btn_select"
         android:stateListAnimator="@null"
-        app:layout_constraintTop_toBottomOf="@id/login_password_et"
+        app:layout_constraintTop_toBottomOf="@id/login_pwd_error_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
     

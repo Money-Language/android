@@ -15,7 +15,6 @@ import com.cmccx.moge.data.remote.api.CategoryView
 import com.cmccx.moge.data.remote.api.HomeInterestedBoardView
 import com.cmccx.moge.databinding.FragmentHomeBinding
 import com.cmccx.moge.presentation.view.MainOwner
-import com.cmccx.moge.presentation.view.quiz.QuizCommentAdapter
 import com.cmccx.moge.presentation.viewmodel.HomeViewModel
 import com.cmccx.moge.presentation.viewmodel.PointViewModel
 
@@ -35,6 +34,7 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(false)
+        owner.setFloatingBtnVisible(true)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

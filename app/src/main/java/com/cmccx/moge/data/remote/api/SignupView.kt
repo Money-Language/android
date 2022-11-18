@@ -1,10 +1,10 @@
 package com.cmccx.moge.data.remote.api
 
 import com.cmccx.moge.data.remote.model.SnsSignupResult
-import com.cmccx.moge.data.remote.model.UserResult
+import com.cmccx.moge.data.remote.model.User
 
 interface SignupView {
-    fun onGetSignUpResultSuccess(result: UserResult)
+    fun onGetSignUpResultSuccess(result: User)
     fun onGetSignUpResultFailure(message: String)
 }
 

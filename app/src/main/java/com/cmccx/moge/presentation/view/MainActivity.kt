@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.common.util.Utility
 
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainOwner {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) , MainOwner{
 
     private lateinit var navController: NavController
     lateinit var floatingBtn: FloatingActionButton
@@ -99,7 +99,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     // 플로팅 버튼 visible
     override fun setFloatingBtnVisible(visible: Boolean) {
-        floatingBtn = binding.mainFloatingFab
+        val floatingBtn = binding.mainFloatingFab
+        Log.d(TAG, "floating - $visible")
 
         if (visible) {
             floatingBtn.show()

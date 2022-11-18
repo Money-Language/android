@@ -43,7 +43,7 @@ class ApplicationClass : Application() {
         KakaoSdk.init(this, BuildConfig.kakao_app_key)
 
         // Naver SDK
-        NaverIdLoginSDK.initialize(this, BuildConfig.naver_client_id, BuildConfig.naver_client_secret, "MOGE")
+        // NaverIdLoginSDK.initialize(this, BuildConfig.naver_client_id, BuildConfig.naver_client_secret, "MOGE")
     }
 
     // 와니 서버 인스턴스 생성 메서드
