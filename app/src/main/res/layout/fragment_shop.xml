@@ -1,107 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_main"
-    tools:context=".presentation.view.shop.ShopFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:id="@+id/shop_main_sv"
+    <data>
+        <variable
+            name="point"
+            type="com.cmccx.moge.presentation.viewmodel.PointViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        android:layout_height="match_parent"
+        android:background="@color/primary_light"
+        tools:context=".presentation.view.shop.ShopFragment">
 
-
+        <!-- 최상단 -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/shop_main_cl"
+            android:id="@+id/shop_header_cl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="28dp"
+            android:background="@color/primary_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- 최상단 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/shop_header_cl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
+            <ImageView
+                android:id="@+id/shop_header_point_iv"
+                android:layout_width="23dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="21dp"
+                android:src="@drawable/icon_point"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/shop_header_point_iv"
-                    android:layout_width="23dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="21dp"
-                    android:src="@drawable/icon_point"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/shop_header_point_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="3,050"
-                    android:textColor="@color/gray"
-                    android:textSize="18dp"
-                    app:layout_constraintBottom_toBottomOf="@id/shop_header_point_iv"
-                    app:layout_constraintStart_toEndOf="@id/shop_header_point_iv"
-                    app:layout_constraintTop_toTopOf="@id/shop_header_point_iv" />
-
-                <ImageView
-                    android:id="@+id/shop_header_notification_iv"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginEnd="15.41dp"
-                    android:src="@drawable/icon_notification"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/shop_header_point_iv"  />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/shop_item_cl"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/shop_header_point_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:background="@color/primary_light"
-                app:layout_constraintTop_toBottomOf="@id/shop_header_cl"
-                app:layout_constraintStart_toStartOf="parent" >
+                android:layout_marginStart="4dp"
+                app:setQuizCommentCount="@{point.point}"
+                android:textColor="@color/gray"
+                android:textSize="18dp"
+                tools:text="포인트"
+                app:layout_constraintBottom_toBottomOf="@id/shop_header_point_iv"
+                app:layout_constraintStart_toEndOf="@id/shop_header_point_iv"
+                app:layout_constraintTop_toTopOf="@id/shop_header_point_iv" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/item_shop_cate_header_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:clipToPadding="false"
-                    android:paddingHorizontal="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_my_quiz_cate_header" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/item_shop_goods_boards_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="14dp"
-                    android:layout_marginTop="25dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/item_shop_cate_header_rv"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_shop_goods" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/shop_header_notification_iv"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="15.41dp"
+                android:src="@drawable/icon_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/shop_header_point_iv"  />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- 움직이는 파트 -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/shop_cdl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shop_header_cl">
 
-    </ScrollView>
+            <ScrollView
+                android:id="@+id/shop_main_sv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/shop_main_cl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <!-- 탭 레이아웃 -->
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/shop_contents_tab_tl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="14dp"
+                        app:tabIndicator="@drawable/bg_shop_tab_indicator"
+                        app:tabIndicatorColor="@color/secondary_main"
+                        app:tabTextColor="@color/gray"
+                        app:tabSelectedTextColor="@color/black"
+                        app:tabTextAppearance="@style/mypage_tab_style"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shop_best" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shop_cafe" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shop_food" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shop_culture" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shop_goods" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <!-- 유동적으로 스크롤되는 부분 -->
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/shop_ncv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="100dp"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintTop_toBottomOf="@id/shop_contents_tab_tl"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/shop_tab_frame_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/shop_contents_tab_tl">
+
+                            <View
+                                android:id="@+id/shop_tab_divider_v"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_transfer"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <FrameLayout
+                                android:id="@+id/shop_tab_frame_fl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/primary_main"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/shop_tab_divider_v"
+                                app:layout_constraintVertical_bias="0" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
