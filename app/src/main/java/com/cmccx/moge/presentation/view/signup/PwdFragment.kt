@@ -8,11 +8,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
+import com.cmccx.moge.data.remote.api.NicknameValidationService
+import com.cmccx.moge.data.remote.api.PasswordValidationService
+import com.cmccx.moge.data.remote.api.PasswordValidationView
+import com.cmccx.moge.data.remote.model.Password
 import com.cmccx.moge.databinding.FragmentPwdBinding
 import java.util.regex.Pattern
 
-// TODO 패스워드 validation API 추가
-class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R.layout.fragment_pwd) {
+class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R.layout.fragment_pwd), PasswordValidationView {
 
     private var pwd: String = ""
     private var checkPwd : String = ""
@@ -39,6 +42,7 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
         // 다음 버튼 클릭 시 비밀번호 validation 후 닉네임 입력로 넘어감
         binding.pwdNextSelectBtn.setOnClickListener {
             checkValidPwd()
+            PasswordValidationService(this).getPasswordValidation(Password(pwd, checkPwd))
         }
 
         // 메인 컨테이너 클릭 시 키보드 사라짐 && edittext에 포커스 사라짐
@@ -102,19 +106,46 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
         if(isValidPwd && isValidCheckPwd && isSame) {
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.GONE
-
-            val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd)
-            findNavController().navigate(action)
         }
         else {
-            if(!isValidPwd) {
+            if(isValidPwd) {
+                binding.pwdErrorTv.visibility = View.GONE
+                binding.pwdValidErrorTv.visibility = View.GONE
+            }
+            else {
                 binding.pwdErrorTv.visibility = View.VISIBLE
+                binding.pwdValidErrorTv.visibility = View.GONE
+            }
+
+            if(isValidCheckPwd && isSame) {
+                binding.pwdErrorTv.visibility = View.GONE
                 binding.pwdValidErrorTv.visibility = View.GONE
             }
             else {
                 binding.pwdErrorTv.visibility = View.GONE
+
+                if (!isValidCheckPwd) binding.pwdValidErrorTv.text = getString(R.string.password_error)
                 binding.pwdValidErrorTv.visibility = View.VISIBLE
             }
+        }
+    }
+
+    // 비밀번호 검증 API 성공
+    override fun onGetPasswordValidationResultSuccess() {
+        binding.pwdErrorTv.visibility = View.GONE
+        binding.pwdValidErrorTv.visibility = View.GONE
+
+        val action = PwdFragmentDirections.actionPwdFragmentToNicknameFragment(args.flag, args.contract1, args.contract2, args.contract3, args.contract4, args.email, pwd, checkPwd, "")
+        findNavController().navigate(action)
+    }
+
+    override fun onGetPasswordValidationResultFailure(code: Int) {
+        if(code == 2017) {
+            binding.pwdErrorTv.visibility = View.VISIBLE
+            binding.pwdValidErrorTv.visibility = View.GONE
+        } else if (code == 2018) {
+            binding.pwdErrorTv.visibility = View.GONE
+            binding.pwdValidErrorTv.visibility = View.VISIBLE
         }
     }
 }

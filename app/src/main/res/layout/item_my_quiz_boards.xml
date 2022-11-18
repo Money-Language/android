@@ -61,7 +61,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="카테고리 제목"
-            android:textColor="@color/gray_dark"
+            android:textColor="@color/gray"
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

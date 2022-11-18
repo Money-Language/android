@@ -1,5 +1,6 @@
 package com.cmccx.moge.presentation.view.signup
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,8 +23,7 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("args.jwt", args.jwt)
-        Log.d("args.userIdx", args.userIdx.toString())
+        Log.d(TAG, "관심 키워드 입력 jwt - ${args.jwt}, userIdx - ${args.userIdx}")
 
         setClickEvent()
 
@@ -134,11 +134,15 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
     }
 
     override fun onGetCategoryResultSuccess() {
-        val action = FavoriteCategoryFragmentDirections.actionFavoriteCategoryFragmentToFinishSignupFragment(args.nickname)
-        findNavController().navigate(action)
+        moveFinishFragment()
     }
 
     override fun onGetCategoryResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "카테고리 설정 실패 - $message")
+    }
+
+    private fun moveFinishFragment() {
+        val action = FavoriteCategoryFragmentDirections.actionFavoriteCategoryFragmentToFinishSignupFragment(args.nickname)
+        findNavController().navigate(action)
     }
 }

@@ -39,7 +39,7 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="17dp"
                 android:text="#"
-                android:textColor="@color/gray_dark"
+                android:textColor="@color/gray"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

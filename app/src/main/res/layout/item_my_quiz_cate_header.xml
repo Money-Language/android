@@ -13,7 +13,7 @@
         android:paddingHorizontal="15dp"
         android:paddingVertical="9dp"
         android:text="테스트"
-        android:textColor="@color/gray_dark"
+        android:textColor="@color/gray"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

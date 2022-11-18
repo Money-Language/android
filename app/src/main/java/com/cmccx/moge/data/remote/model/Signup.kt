@@ -12,3 +12,8 @@ data class Signup(
     @SerializedName("contract3") val contract3: String,
     @SerializedName("contract4") val contract4: String?,
 )
+
+data class SnsSignup(
+    @SerializedName("accessToken") val accessToken: String,
+    @SerializedName("nickname") val nickname: String,
+)

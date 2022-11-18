@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="팔로워"
-                    android:textColor="@color/gray_dark"
+                    android:textColor="@color/gray"
                     android:textSize="13dp"
                     app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
                     app:layout_constraintStart_toStartOf="@id/mypage_profile_name_tv"
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="5"
-                    android:textColor="@color/gray_dark"
+                    android:textColor="@color/gray"
                     android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
@@ -144,7 +144,7 @@
                     android:layout_width="1dp"
                     android:layout_height="10dp"
                     android:layout_marginStart="10dp"
-                    android:background="@color/gray_dark"
+                    android:textColor="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@id/mypage_profile_follower_title_tv"
                     app:layout_constraintStart_toEndOf="@id/mypage_profile_follower_content_tv"
                     app:layout_constraintTop_toTopOf="@id/mypage_profile_follower_title_tv" />
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="팔로잉"
-                    android:textColor="@color/gray_dark"
+                    android:textColor="@color/gray"
                     android:textSize="13dp"
                     app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
                     app:layout_constraintStart_toEndOf="@id/mypage_profile_divider_v"
@@ -168,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="5"
-                    android:textColor="@color/gray_dark"
+                    android:textColor="@color/gray"
                     android:textSize="13dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
@@ -233,6 +233,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
+
 
         <!-- 유동적으로 스크롤되는 부분 -->
         <androidx.core.widget.NestedScrollView
