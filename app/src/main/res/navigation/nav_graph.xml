@@ -19,7 +19,14 @@
         android:id="@+id/searchFragment"
         android:name="com.cmccx.moge.presentation.view.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_viewAllFragment"
+            app:destination="@id/viewAllFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shopFragment"
         android:name="com.cmccx.moge.presentation.view.shop.ShopFragment"
@@ -28,7 +35,12 @@
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.cmccx.moge.presentation.view.myPage.MyPageFragment"
-        android:label="@layout/fragment_my_page" />
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" >
+        <action
+            android:id="@+id/action_myPageFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.cmccx.moge.presentation.view.quiz.QuizFragment"
@@ -38,4 +50,32 @@
             android:name="boardData"
             app:argType="com.cmccx.moge.data.remote.model.QuizBoard" />
     </fragment>
+
+    <fragment
+        android:id="@+id/viewAllFragment"
+        android:name="com.cmccx.moge.presentation.view.search.viewAll.ViewAllFragment"
+        android:label="fragment_view_all"
+        tools:layout="@layout/fragment_view_all" >
+        <argument
+            android:name="jwt"
+            app:argType="string" />
+        <argument
+            android:name="categoryIdx"
+            app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.cmccx.moge.presentation.view.search.result.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.cmccx.moge.presentation.view.myPage.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

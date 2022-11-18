@@ -6,7 +6,7 @@ import retrofit2.http.Header
 import retrofit2.http.Path
 
 interface PointApiService {
-    // 카테고리 별 타이틀, 서브타이틀 조회 - 지니
+    // 유저의 포인트 조회 - 와니
     @GET("/app/users/{userIdx}/points")
     suspend fun getPoint(
         @Header("X-ACCESS-TOKEN") jwt : String,

@@ -4,14 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cmccx.moge.data.remote.api.CategoryView
-import com.cmccx.moge.data.remote.api.HomeInterestedBoardView
-import com.cmccx.moge.data.remote.api.HomeInterestedCateApiJ
-import com.cmccx.moge.data.remote.api.HomeInterestedCateApiW
-import com.cmccx.moge.data.remote.model.HomeBoardResponse
-import com.cmccx.moge.data.remote.model.HomeCateResponse
-import com.cmccx.moge.data.remote.model.QuizBoard
-import com.cmccx.moge.data.remote.model.QuizCategory
+import androidx.lifecycle.viewModelScope
+import com.cmccx.moge.data.remote.api.*
+import com.cmccx.moge.data.remote.model.*
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +19,10 @@ class HomeViewModel: ViewModel() {
     // api 연결 상태
     private val _apiStatus = MutableLiveData<HomeApiStatus>()
     val apiStatus: LiveData<HomeApiStatus> = _apiStatus
+
+    // 유저별 팔로잉 목록
+    private var _following = MutableLiveData<List<Following>>()
+    val following: LiveData<List<Following>> = _following
 
     // 퀴즈 관련 인덱스
     private var _cateIdx = MutableLiveData<Int>()
@@ -39,6 +39,27 @@ class HomeViewModel: ViewModel() {
         Log.d("TEST-카테고리", "뷰모델 진입")
         /** 임시 **/
         _cateIdx.value = 1
+    }
+
+    // API 통신 -> 팔로잉 프로필 가져오기
+    fun getFollowingProfile(jwt: String, userIdx: Int, page: Int) {
+        viewModelScope.launch {
+            _apiStatus.value = HomeApiStatus.LOADING
+            try {
+                val response = HomeInterestedCateApiJ.retrofitService.getFollowingProfile(
+                    jwt = jwt,
+                    userIdx = userIdx,
+                    page = page
+                )
+                _following.value = response.result
+
+                Log.d("TEST-팔로잉 목록 조회", _following.value.toString())
+                _apiStatus.value = HomeApiStatus.DONE
+            } catch (e: Exception) {
+                Log.d("TEST-팔로잉 목록 조회", e.toString())
+                _apiStatus.value = HomeApiStatus.ERROR
+            }
+        }
     }
 
     // API 통신 -> 퀴즈 카테고리 가져오기
@@ -66,7 +87,7 @@ class HomeViewModel: ViewModel() {
     }
 
     // API 통신 -> 퀴즈 보드 가져오기
-    fun getBoard(boardView: HomeInterestedBoardView, categoryIdx: Int) {
+    fun getBoard(boardView: HomeView, categoryIdx: Int) {
         HomeInterestedCateApiW.retrofitService.getBoard(categoryIdx = categoryIdx).enqueue(object :
         Callback<HomeBoardResponse> {
             override fun onResponse(

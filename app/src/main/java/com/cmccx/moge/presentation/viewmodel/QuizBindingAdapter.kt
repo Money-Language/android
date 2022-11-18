@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.cmccx.moge.R
 import com.cmccx.moge.data.remote.model.Quiz
+import com.cmccx.moge.data.remote.model.QuizQuestion
 import com.cmccx.moge.presentation.view.quiz.QuizAdapter
 
 @BindingAdapter("quizData")
@@ -51,6 +52,11 @@ fun bindSetEndQuizBtn(view: ConstraintLayout, tryStatus: QuizViewModel.QuizTry?)
 @BindingAdapter("setQuizChoice")
 fun bindSetQuizChoice(view: TextView, choice: String) {
     view.text = choice
+}
+
+@BindingAdapter("setQuizPoint")
+fun bindSetQuizPoint(view: TextView, count: Int) {
+    view.text = (count * 10).toString()
 }
 
 @BindingAdapter("setQuizCommentCount")

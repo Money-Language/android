@@ -2,6 +2,7 @@ package com.cmccx.moge.data.remote.api
 
 import com.cmccx.moge.base.BaseResponse
 import com.cmccx.moge.data.remote.model.*
+import retrofit2.Call
 import retrofit2.http.*
 
 interface QuizApiService {
@@ -15,31 +16,31 @@ interface QuizApiService {
     /** 퀴즈 풀이 **/
     // 퀴즈 문제 조회 - 와니
     @GET("/app/boards/{boardIdx}/quiz")
-    suspend fun getQuizQuestion(
+    fun getQuizQuestion(
         @Path("boardIdx") boardIdx: Int
-    ): QuizQuestionResponse
+    ): Call<QuizQuestionResponse>
 
-    // 퀴즈 보기 조회 - 와니
-    @GET("/app/boards/{boardIdx}/quiz?")
-    suspend fun getQuizChoice(
+    // 퀴즈 보기 & 정답 조회 - 와니
+    @GET("/app/boards/{boardIdx}/quiz")
+    fun getQuizChoice(
         @Path("boardIdx") boardIdx: Int,
         @Query("quizIdx") quizIdx: Int
-    ): QuizChoiceResponse
+    ): Call<QuizChoiceResponse>
 
-    // 퀴즈 정답 조회
-    @GET("/app/boards/{boardIdx}/quiz?")
-    suspend fun getQuizAnswer(
-        @Path("boardIdx") boardIdx: Int,
-        @Query("quizIdx") quizIdx: Int,
-        @Query("answerSelectIdx") quizChoiceIdx: String
-    ): QuizAnswerResponse
+    // 퀴즈 정답 시 포인트 획득 - 와니
+    @POST("/app/users/{userIdx}/get-points")
+    suspend fun postQuizPoint(
+        @Header("X-ACCESS-TOKEN") jwt : String,
+        @Path("userIdx") userIdx: Int,
+        @Body params: QuizPointPost
+    ) : BaseResponse
 
     /** 댓글 **/
     // 퀴즈 댓글 조회 - 지니
     @GET("/app/boards/{boardIdx}/comments")
     suspend fun getQuizComments(
         @Path("boardIdx") boardIdx: Int,
-    ): QuizQuizResponse
+    ): QuizCommentResponse
 
     // 퀴즈 댓글 등록 - 지니
     @POST("/app/boards/{boardIdx}/comments")

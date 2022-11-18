@@ -6,14 +6,20 @@ data class QuizQuestionResponse (
     val result: List<QuizQuestion>
 ) : BaseResponse()
 
+interface QuizQuestionResult {
+    fun onGetQuizQuestionResultSuccess()
+    fun onGetQuizQuestionResultFailure(message: String)
+}
+
 data class QuizChoiceResponse (
     val result: List<QuizChoice>
 ) : BaseResponse()
 
-data class QuizAnswerResponse (
-    val result: List<QuizAnswer>
-) : BaseResponse()
+interface QuizChoiceResult {
+    fun onGetQuizChoiceResultSuccess()
+    fun onGetQuizChoiceResultFailure(message: String)
+}
 
-data class QuizQuizResponse (
+data class QuizCommentResponse (
     val result: List<QuizComment>
 ) : BaseResponse()

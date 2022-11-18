@@ -12,16 +12,15 @@ import com.cmccx.moge.base.BaseFragment
 import com.cmccx.moge.base.getJwt
 import com.cmccx.moge.base.getUserIdx
 import com.cmccx.moge.data.remote.api.CategoryView
-import com.cmccx.moge.data.remote.api.HomeInterestedBoardView
+import com.cmccx.moge.data.remote.api.HomeView
 import com.cmccx.moge.databinding.FragmentHomeBinding
 import com.cmccx.moge.presentation.view.MainOwner
-import com.cmccx.moge.presentation.view.quiz.QuizCommentAdapter
 import com.cmccx.moge.presentation.viewmodel.HomeViewModel
 import com.cmccx.moge.presentation.viewmodel.PointViewModel
 
 
 class HomeFragment :
-    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home), CategoryView, HomeInterestedBoardView {
+    BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home), CategoryView, HomeView {
 
     private lateinit var owner: MainOwner
     private val viewModel: HomeViewModel by activityViewModels()
@@ -35,13 +34,19 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(false)
+        owner.setFloatingBtnVisible(true)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.point = pointViewModel
 
+        // 포인트 조회
         pointViewModel.getPoint(getJwt(this.requireContext()), getUserIdx(this.requireContext()))
 
+        // 팔로잉 목록 조회 (피드)
+        viewModel.getFollowingProfile(getJwt(this.requireContext()), getUserIdx(this.requireContext()), page = 1)
+
+        // 오늘의 퀴즈 클릭
         binding.homeTodayQuizBtnCl.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
         }

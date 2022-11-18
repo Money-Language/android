@@ -12,5 +12,5 @@ interface NicknameValidationView {
 
 interface PasswordValidationView {
     fun onGetPasswordValidationResultSuccess()
-    fun onGetPasswordValidationResultFailure(code: Int)
+    fun onGetPasswordValidationResultFailure(code: Int, message: String)
 }

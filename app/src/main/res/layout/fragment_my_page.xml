@@ -1,278 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_main"
-    tools:context=".presentation.view.myPage.MyPageFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 최상단 -->
+    <data>
+        <variable
+            name="point"
+            type="com.cmccx.moge.presentation.viewmodel.PointViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mypage_header_cl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/primary_main"
+        tools:context=".presentation.view.myPage.MyPageFragment">
 
-        <ImageView
-            android:id="@+id/mypage_header_point_iv"
-            android:layout_width="23dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="21dp"
-            android:src="@drawable/icon_point"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/mypage_header_point_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="3,050"
-            android:textColor="@color/gray"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="@id/mypage_header_point_iv"
-            app:layout_constraintStart_toEndOf="@id/mypage_header_point_iv"
-            app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv" />
-
-        <ImageView
-            android:id="@+id/mypage_header_setting_iv"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_setting"
-            app:layout_constraintBottom_toBottomOf="@id/mypage_header_point_iv"
-            app:layout_constraintEnd_toStartOf="@id/mypage_header_notification_iv"
-            app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv" />
-
-        <ImageView
-            android:id="@+id/mypage_header_notification_iv"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="15.41dp"
-            android:src="@drawable/icon_notification"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- 움직이는 파트 -->
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/mypage_cdl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40.5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mypage_header_cl">
-
-        <!-- 프로필 -->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/mypage_profile_abl"
+        <!-- 최상단 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mypage_header_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingVertical="28dp"
             android:background="@color/primary_main"
-            app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mypage_profile_cl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/mypage_profile_round_profile_riv"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@color/bg_quiz"
-                    android:scaleType="center"
-                    android:src="@drawable/icon_profile"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:riv_border_color="@color/primary_dark"
-                    app:riv_border_width="1dp"
-                    app:riv_corner_radius="1dp"
-                    app:riv_mutate_background="true"
-                    app:riv_oval="true" />
-
-                <TextView
-                    android:id="@+id/mypage_profile_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="17.29dp"
-                    android:text="사용자 닉네임"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/mypage_profile_follower_title_tv"
-                    app:layout_constraintStart_toEndOf="@id/mypage_profile_round_profile_riv"
-                    app:layout_constraintTop_toTopOf="@id/mypage_profile_round_profile_riv" />
-
-                <!-- 팔로워 -->
-                <TextView
-                    android:id="@+id/mypage_profile_follower_title_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="팔로워"
-                    android:textColor="@color/gray"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
-                    app:layout_constraintStart_toStartOf="@id/mypage_profile_name_tv"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
-
-                <TextView
-                    android:id="@+id/mypage_profile_follower_content_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="5"
-                    android:textColor="@color/gray"
-                    android:textSize="13dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
-                    app:layout_constraintStart_toEndOf="@id/mypage_profile_follower_title_tv"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
-
-                <View
-                    android:id="@+id/mypage_profile_divider_v"
-                    android:layout_width="1dp"
-                    android:layout_height="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/gray"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_follower_title_tv"
-                    app:layout_constraintStart_toEndOf="@id/mypage_profile_follower_content_tv"
-                    app:layout_constraintTop_toTopOf="@id/mypage_profile_follower_title_tv" />
-
-                <!-- 팔로잉 -->
-                <TextView
-                    android:id="@+id/mypage_profile_following_title_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="팔로잉"
-                    android:textColor="@color/gray"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
-                    app:layout_constraintStart_toEndOf="@id/mypage_profile_divider_v"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
-
-                <TextView
-                    android:id="@+id/mypage_profile_following_content_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="5"
-                    android:textColor="@color/gray"
-                    android:textSize="13dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
-                    app:layout_constraintStart_toEndOf="@id/mypage_profile_following_title_tv"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
-
-                <!-- 편집 버튼 -->
-                <TextView
-                    android:id="@+id/mypage_profile_edit_btn_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="19.71dp"
-                    android:background="@drawable/bg_gray_round_stroke_btn"
-                    android:text="프로필 편집"
-                    android:textColor="@color/gray"
-                    app:layout_constraintBottom_toBottomOf="@id/mypage_profile_follower_title_tv"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/mypage_profile_name_tv" />
-
-                <View
-                    android:id="@+id/mypage_contents_divider_v"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="35dp"
-                    android:background="@color/divider_transfer"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_profile_round_profile_riv" />
-
-                <!-- 탭 레이아웃 -->
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/mypage_contents_tab_tl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="21.48dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_contents_divider_v"
-
-                    app:tabIndicator="@drawable/bg_mypage_tab_indicator"
-                    app:tabIndicatorColor="@color/secondary_main"
-
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabTextAppearance="@style/mypage_tab_style">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="내 퀴즈" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="내 피드" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="내 좋아요" />
-
-                </com.google.android.material.tabs.TabLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <!-- 유동적으로 스크롤되는 부분 -->
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/mypage_ncv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="100dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mypage_tab_frame_cl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+            <ImageView
+                android:id="@+id/mypage_header_point_iv"
+                android:layout_width="23dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="21dp"
+                android:src="@drawable/icon_point"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mypage_contents_divider_v">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:id="@+id/mypage_tab_divider_v"
+            <TextView
+                android:id="@+id/mypage_header_point_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:setQuizCommentCount="@{point.point}"
+                android:textColor="@color/gray"
+                android:textSize="18dp"
+                tools:text="포인트"
+                app:layout_constraintBottom_toBottomOf="@id/mypage_header_point_iv"
+                app:layout_constraintStart_toEndOf="@id/mypage_header_point_iv"
+                app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv" />
+
+            <ImageView
+                android:id="@+id/mypage_header_setting_iv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/icon_setting"
+                app:layout_constraintBottom_toBottomOf="@id/mypage_header_point_iv"
+                app:layout_constraintEnd_toStartOf="@id/mypage_header_notification_iv"
+                app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv" />
+
+            <ImageView
+                android:id="@+id/mypage_header_notification_iv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="15.41dp"
+                android:src="@drawable/icon_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/mypage_header_point_iv"  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 움직이는 파트 -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/mypage_cdl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mypage_header_cl">
+
+            <ScrollView
+                android:id="@+id/mypage_main_sv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mypage_main_cl"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_transfer"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content" >
 
-                <FrameLayout
-                    android:id="@+id/mypage_tab_frame_fl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary_main"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mypage_tab_divider_v"
-                    app:layout_constraintVertical_bias="0" />
+                    <!-- 프로필 -->
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/mypage_profile_abl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primary_main"
+                        app:elevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/mypage_profile_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_scrollFlags="scroll|enterAlways">
 
-        </androidx.core.widget.NestedScrollView>
+                            <com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/mypage_profile_round_profile_riv"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="20dp"
+                                android:background="@color/bg_quiz"
+                                android:scaleType="center"
+                                android:src="@drawable/icon_profile"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:riv_border_color="@color/primary_dark"
+                                app:riv_border_width="1dp"
+                                app:riv_corner_radius="1dp"
+                                app:riv_mutate_background="true"
+                                app:riv_oval="true" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                            <TextView
+                                android:id="@+id/mypage_profile_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="17.29dp"
+                                android:text="사용자 닉네임"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@id/mypage_profile_follower_title_tv"
+                                app:layout_constraintStart_toEndOf="@id/mypage_profile_round_profile_riv"
+                                app:layout_constraintTop_toTopOf="@id/mypage_profile_round_profile_riv" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                            <!-- 팔로워 -->
+                            <TextView
+                                android:id="@+id/mypage_profile_follower_title_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="팔로워"
+                                android:textColor="@color/gray"
+                                android:textSize="13dp"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
+                                app:layout_constraintStart_toStartOf="@id/mypage_profile_name_tv"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
+
+                            <TextView
+                                android:id="@+id/mypage_profile_follower_content_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="5"
+                                android:textColor="@color/gray"
+                                android:textSize="13dp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
+                                app:layout_constraintStart_toEndOf="@id/mypage_profile_follower_title_tv"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
+
+                            <View
+                                android:id="@+id/mypage_profile_divider_v"
+                                android:layout_width="1dp"
+                                android:layout_height="10dp"
+                                android:layout_marginStart="10dp"
+                                android:textColor="@color/gray"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_follower_title_tv"
+                                app:layout_constraintStart_toEndOf="@id/mypage_profile_follower_content_tv"
+                                app:layout_constraintTop_toTopOf="@id/mypage_profile_follower_title_tv" />
+
+                            <!-- 팔로잉 -->
+                            <TextView
+                                android:id="@+id/mypage_profile_following_title_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="팔로잉"
+                                android:textColor="@color/gray"
+                                android:textSize="13dp"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
+                                app:layout_constraintStart_toEndOf="@id/mypage_profile_divider_v"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
+
+                            <TextView
+                                android:id="@+id/mypage_profile_following_content_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="5"
+                                android:textColor="@color/gray"
+                                android:textSize="13dp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_round_profile_riv"
+                                app:layout_constraintStart_toEndOf="@id/mypage_profile_following_title_tv"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_profile_name_tv" />
+
+                            <!-- 편집 버튼 -->
+                            <TextView
+                                android:id="@+id/mypage_profile_edit_btn_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="19.71dp"
+                                android:background="@drawable/bg_gray_round_stroke_btn"
+                                android:text="프로필 편집"
+                                android:textColor="@color/gray"
+                                app:layout_constraintBottom_toBottomOf="@id/mypage_profile_follower_title_tv"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/mypage_profile_name_tv" />
+
+                            <View
+                                android:id="@+id/mypage_contents_divider_v"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="35dp"
+                                android:background="@color/divider_transfer"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_profile_round_profile_riv" />
+
+                            <!-- 탭 레이아웃 -->
+                            <com.google.android.material.tabs.TabLayout
+                                android:id="@+id/mypage_contents_tab_tl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="21.48dp"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_contents_divider_v"
+
+                                app:tabIndicator="@drawable/bg_mypage_tab_indicator"
+                                app:tabIndicatorColor="@color/secondary_main"
+
+                                app:tabSelectedTextColor="@color/black"
+                                app:tabTextAppearance="@style/mypage_tab_style">
+
+                                <com.google.android.material.tabs.TabItem
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="내 퀴즈" />
+
+                                <com.google.android.material.tabs.TabItem
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="내 피드" />
+
+                                <com.google.android.material.tabs.TabItem
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="내 좋아요" />
+
+                            </com.google.android.material.tabs.TabLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+
+                    <!-- 유동적으로 스크롤되는 부분 -->
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/mypage_ncv"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:paddingBottom="100dp"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintTop_toBottomOf="@id/mypage_profile_abl"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/mypage_tab_frame_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <View
+                                android:id="@+id/mypage_tab_divider_v"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_transfer"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <FrameLayout
+                                android:id="@+id/mypage_tab_frame_fl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/primary_main"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/mypage_tab_divider_v"
+                                app:layout_constraintVertical_bias="0" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

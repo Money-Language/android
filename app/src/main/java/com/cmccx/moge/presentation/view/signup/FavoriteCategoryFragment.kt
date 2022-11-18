@@ -4,7 +4,6 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -101,23 +100,23 @@ class FavoriteCategoryFragment : BaseFragment<FragmentFavoriteCategoryBinding>(F
             when (category) {
                 "1" -> {
                     binding.favoriteCategoryNewIv.visibility = View.GONE
-                    binding.favoriteCategoryNewTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
+                    binding.favoriteCategoryNewTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_light))
                 }
                 "2" -> {
                     binding.favoriteCategorySpellingIv.visibility = View.GONE
-                    binding.favoriteCategorySpellingTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
+                    binding.favoriteCategorySpellingTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_light))
                 }
                 "3" -> {
                     binding.favoriteCategoryNonsenseIv.visibility = View.GONE
-                    binding.favoriteCategoryNonsenseTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
+                    binding.favoriteCategoryNonsenseTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_light))
                 }
                 "4" -> {
                     binding.favoriteCategoryIdiomIv.visibility = View.GONE
-                    binding.favoriteCategoryIdiomTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
+                    binding.favoriteCategoryIdiomTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_light))
                 }
                 "5" -> {
                     binding.favoriteCategoryWordIv.visibility = View.GONE
-                    binding.favoriteCategoryWordTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_brown))
+                    binding.favoriteCategoryWordTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_light))
                 }
             }
         }

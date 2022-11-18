@@ -23,7 +23,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="12dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/icon_back_btn_black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,15 +70,15 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/password_formatting_tv"
+            android:id="@+id/pwd_formatting_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            tools:text="@string/password_formatting"
-            android:textSize="14dp"
+            android:text="@string/password_formatting"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/pwd_explanation_tv"
-            app:layout_constraintStart_toStartOf="@id/pwd_explanation_tv" />
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pwd_explanation_tv" />
 
 
         <EditText
@@ -89,11 +89,11 @@
             android:paddingHorizontal="14dp"
             android:textSize="14dp"
             android:hint="@string/password"
-            android:textColorHint="@color/light_brown"
+            android:textColorHint="@color/brown_light"
             android:inputType="text"
             android:background="@drawable/bg_login_edittext"
             android:textCursorDrawable="@drawable/login_edittext_cursor"
-            app:layout_constraintTop_toBottomOf="@id/password_formatting_tv"
+            app:layout_constraintTop_toBottomOf="@id/pwd_formatting_tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -118,7 +118,7 @@
             android:paddingHorizontal="14dp"
             android:textSize="14dp"
             android:hint="@string/password_validation"
-            android:textColorHint="@color/light_brown"
+            android:textColorHint="@color/brown_light"
             android:inputType="text"
             android:background="@drawable/bg_login_edittext"
             android:textCursorDrawable="@drawable/login_edittext_cursor"

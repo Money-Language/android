@@ -1,5 +1,6 @@
 package com.cmccx.moge.presentation.view.login
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +17,7 @@ import com.cmccx.moge.base.saveUserIdx
 import com.cmccx.moge.data.remote.api.*
 import com.cmccx.moge.data.remote.model.Login
 import com.cmccx.moge.data.remote.model.SnsLogin
-import com.cmccx.moge.data.remote.model.UserResult
+import com.cmccx.moge.data.remote.model.User
 import com.cmccx.moge.databinding.FragmentLoginBinding
 import com.cmccx.moge.presentation.view.MainActivity
 import com.kakao.sdk.auth.model.OAuthToken
@@ -26,7 +27,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.OAuthLoginCallback
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView, KakaoLoginView, NaverLoginView {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView, KakaoLoginView { //NaverLoginView
 
     private var email: String = ""
     private var pwd: String = ""
@@ -66,7 +67,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
         // 네이버 버튼 클릭 시 네이버 로그인
         binding.loginNaverIv.setOnClickListener {
-            naverLogin()
+            //naverLogin()
         }
     }
 
@@ -105,16 +106,33 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
     // 일반(이메일) 로그인 API 연결 성공 -> 메인 액티비티로 넘어감
     // TODO 메인 액티비티에서 뒤로 가기 누르면 다시 로그인 화면으로 넘어감!!!!!!!!!! popUpToInclusive 써봤지만 안됌..
-    override fun onGetLoginResultSuccess(result: UserResult) {
+    override fun onGetLoginResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         startActivity(Intent(requireContext(), MainActivity::class.java))
-        //moveFragment(R.id.action_loginFragment_to_mainActivity)
+        clearBackStack()
     }
 
     // 일반(이메일) 로그인 API 연결 실패
-    override fun onGetLoginResultFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    @SuppressLint("SetTextI18n")
+    override fun onGetLoginResultFailure(code: Int, message: String) {
         Log.d("Login/API", message)
+        when (code) {
+            2010, 2016 -> {
+                binding.loginEmailErrorTv.text = "* $message"
+                binding.loginEmailErrorTv.visibility = View.VISIBLE
+                binding.loginPwdErrorTv.visibility = View.GONE
+            }
+            2012, 2017, 3012 -> {
+                binding.loginEmailErrorTv.visibility = View.GONE
+                binding.loginPwdErrorTv.visibility = View.VISIBLE
+                binding.loginPwdErrorTv.text = "* $message"
+            }
+            else -> {
+                binding.loginEmailErrorTv.visibility = View.GONE
+                binding.loginPwdErrorTv.visibility = View.GONE
+            }
+        }
+
     }
 
 
@@ -162,7 +180,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
     }
 
     // 카카오 로그인 API 연결 성공
-    override fun onGetKakaoLoginResultSuccess(result: UserResult) {
+    override fun onGetKakaoLoginResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         moveMainActivity()
     }
@@ -177,7 +195,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
 
     // 네이버 로그인
-    private fun naverLogin(){
+    /*private fun naverLogin(){
         val naverLoginService = NaverLoginService(this)
 
         val oauthLoginCallback = object : OAuthLoginCallback {
@@ -197,7 +215,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
     }
 
     // 네이버 로그인 API 연결 성공
-    override fun onGetNaverLoginResultSuccess(result: UserResult) {
+    override fun onGetNaverLoginResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         moveMainActivity()
     }
@@ -207,7 +225,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "네이버 로그인/API 실패 - $message")
         moveNicknameFragment("2", naverToken)
-    }
+    }*/
 
 
 

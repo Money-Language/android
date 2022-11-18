@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="point"
+            type="com.cmccx.moge.presentation.viewmodel.PointViewModel" />
+
+        <variable
             name="viewModel"
             type="com.cmccx.moge.presentation.viewmodel.QuizViewModel" />
     </data>
@@ -76,14 +80,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="[포인트]"
                     android:textColor="@color/primary_deep_dark"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/quiz_info_user_point_icon_iv"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setQuizCommentCount="@{point.point}"
+                    tools:text="포인트" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,7 +110,7 @@
                     android:id="@+id/quiz_info_quiz_fav_icon_iv"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/icon_fav"
+                    android:src="@drawable/icon_fav_gray"
                     app:layout_constraintBottom_toTopOf="@id/quiz_info_quiz_fav_content_tv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -265,7 +270,7 @@
                             android:id="@+id/quiz_result_last_point_title_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="총"
+                            android:text="포인트"
                             android:textColor="@color/primary_deep_dark"
                             android:textSize="12dp" />
 
@@ -275,7 +280,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:maxLines="1"
-                            android:text="20"
                             android:textColor="@color/primary_deep_dark"
                             android:textSize="12dp" />
 
@@ -283,7 +287,7 @@
                             android:id="@+id/quiz_result_last_point_unit_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="P 획득"
+                            android:text="획득"
                             android:textColor="@color/primary_deep_dark"
                             android:textSize="12dp" />
 

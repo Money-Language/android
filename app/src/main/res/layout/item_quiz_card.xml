@@ -73,7 +73,6 @@
                             android:id="@+id/item_quiz_card_pcs_current_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             android:textStyle="bold" />
@@ -91,7 +90,6 @@
                             android:id="@+id/item_quiz_card_pcs_total_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{quiz.quizTotal}"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             tools:text="5" />
@@ -105,11 +103,10 @@
                         android:layout_marginStart="6dp"
                         android:background="@drawable/bg_quiz_light_gray"
                         android:padding="6dp"
-                        android:text="@{quiz.quizType}"
+                        android:text="객관식"
                         android:textColor="@color/gray"
                         android:textSize="12dp"
-                        android:textStyle="bold"
-                        tools:text="객관식" />
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:id="@+id/item_quiz_card_point_ll"
@@ -322,11 +319,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
                         android:maxLines="2"
-                        android:text="@{quiz.quizAnswer}"
                         android:textSize="14dp"
                         app:layout_constraintBottom_toBottomOf="@id/item_quiz_card_result_icon_iv"
                         app:layout_constraintStart_toEndOf="@id/item_quiz_card_result_answer_title_tv"
                         app:layout_constraintTop_toBottomOf="@id/item_quiz_card_result_text_tv"
+                        app:setQuizChoice="@{quiz.quizAnswer}"
                         tools:text="정답 들어감" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
