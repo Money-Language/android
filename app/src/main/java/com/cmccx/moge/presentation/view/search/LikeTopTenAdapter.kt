@@ -34,6 +34,10 @@ class LikeTopTenAdapter(private val context: Context) : RecyclerView.Adapter<Lik
     override fun onBindViewHolder(holder: LikeTopTenAdapter.ViewHolder, position: Int) {
         holder.bind(likeTopTenList[position])
         holder.binding.itemFavTopNumberTv.text = (position + 1).toString()
+
+        holder.itemView.setOnClickListener {
+            likeTopTenClickListener.onItemClick(likeTopTenList[position])
+        }
     }
 
     override fun getItemCount(): Int {
