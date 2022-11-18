@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmccx.moge.R
@@ -16,12 +15,6 @@ import com.cmccx.moge.base.saveUserIdx
 import com.cmccx.moge.data.remote.api.*
 import com.cmccx.moge.data.remote.model.*
 import com.cmccx.moge.databinding.FragmentNicknameBinding
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.model.ClientError
-import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.user.UserApiClient
-import com.navercorp.nid.NaverIdLoginSDK
-import com.navercorp.nid.oauth.OAuthLoginCallback
 import java.util.regex.Pattern
 
 // flag 값에 따른 로그인 (1: 일반 로그인 / 2: 카카오 로그인 / 3: 네이버 로그인)
@@ -129,7 +122,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
     }
 
     // 일반(이메일) 회원가입 API 연결 성공
-    override fun onGetSignUpResultSuccess(result: UserResult) {
+    override fun onGetSignUpResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         moveCategory(result.jwt, result.userIdx)
     }
@@ -168,7 +161,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
     }
 
     // 카카오 로그인 API 연결 성공
-    override fun onGetKakaoLoginResultSuccess(result: UserResult) {
+    override fun onGetKakaoLoginResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         moveCategory(result.jwt, result.userIdx)
     }
@@ -207,7 +200,7 @@ class NicknameFragment : BaseFragment<FragmentNicknameBinding>(FragmentNicknameB
     }
 
     // 네이버 로그인 API 연결 성공
-    override fun onGetNaverLoginResultSuccess(result: UserResult) {
+    override fun onGetNaverLoginResultSuccess(result: User) {
         saveUserInfo(result.jwt, result.userIdx)
         moveCategory(result.jwt, result.userIdx)
     }

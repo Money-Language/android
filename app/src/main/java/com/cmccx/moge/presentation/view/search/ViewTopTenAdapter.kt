@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cmccx.moge.R
-import com.cmccx.moge.data.remote.model.TopTen
+import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.ItemViewToptenBinding
 
-class ViewTopTenAdapter(val context: Context) : RecyclerView.Adapter<ViewTopTenAdapter.ViewHolder>() {
+class ViewTopTenAdapter(private val context: Context) : RecyclerView.Adapter<ViewTopTenAdapter.ViewHolder>() {
 
-    private val viewTopTenList = ArrayList<TopTen>()
+    private val viewTopTenList = ArrayList<Search>()
 
     // 클릭 인터페이스
     interface ViewTopTenClickListener {
-        fun onItemClick(topTen: TopTen)
+        fun onItemClick(topTen: Search)
     }
 
     private lateinit var viewTopTenClickListener: ViewTopTenClickListener
@@ -40,23 +40,29 @@ class ViewTopTenAdapter(val context: Context) : RecyclerView.Adapter<ViewTopTenA
         return viewTopTenList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addTopTen(topTen: ArrayList<TopTen>) {
+    fun addViewTopTen(topTen: ArrayList<Search>) {
         this.viewTopTenList.clear()
         this.viewTopTenList.addAll(topTen)
-        notifyDataSetChanged()
+        notifyItemChanged(viewTopTenList.size)
     }
 
     inner class ViewHolder(val binding: ItemViewToptenBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(topTen : TopTen) {
+        fun bind(topTen : Search) {
             binding.itemViewTopTitleTv.text = topTen.title
             binding.itemViewTopInfoViewsCountTv.text = topTen.viewCount.toString()
             binding.itemViewTopInfoFavCountTv.text = topTen.likeCount.toString()
-            Glide.with(context).load(topTen.profileImage).into(binding.itemViewTopProfileRiv)
             binding.itemViewTopProfileTv.text = topTen.nickname
             binding.itemViewTopCateTv.text = "#" + topTen.categoryName
             binding.itemViewTopQuizSizeTv.text = topTen.quizCount.toString() + "문제"
+
+
+            // 프로필 사진 여부에 따른 이미지 변경
+            if (topTen.profileImage.isNullOrEmpty()) {
+                binding.itemViewTopProfileRiv.setImageResource(R.drawable.icon_profile)
+            } else {
+                Glide.with(context).load(topTen.profileImage).into(binding.itemViewTopProfileRiv)
+            }
 
             // 카테고리에 따른 색상 변경
             when (topTen.categoryName) {

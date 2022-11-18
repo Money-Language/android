@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/primary_main"
     tools:context=".presentation.view.myPage.myQuiz.MyQuizFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_my_fav_nothing_cl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/item_my_fav_nothing_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/icon_my_quiz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_my_fav_nothing_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/my_quiz_nothing"
+            android:textSize="14dp"
+            android:textColor="@color/gray_dark"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_my_fav_nothing_iv" />
+
+        <Button
+            android:id="@+id/item_my_fav_nothing_tv_btn"
+            android:layout_width="195dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="96dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/my_quiz_create"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_btn_select"
+            android:stateListAnimator="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_my_fav_nothing_tv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_myquiz_quiz_cate_header_rv"

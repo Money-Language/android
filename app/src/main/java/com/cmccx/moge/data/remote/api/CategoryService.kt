@@ -28,3 +28,23 @@ class CategoryService(val categoryView: CategoryView) {
         })
     }
 }
+
+class ModCategoryService(val modCategoryView: ModCategoryView) {
+    fun modCategory(jwt : String, userIdx: Int, category: Category) {
+        val modCategoryService = ApplicationClass.retrofitJ.create(CategoryRetrofitInterface::class.java)
+
+        modCategoryService.modCategory(jwt, userIdx, category).enqueue(object : Callback<BaseResponse> {
+            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                val resp = response.body()!!
+                when(resp.code) {
+                    1006 -> modCategoryView.onModCategoryResultSuccess()
+                    else -> modCategoryView.onModCategoryResultFailure(resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                Log.d("modify category", t.message ?: "통신 오류")
+            }
+        })
+    }
+}

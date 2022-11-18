@@ -34,6 +34,7 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         owner.setActionBarVisible(false)
+        owner.setFloatingBtnVisible(true)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

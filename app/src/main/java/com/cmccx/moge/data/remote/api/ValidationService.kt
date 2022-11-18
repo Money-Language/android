@@ -59,7 +59,7 @@ class PasswordValidationService(val passwordValidationView: PasswordValidationVi
                 val resp = response.body()!!
                 when(resp.code){
                     1018-> passwordValidationView.onGetPasswordValidationResultSuccess()
-                    else-> passwordValidationView.onGetPasswordValidationResultFailure(resp.code)
+                    else-> passwordValidationView.onGetPasswordValidationResultFailure(resp.code, resp.message)
                 }
             }
 

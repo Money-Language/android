@@ -22,7 +22,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="12dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/icon_back_btn_black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -139,7 +139,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/agree_essential"
                 android:textSize="14dp"
-                android:textColor="@color/light_brown"
+                android:textColor="@color/brown_light"
                 app:layout_constraintStart_toEndOf="@id/tos_agree_age_cb"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -185,7 +185,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/agree_essential"
                 android:textSize="14dp"
-                android:textColor="@color/light_brown"
+                android:textColor="@color/brown_light"
                 app:layout_constraintStart_toEndOf="@id/tos_agree_tos_cb"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -231,7 +231,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/agree_essential"
                 android:textSize="14dp"
-                android:textColor="@color/light_brown"
+                android:textColor="@color/brown_light"
                 app:layout_constraintStart_toEndOf="@id/tos_agree_pi_cb"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -277,7 +277,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/agree_choice"
                 android:textSize="14dp"
-                android:textColor="@color/light_brown"
+                android:textColor="@color/brown_light"
                 app:layout_constraintStart_toEndOf="@id/tos_agree_third_party_cb"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

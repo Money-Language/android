@@ -195,7 +195,7 @@
             android:id="@+id/action_finishSignupFragment_to_mainActivity"
             app:destination="@id/mainActivity"
             app:popUpTo="@id/mainActivity"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="true"/>
         <argument
             android:name="nickname"
             app:argType="string" />

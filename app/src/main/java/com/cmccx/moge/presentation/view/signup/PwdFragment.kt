@@ -1,6 +1,8 @@
 package com.cmccx.moge.presentation.view.signup
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -101,9 +103,15 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
 
         isValidPwd = Pattern.matches(pwdValidation, n1)
         isValidCheckPwd = Pattern.matches(pwdValidation, n2)
-        isSame = pwd == checkPwd
+        isSame = (pwd == checkPwd)
 
-        if(isValidPwd && isValidCheckPwd && isSame) {
+        /*if (!isValidCheckPwd || !isValidPwd)  {
+            binding.pwdValidErrorTv.text = getString(R.string.password_formatting)
+            binding.pwdValidErrorTv.visibility = View.VISIBLE
+        }*/
+
+
+        /*if(isValidPwd && isValidCheckPwd && isSame) {
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.GONE
         }
@@ -124,10 +132,9 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
             else {
                 binding.pwdErrorTv.visibility = View.GONE
 
-                if (!isValidCheckPwd) binding.pwdValidErrorTv.text = getString(R.string.password_error)
-                binding.pwdValidErrorTv.visibility = View.VISIBLE
+
             }
-        }
+        }*/
     }
 
     // 비밀번호 검증 API 성공
@@ -139,11 +146,14 @@ class PwdFragment : BaseFragment<FragmentPwdBinding>(FragmentPwdBinding::bind, R
         findNavController().navigate(action)
     }
 
-    override fun onGetPasswordValidationResultFailure(code: Int) {
+    @SuppressLint("SetTextI18n")
+    override fun onGetPasswordValidationResultFailure(code: Int, message: String) {
         if(code == 2017) {
+            binding.pwdErrorTv.text = "* $message"
             binding.pwdErrorTv.visibility = View.VISIBLE
             binding.pwdValidErrorTv.visibility = View.GONE
         } else if (code == 2018) {
+            binding.pwdValidErrorTv.text = "* $message"
             binding.pwdErrorTv.visibility = View.GONE
             binding.pwdValidErrorTv.visibility = View.VISIBLE
         }

@@ -4,5 +4,5 @@ import com.cmccx.moge.base.BaseResponse
 import com.google.gson.annotations.SerializedName
 
 data class TopTenResponse(
-    @SerializedName("result") val result: ArrayList<TopTen>
+    @SerializedName("result") val result: ArrayList<Search>
 ) : BaseResponse()
