@@ -1,4 +1,4 @@
-package com.cmccx.moge.presentation.view.myPage
+package com.cmccx.moge.presentation.view.myPage.myFeed
 
 import com.cmccx.moge.R
 import com.cmccx.moge.base.BaseFragment
