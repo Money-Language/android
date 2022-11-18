@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.cmccx.moge.R
@@ -17,9 +18,12 @@ import com.cmccx.moge.data.remote.api.SearchKeywordService
 import com.cmccx.moge.data.remote.api.QueryView
 import com.cmccx.moge.data.remote.api.SearchService
 import com.cmccx.moge.data.remote.model.Keyword
+import com.cmccx.moge.data.remote.model.QuizBoard
 import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.FragmentSearchResultBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.view.home.HomeFragmentDirections
+import com.cmccx.moge.presentation.view.search.LikeTopTenAdapter
 
 class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentSearchResultBinding::bind, R.layout.fragment_search_result), KeywordView, QueryView {
     private lateinit var keywordAdapter: SearchKeywordAdapter
@@ -107,6 +111,8 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentS
 
         val searchResultService = SearchService(this)
         searchResultService.getSearchResult(query)
+
+        clickSearchResult()
     }
 
     // 검색 결과 조회 성공
@@ -124,5 +130,15 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentS
     override fun onGetSearchResultFailure(code: Int, message: String) {
         if(code == 2032) Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         Log.d(ContentValues.TAG, "검색 결과 조회 실패 - $message")
+    }
+
+    private fun clickSearchResult() {
+        searchResultAdapter.setSearchResultClickListener(object: SearchResultAdapter.SearchResultClickListener{
+            override fun onItemClick(search: Search) {
+                val curItem = QuizBoard(search.boardIdx, search.nickname, search.profileImage, search.elapsedTime, search.title, search.quizCount.toString(), search.viewCount.toString(), search.likeCount.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                findNavController().navigate(action)
+            }
+        })
     }
 }

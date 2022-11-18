@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,9 +18,11 @@ import com.cmccx.moge.base.getJwt
 import com.cmccx.moge.base.getUserIdx
 import com.cmccx.moge.data.remote.api.*
 import com.cmccx.moge.data.remote.model.Board
+import com.cmccx.moge.data.remote.model.QuizBoard
 import com.cmccx.moge.data.remote.model.Search
 import com.cmccx.moge.databinding.FragmentSearchBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.view.home.HomeFragmentDirections
 import com.cmccx.moge.presentation.viewmodel.PointViewModel
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search), TopView, TopLike, QuizOrderView {
@@ -107,7 +111,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun clickTopView() {
         viewTopTenAdapter.setViewTopTenClickListener(object: ViewTopTenAdapter.ViewTopTenClickListener{
             override fun onItemClick(topTen: Search) {
-                // TODO 퀴즈 상세보기로 넘어가기
+                val curItem = QuizBoard(topTen.boardIdx, topTen.nickname, topTen.profileImage, topTen.elapsedTime, topTen.title, topTen.quizCount.toString(), topTen.viewCount.toString(), topTen.likeCount.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                findNavController().navigate(action)
             }
         })
     }
@@ -123,7 +129,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun clickTopLike() {
         likeTopTenAdapter.setLikeTopTenClickListener(object: LikeTopTenAdapter.LikeTopTenClickListener{
             override fun onItemClick(topTen: Search) {
-                // TODO 퀴즈 상세보기로 넘어가기
+                val curItem = QuizBoard(topTen.boardIdx, topTen.nickname, topTen.profileImage, topTen.elapsedTime, topTen.title, topTen.quizCount.toString(), topTen.viewCount.toString(), topTen.likeCount.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                findNavController().navigate(action)
             }
         })
     }
@@ -246,7 +254,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun clickQuizTen() {
         quizTenAdapter.setQuizTenClickListener(object: QuizTenAdapter.QuizTenClickListener{
             override fun onItemClick(board: Board) {
-                // TODO 퀴즈 상세보기로 넘어가기
+                val curItem = QuizBoard(board.boardIdx, board.nickname, board.profileImage, board.elapsedTime, board.title, board.quizCount.toString(), board.viewCount.toString(), board.likeCount.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                findNavController().navigate(action)
             }
         })
     }

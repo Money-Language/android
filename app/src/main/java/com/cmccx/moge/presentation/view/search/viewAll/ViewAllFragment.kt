@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cmccx.moge.R
@@ -14,8 +15,10 @@ import com.cmccx.moge.data.remote.api.QuizLatestService
 import com.cmccx.moge.data.remote.api.QuizOrderService
 import com.cmccx.moge.data.remote.api.QuizOrderView
 import com.cmccx.moge.data.remote.model.Board
+import com.cmccx.moge.data.remote.model.QuizBoard
 import com.cmccx.moge.databinding.FragmentViewAllBinding
 import com.cmccx.moge.presentation.view.MainOwner
+import com.cmccx.moge.presentation.view.home.HomeFragmentDirections
 
 class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBinding::bind, R.layout.fragment_view_all), QuizOrderView {
     private lateinit var viewAllAdapter: ViewAllAdapter
@@ -105,7 +108,9 @@ class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBind
     private fun clickViewAll() {
         viewAllAdapter.setViewAllClickListener(object: ViewAllAdapter.ViewAllClickListener{
             override fun onItemClick(board: Board) {
-                // TODO 퀴즈 상세보기로 넘어가기
+                val curItem = QuizBoard(board.boardIdx, board.nickname, board.profileImage, board.elapsedTime, board.title, board.quizCount.toString(), board.viewCount.toString(), board.likeCount.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                findNavController().navigate(action)
             }
         })
     }
