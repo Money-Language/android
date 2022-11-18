@@ -1,6 +1,7 @@
 package com.cmccx.moge.presentation.view
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,7 +14,9 @@ import com.cmccx.moge.R
 import com.cmccx.moge.base.ApplicationClass
 import com.cmccx.moge.base.BaseActivity
 import com.cmccx.moge.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.common.util.Utility
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainOwner {
@@ -35,6 +38,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         // 카카오 key hash
         // val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
         // Log.d("Kakao Hash", keyHash)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("TAG", "FCM - $token")
+        })
     }
 
     @SuppressLint("ResourceType", "UseCompatLoadingForColorStateLists")
@@ -85,12 +99,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     // 플로팅 버튼 visible
     override fun setFloatingBtnVisible(visible: Boolean) {
-        val floatingBtn = binding.mainFloatingFab
+        floatingBtn = binding.mainFloatingFab
 
         if (visible) {
-            floatingBtn.visibility = View.VISIBLE
+            floatingBtn.show()
+            // floatingBtn.visibility = View.VISIBLE
         } else {
-            floatingBtn.visibility = View.GONE
+            floatingBtn.hide()
+            // floatingBtn.visibility = View.GONE
         }
     }
 }

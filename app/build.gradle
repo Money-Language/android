@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id("kotlin-parcelize")
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 Properties properties = new Properties()
@@ -102,4 +103,13 @@ dependencies {
 
     // Naver Login
     implementation 'com.navercorp.nid:oauth:5.1.1'
+
+    // Firebase
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.0'
+    implementation 'com.google.firebase:firebase-bom:31.0.3'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+
+    // GIF
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 }

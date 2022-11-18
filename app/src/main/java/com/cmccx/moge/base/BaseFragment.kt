@@ -1,6 +1,6 @@
 package com.cmccx.moge.base
 
-import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,11 +59,21 @@ abstract class BaseFragment<B : ViewBinding>(
             .show()
     }
 
+    private lateinit var inputManager: InputMethodManager
+
     // 키보드 숨김 메서드
     fun hideKeyboard() {
         if (activity != null && requireActivity().currentFocus != null) {
-            val inputManager: InputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+    }
+
+    // 키보드 보이기
+    fun showKeyboard(view: View) {
+        if (activity != null && requireActivity().currentFocus != null) {
+            inputManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.showSoftInput(view.findFocus(), InputMethodManager.SHOW_IMPLICIT)
         }
     }
 
