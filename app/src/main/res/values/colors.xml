@@ -44,6 +44,7 @@
     <color name="bg_topten">#B3F5F3EE</color>
     <color name="bg_search_board">#F4F4F4</color>
     <color name="bg_search_keyword">#4DD0CAB8</color>
+    <color name="bg_shop_point">#CCEDE9E0</color>
     
     <color name="yellow">#FFC61B</color>
     <color name="yellow_transfer">#66FFC61B</color>

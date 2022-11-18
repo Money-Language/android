@@ -59,4 +59,11 @@
     <string name="search_all_view">모두보기</string>
     <string name="view_all_header">퀴즈 모음</string>
     <string name="search_keyword">추천 키워드</string>
+    <string name="search_nothing">검색 결과가 없습니다.</string>
+    
+    <string name="shop_best">인기</string>
+    <string name="shop_cafe">카페</string>
+    <string name="shop_food">외식</string>
+    <string name="shop_culture">문화</string>
+    <string name="shop_goods">굿즈</string>
 </resources>

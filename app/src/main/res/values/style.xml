@@ -2,5 +2,6 @@
 <resources>
     <style name="mypage_tab_style" parent="TextAppearance.Design.Tab">
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
     </style>
 </resources>
