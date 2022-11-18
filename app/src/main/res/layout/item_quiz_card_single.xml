@@ -73,6 +73,7 @@
                             android:id="@+id/item_quiz_card_pcs_current_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="1"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             android:textStyle="bold" />
@@ -103,7 +104,7 @@
                         android:layout_marginStart="6dp"
                         android:background="@drawable/bg_quiz_light_gray"
                         android:padding="6dp"
-                        android:text="객관식"
+                        android:text="주관식"
                         android:textColor="@color/gray"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -155,9 +156,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
-                        android:text="@{quiz.quizQuestion}"
-                        android:textSize="15dp"
-                        tools:text="퀴즈 문제" />
+                        android:text="퀴즈 문제"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/item_quiz_card_question_ll">
@@ -194,6 +194,7 @@
                         android:background="@drawable/bg_quiz_purple_stroke"
                         android:gravity="center_vertical"
                         android:hint="정답 입력하기"
+                        android:inputType="text"
                         android:paddingStart="20dp"
                         android:textColor="@color/secondary_main"
                         android:textColorHint="@color/secondary_main"
@@ -211,55 +212,6 @@
                         app:layout_constraintBottom_toBottomOf="@id/item_quiz_card_short_choice_answer_et"
                         app:layout_constraintEnd_toEndOf="@id/item_quiz_card_short_choice_answer_et"
                         app:layout_constraintTop_toTopOf="@id/item_quiz_card_short_choice_answer_et" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!-- 객관식 -->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/item_quiz_card_multi_choice_cl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_quiz_brown_stroke"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/item_quiz_card_question_ll">
-
-                    <TextView
-                        android:id="@+id/item_quiz_card_multi_choice_first_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:gravity="center_vertical"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/primary_deep_dark"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:setQuizChoice="@{quiz.choiceFirst}"
-                        tools:text="1번 보기" />
-
-                    <View
-                        android:id="@+id/item_quiz_card_multi_choice_divider_v"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/primary_deep_dark"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/item_quiz_card_multi_choice_first_tv" />
-
-                    <TextView
-                        android:id="@+id/item_quiz_card_multi_choice_second_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:gravity="center_vertical"
-                        android:paddingStart="20dp"
-                        android:textColor="@color/primary_deep_dark"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/item_quiz_card_multi_choice_first_tv"
-                        app:setQuizChoice="@{quiz.choiceSecond}"
-                        tools:text="2번 보기" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
