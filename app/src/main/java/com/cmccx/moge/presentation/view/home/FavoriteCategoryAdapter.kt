@@ -30,7 +30,7 @@ class FavoriteCategoryAdapter(
             cateSubName.text = curItem.categorySubName
 
             // 보드 호출
-            cardRecyclerView.adapter = QuizBoardAdapter(viewModel)
+            cardRecyclerView.adapter = QuizBoardAdapter(context, viewModel)
             cardRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 

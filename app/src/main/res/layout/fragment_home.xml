@@ -49,13 +49,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    app:setQuizCommentCount="@{point.point}"
                     android:textColor="@color/gray"
                     android:textSize="18dp"
-                    tools:text="포인트"
                     app:layout_constraintBottom_toBottomOf="@id/home_header_point_iv"
                     app:layout_constraintStart_toEndOf="@id/home_header_point_iv"
-                    app:layout_constraintTop_toTopOf="@id/home_header_point_iv" />
+                    app:layout_constraintTop_toTopOf="@id/home_header_point_iv"
+                    app:setQuizCommentCount="@{point.point}"
+                    tools:text="포인트" />
 
                 <ImageView
                     android:id="@+id/home_header_notification_iv"
@@ -109,6 +109,7 @@
                     android:layout_height="5dp"
                     android:scaleType="fitCenter"
                     android:src="@color/alert_color"
+                    android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@id/home_today_quiz_btn_txt_tv"
                     app:layout_constraintTop_toTopOf="@id/home_today_quiz_btn_txt_tv"
                     app:riv_border_color="@color/alert_color"
@@ -160,6 +161,7 @@
                     android:layout_height="5dp"
                     android:scaleType="fitCenter"
                     android:src="@color/alert_color"
+                    android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@id/home_review_quiz_btn_txt_tv"
                     app:layout_constraintTop_toTopOf="@id/home_review_quiz_btn_txt_tv"
                     app:riv_border_color="@color/alert_color"

@@ -13,6 +13,9 @@ import com.cmccx.moge.base.getJwt
 import com.cmccx.moge.base.getUserIdx
 import com.cmccx.moge.data.remote.api.CategoryView
 import com.cmccx.moge.data.remote.api.HomeView
+import com.cmccx.moge.data.remote.api.ProfileService
+import com.cmccx.moge.data.remote.api.ProfileView
+import com.cmccx.moge.data.remote.model.Profile
 import com.cmccx.moge.databinding.FragmentHomeBinding
 import com.cmccx.moge.presentation.view.MainOwner
 import com.cmccx.moge.presentation.viewmodel.HomeViewModel

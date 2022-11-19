@@ -1,16 +1,21 @@
 package com.cmccx.moge.presentation.view.home
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.cmccx.moge.R
 import com.cmccx.moge.data.remote.model.QuizBoard
 import com.cmccx.moge.databinding.ItemBoardContentBinding
 import com.cmccx.moge.presentation.viewmodel.HomeViewModel
 
-class QuizBoardAdapter(private val viewModel: HomeViewModel) :
+class QuizBoardAdapter(
+    private val context: Context,
+    private val viewModel: HomeViewModel) :
     RecyclerView.Adapter<QuizBoardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -28,6 +33,12 @@ class QuizBoardAdapter(private val viewModel: HomeViewModel) :
         with(holder) {
             nickName.text = curItem.nickname
             elapsedTime.text = curItem.elapsedTime
+
+            if (curItem.profileImage.isNullOrEmpty()) {
+                img.setImageResource(R.drawable.icon_profile)
+            } else {
+                Glide.with(context).load(curItem.profileImage).into(img)
+            }
 
             quizTitle.text = curItem.title
             viewCount.text = curItem.viewCount
@@ -55,6 +66,8 @@ class QuizBoardAdapter(private val viewModel: HomeViewModel) :
         val nickName = binding.itemBoardContentProfileNameTv
 
         // 프로필이미지
+        val img = binding.itemBoardContentProfileIconRiv
+
         val elapsedTime = binding.itemBoardContentProfileUploadTv
         val quizTitle = binding.itemBoardContentTitleTv
         val viewCount = binding.itemBoardContentViewTv
