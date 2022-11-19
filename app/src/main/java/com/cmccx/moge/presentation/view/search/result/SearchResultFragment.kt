@@ -136,7 +136,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(FragmentS
         searchResultAdapter.setSearchResultClickListener(object: SearchResultAdapter.SearchResultClickListener{
             override fun onItemClick(search: Search) {
                 val curItem = QuizBoard(search.boardIdx, search.nickname, search.profileImage, search.elapsedTime, search.title, search.quizCount.toString(), search.viewCount.toString(), search.likeCount.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                val action = SearchResultFragmentDirections.actionSearchResultFragmentToQuizFragment(curItem)
                 findNavController().navigate(action)
             }
         })

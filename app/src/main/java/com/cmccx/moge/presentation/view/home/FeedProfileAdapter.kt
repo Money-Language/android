@@ -32,14 +32,7 @@ class FeedProfileAdapter() : RecyclerView.Adapter<FeedProfileAdapter.ViewHolder>
     }
 
     init {
-        profileList.add("머지1")
-        profileList.add("머지2")
-        profileList.add("머지3")
-        profileList.add("머지4")
-        profileList.add("머지5")
-        profileList.add("머지6")
-        profileList.add("머지7")
-        profileList.add("머지8")
+        profileList.add("내 스토리")
 
     }
 

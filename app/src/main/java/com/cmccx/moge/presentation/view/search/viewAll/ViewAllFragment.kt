@@ -109,7 +109,7 @@ class ViewAllFragment : BaseFragment<FragmentViewAllBinding>(FragmentViewAllBind
         viewAllAdapter.setViewAllClickListener(object: ViewAllAdapter.ViewAllClickListener{
             override fun onItemClick(board: Board) {
                 val curItem = QuizBoard(board.boardIdx, board.nickname, board.profileImage, board.elapsedTime, board.title, board.quizCount.toString(), board.viewCount.toString(), board.likeCount.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                val action = ViewAllFragmentDirections.actionViewAllFragmentToQuizFragment(curItem)
                 findNavController().navigate(action)
             }
         })
