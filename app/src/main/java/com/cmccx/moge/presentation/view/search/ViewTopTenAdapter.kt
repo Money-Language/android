@@ -34,6 +34,10 @@ class ViewTopTenAdapter(private val context: Context) : RecyclerView.Adapter<Vie
     override fun onBindViewHolder(holder: ViewTopTenAdapter.ViewHolder, position: Int) {
         holder.bind(viewTopTenList[position])
         holder.binding.itemViewTopNumberTv.text = (position + 1).toString()
+
+        holder.itemView.setOnClickListener {
+            viewTopTenClickListener.onItemClick(viewTopTenList[position])
+        }
     }
 
     override fun getItemCount(): Int {
