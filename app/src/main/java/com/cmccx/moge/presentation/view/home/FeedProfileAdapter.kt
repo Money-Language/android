@@ -33,7 +33,10 @@ class FeedProfileAdapter() : RecyclerView.Adapter<FeedProfileAdapter.ViewHolder>
 
     init {
         profileList.add("내 스토리")
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9abad69d303a01352663351a4d61ad9d6b1f25aa
     }
 
     inner class ViewHolder(binding: ItemFeedRoundProfileBinding) : RecyclerView.ViewHolder(binding.root) {

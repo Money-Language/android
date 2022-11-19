@@ -94,6 +94,7 @@ class QuizAdapter(
             binding.quiz = quiz
 
             firstChoice.setOnClickListener {
+                //it.setBackgroundResource(R.color.divider_transfer)
                 //it.setBackgroundColor(context.resources.getColor(R.color.divider_transfer))
                 viewModel.isTry(true)
 
@@ -126,6 +127,7 @@ class QuizAdapter(
             }
 
             secondChoice.setOnClickListener {
+                //it.setBackgroundResource(R.color.divider_transfer)
                 //it.setBackgroundColor(context.resources.getColor(R.color.divider_transfer))
                 viewModel.isTry(true)
 
@@ -193,6 +195,7 @@ class QuizAdapter(
             }
 
             answerBtn.setOnClickListener {
+                //it.setBackgroundResource(R.color.divider_transfer)
                 //it.setBackgroundColor(context.resources.getColor(R.color.divider_transfer))
                 viewModel.isTry(true)
 
