@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
     // 와니 서버 주소
-    val W_API_URL = "https://dev.wani-softsquared.shop"
+//    val W_API_URL = "https://dev.wani-softsquared.shop"
     // 와니 서버 주소
-    // val W_API_URL = "https://prod.wani-softsquared.shop"
+    val W_API_URL = "https://prod.wani-softsquared.shop"
     // 지니 서버 주소
     val J_API_URL = "https://zini.wani-softsquared.shop"
 

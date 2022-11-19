@@ -67,6 +67,11 @@ class QuizFragment: BaseFragment<FragmentQuizBinding>(FragmentQuizBinding::bind,
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        sharedViewModel.resetQuiz()
+    }
+
     override fun onStart() {
         super.onStart()
         sharedViewModel.getQuizQuestion(this, this, args.boardData.boardIdx)

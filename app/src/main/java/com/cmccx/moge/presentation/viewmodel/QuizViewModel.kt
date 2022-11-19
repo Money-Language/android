@@ -65,6 +65,10 @@ class QuizViewModel : ViewModel() {
 
     }
 
+    fun resetQuiz() {
+        _quiz.value!!.clear()
+    }
+
     fun setBoardIdx(input: Int) {
         _userBoard.value = input
     }
