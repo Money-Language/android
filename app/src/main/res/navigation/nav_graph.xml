@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_searchFragment_to_searchResultFragment"
             app:destination="@id/searchResultFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
@@ -65,13 +68,20 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <action
+            android:id="@+id/action_viewAllFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.cmccx.moge.presentation.view.search.result.SearchResultFragment"
         android:label="fragment_search_result"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingFragment"

@@ -112,7 +112,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         viewTopTenAdapter.setViewTopTenClickListener(object: ViewTopTenAdapter.ViewTopTenClickListener{
             override fun onItemClick(topTen: Search) {
                 val curItem = QuizBoard(topTen.boardIdx, topTen.nickname, topTen.profileImage, topTen.elapsedTime, topTen.title, topTen.quizCount.toString(), topTen.viewCount.toString(), topTen.likeCount.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                val action = SearchFragmentDirections.actionSearchFragmentToQuizFragment(curItem)
                 findNavController().navigate(action)
             }
         })
@@ -130,7 +130,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         likeTopTenAdapter.setLikeTopTenClickListener(object: LikeTopTenAdapter.LikeTopTenClickListener{
             override fun onItemClick(topTen: Search) {
                 val curItem = QuizBoard(topTen.boardIdx, topTen.nickname, topTen.profileImage, topTen.elapsedTime, topTen.title, topTen.quizCount.toString(), topTen.viewCount.toString(), topTen.likeCount.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                val action = SearchFragmentDirections.actionSearchFragmentToQuizFragment(curItem)
                 findNavController().navigate(action)
             }
         })
@@ -255,7 +255,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         quizTenAdapter.setQuizTenClickListener(object: QuizTenAdapter.QuizTenClickListener{
             override fun onItemClick(board: Board) {
                 val curItem = QuizBoard(board.boardIdx, board.nickname, board.profileImage, board.elapsedTime, board.title, board.quizCount.toString(), board.viewCount.toString(), board.likeCount.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToQuizFragment(curItem)
+                val action = SearchFragmentDirections.actionSearchFragmentToQuizFragment(curItem)
                 findNavController().navigate(action)
             }
         })
